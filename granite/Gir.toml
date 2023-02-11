@@ -1,0 +1,94 @@
+[options]
+library = "Granite"
+version = "7.0"
+min_cfg_version = "7.0"
+target_path = "."
+girs_directories = ["../gir-files", ".."]
+work_mode = "normal"
+single_version_file = true
+generate_safety_asserts = true
+deprecate_by_min_version = true
+generate_builder = true
+
+generate = [
+    "Granite.*",
+    "Granite.AccelLabel",
+    "Granite.DatePicker",
+    "Granite.Dialog",
+    "Granite.DrawingColor",
+    "Granite.HeaderLabel",
+    "Granite.HyperTextView",
+    "Granite.MessageDialog",
+    "Granite.ModeSwitch",
+    "Granite.OverlayBar",
+    "Granite.Placeholder",
+    "Granite.ServicesContract",
+    "Granite.ServicesContractorError",
+    "Granite.ServicesContractorProxy",
+    "Granite.ServicesSettingsSerializable",
+    "Granite.ServicesSystem",
+    "Granite.Settings",
+    "Granite.SettingsColorScheme",
+    "Granite.SettingsPage",
+    "Granite.SettingsPageStatusType",
+    "Granite.SettingsSidebar",
+    "Granite.SimpleSettingsPage",
+    "Granite.SwitchModelButton",
+    "Granite.TimePicker",
+    "Granite.Toast",
+#    "Granite.ValidatedEntry", Needs Regex
+]
+
+manual = [
+    "cairo.Context",
+    "cairo.Surface",
+    "Gdk.RGBA",
+    "GdkPixbuf.Pixbuf",
+    "Gio.AsyncReadyCallback",
+    "Gio.AsyncResult",
+    "Gio.File",
+    "Gio.Icon",
+    "GLib.DateTime",
+    "GLib.Error",
+    "Gtk.Accessible",
+    "Gtk.Actionable",
+    "Gtk.Box",
+    "Gtk.Buildable",
+    "Gtk.Button",
+    "Gtk.ButtonsType",
+    "Gtk.CellEditable",
+    "Gtk.ConstraintTarget",
+    "Gtk.CssProvider",
+    "Gtk.Dialog",
+    "Gtk.Editable",
+    "Gtk.Entry",
+    "Gtk.Grid",
+    "Gtk.Label",
+    "Gtk.Native",
+    "Gtk.Orientable",
+    "Gtk.Overlay",
+    "Gtk.Root",
+    "Gtk.Scrollable",
+    "Gtk.ShortcutManager",
+    "Gtk.Stack",
+    "Gtk.Switch",
+    "Gtk.TextView",
+    "Gtk.ToggleButton",
+    "Gtk.Widget",
+    "Gtk.Window",
+]
+
+[[object]]
+name = "Granite.DrawingUtilities"
+status = "generate"
+    [[object.function]]
+    name = "cairo_rounded_rectangle"
+    ignore = true # Needs cairo::Context.to_glib_none_mut()
+
+[[object]]
+name = "Granite.DrawingBufferSurface"
+status = "generate"
+    [[object.function]]
+    name = "with_surface"
+    ignore = true # Needs cairo::Surface.to_glib_none_mut()
+
