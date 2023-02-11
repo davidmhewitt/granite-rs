@@ -14,7 +14,10 @@ fn main() {
 }
 
 fn build_ui(app: &Application) {
+    let placeholder = welcome_view::WelcomeView::build();
+
     let main_stack = gtk::Stack::new();
+    main_stack.add_titled(&placeholder, Some("placeholder"), "Placeholder");
 
     let stack_sidebar = gtk::StackSidebar::builder().stack(&main_stack).build();
 
