@@ -3,8 +3,9 @@ name = "granite-rs"
 version = "0.1.0"
 edition = "2021"
 readme = "../README.md"
-description = "Rust bindings for granite"
+description = "Rust bindings for Granite"
 license = "MIT"
+homepage = "https://github.com/davidmhewitt/granite-rs"
 repository = "https://github.com/davidmhewitt/granite-rs"
 categories = ["api-bindings", "gui"]
 keywords = ["gtk4-rs", "GUI"]
@@ -58,5 +59,6 @@ git = "https://github.com/gtk-rs/gtk4-rs"
 version = "0.7"
 
 [dependencies.ffi]
-package = "granite-sys"
+package = "granite-rs-sys"
 path = "./sys"
+version = "0.1.0"
