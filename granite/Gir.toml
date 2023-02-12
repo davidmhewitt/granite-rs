@@ -27,7 +27,6 @@ generate = [
     "Granite.ServicesContractorProxy",
     "Granite.ServicesSettingsSerializable",
     "Granite.ServicesSystem",
-    "Granite.Settings",
     "Granite.SettingsColorScheme",
     "Granite.SettingsPage",
     "Granite.SettingsPageStatusType",
@@ -42,6 +41,7 @@ generate = [
 manual = [
     "cairo.Context",
     "cairo.Surface",
+    "Gdk.Cursor",
     "Gdk.RGBA",
     "GdkPixbuf.Pixbuf",
     "Gio.AsyncReadyCallback",
@@ -52,6 +52,7 @@ manual = [
     "GLib.Error",
     "Gtk.Accessible",
     "Gtk.Actionable",
+    "Gtk.Align",
     "Gtk.Box",
     "Gtk.Buildable",
     "Gtk.Button",
@@ -66,6 +67,7 @@ manual = [
     "Gtk.Label",
     "Gtk.Native",
     "Gtk.Orientable",
+    "Gtk.Overflow",
     "Gtk.Overlay",
     "Gtk.Root",
     "Gtk.Scrollable",
@@ -92,3 +94,7 @@ status = "generate"
     name = "with_surface"
     ignore = true # Needs cairo::Surface.to_glib_none_mut()
 
+[[object]]
+name = "Granite.Settings"
+status = "generate"
+generate_builder = false

@@ -181,9 +181,11 @@ impl ModeSwitchBuilder {
         }
     }
 
-    //pub fn cursor(self, cursor: /*Ignored*/&gdk::Cursor) -> Self {
-    //    Self { builder: self.builder.property("cursor", cursor), }
-    //}
+    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+        Self {
+            builder: self.builder.property("cursor", cursor.clone()),
+        }
+    }
 
     pub fn focus_on_click(self, focus_on_click: bool) -> Self {
         Self {
@@ -197,9 +199,11 @@ impl ModeSwitchBuilder {
         }
     }
 
-    //pub fn halign(self, halign: /*Ignored*/gtk::Align) -> Self {
-    //    Self { builder: self.builder.property("halign", halign), }
-    //}
+    pub fn halign(self, halign: gtk::Align) -> Self {
+        Self {
+            builder: self.builder.property("halign", halign),
+        }
+    }
 
     pub fn has_tooltip(self, has_tooltip: bool) -> Self {
         Self {
@@ -265,9 +269,11 @@ impl ModeSwitchBuilder {
         }
     }
 
-    //pub fn overflow(self, overflow: /*Ignored*/gtk::Overflow) -> Self {
-    //    Self { builder: self.builder.property("overflow", overflow), }
-    //}
+    pub fn overflow(self, overflow: gtk::Overflow) -> Self {
+        Self {
+            builder: self.builder.property("overflow", overflow),
+        }
+    }
 
     pub fn receives_default(self, receives_default: bool) -> Self {
         Self {
@@ -295,9 +301,11 @@ impl ModeSwitchBuilder {
         }
     }
 
-    //pub fn valign(self, valign: /*Ignored*/gtk::Align) -> Self {
-    //    Self { builder: self.builder.property("valign", valign), }
-    //}
+    pub fn valign(self, valign: gtk::Align) -> Self {
+        Self {
+            builder: self.builder.property("valign", valign),
+        }
+    }
 
     pub fn vexpand(self, vexpand: bool) -> Self {
         Self {

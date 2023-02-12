@@ -23,52 +23,12 @@ glib::wrapper! {
 impl Settings {
     pub const NONE: Option<&'static Settings> = None;
 
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`Settings`] objects.
-    ///
-    /// This method returns an instance of [`SettingsBuilder`](crate::builders::SettingsBuilder) which can be used to create [`Settings`] objects.
-    pub fn builder() -> SettingsBuilder {
-        SettingsBuilder::new()
-    }
-
     #[doc(alias = "granite_settings_get_default")]
     #[doc(alias = "get_default")]
     #[allow(clippy::should_implement_trait)]
     pub fn default() -> Option<Settings> {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::granite_settings_get_default()) }
-    }
-}
-
-// rustdoc-stripper-ignore-next
-/// A [builder-pattern] type to construct [`Settings`] objects.
-///
-/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
-#[must_use = "The builder must be built to be used"]
-pub struct SettingsBuilder {
-    builder: glib::object::ObjectBuilder<'static, Settings>,
-}
-
-impl SettingsBuilder {
-    fn new() -> Self {
-        Self {
-            builder: glib::object::Object::builder(),
-        }
-    }
-
-    pub fn prefers_color_scheme(self, prefers_color_scheme: SettingsColorScheme) -> Self {
-        Self {
-            builder: self
-                .builder
-                .property("prefers-color-scheme", prefers_color_scheme),
-        }
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`Settings`].
-    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
-    pub fn build(self) -> Settings {
-        self.builder.build()
     }
 }
 

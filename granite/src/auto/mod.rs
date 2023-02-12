@@ -149,7 +149,6 @@ pub mod builders {
     pub use super::mode_switch::ModeSwitchBuilder;
     pub use super::overlay_bar::OverlayBarBuilder;
     pub use super::placeholder::PlaceholderBuilder;
-    pub use super::settings::SettingsBuilder;
     pub use super::settings_sidebar::SettingsSidebarBuilder;
     pub use super::switch_model_button::SwitchModelButtonBuilder;
     pub use super::time_picker::TimePickerBuilder;

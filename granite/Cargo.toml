@@ -1,7 +1,27 @@
 [package]
-name = "granite"
+name = "granite-rs"
 version = "0.1.0"
 edition = "2021"
+readme = "../README.md"
+description = "Rust bindings for granite"
+license = "MIT"
+repository = "https://github.com/davidmhewitt/granite-rs"
+categories = ["api-bindings", "gui"]
+keywords = ["gtk4-rs", "GUI"]
+
+[lib]
+name = "granite"
+
+[features]
+dox = [
+    "cairo-rs/dox",
+    "glib/dox",
+    "gio/dox",
+    "gdk-pixbuf/dox",
+    "gdk/dox",
+    "gtk/dox",
+    "ffi/dox",
+]
 
 [package.metadata.docs.rs]
 features = ["dox"]
