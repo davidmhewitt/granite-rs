@@ -39,4 +39,4 @@ version = "0.7"
 
 [dependencies.ffi]
 package = "granite-sys"
-path = "./granite-sys"
+path = "./sys"

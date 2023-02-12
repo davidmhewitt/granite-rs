@@ -1,7 +1,7 @@
 mod welcome_view;
 
-use granite::traits::SettingsExt;
 use glib::clone;
+use granite::traits::SettingsExt;
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow};
 
@@ -49,9 +49,7 @@ fn build_ui(app: &Application) {
         granite_settings.prefers_color_scheme() == granite::SettingsColorScheme::Dark,
     );
 
-    let headerbar = gtk::HeaderBar::builder()
-        .show_title_buttons(true)
-        .build();
+    let headerbar = gtk::HeaderBar::builder().show_title_buttons(true).build();
 
     headerbar.style_context().add_class("default-decoration");
     headerbar.pack_end(&mode_switch);
@@ -70,9 +68,11 @@ fn build_ui(app: &Application) {
 
     window.present();
 
-    granite_settings.connect_prefers_color_scheme_notify(clone!(@weak gtk_settings => move |granite_settings| {
-        gtk_settings.set_gtk_application_prefer_dark_theme(
-            granite_settings.prefers_color_scheme() == granite::SettingsColorScheme::Dark,
-        );
-    }));
+    granite_settings.connect_prefers_color_scheme_notify(
+        clone!(@weak gtk_settings => move |granite_settings| {
+            gtk_settings.set_gtk_application_prefer_dark_theme(
+                granite_settings.prefers_color_scheme() == granite::SettingsColorScheme::Dark,
+            );
+        }),
+    );
 }

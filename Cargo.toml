@@ -1,0 +1,7 @@
+[workspace]
+members = [
+    "examples",
+    "granite",
+    "granite/sys",
+]
+exclude = ["gir"]
