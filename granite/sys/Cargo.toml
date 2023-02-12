@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2021"
 build = "build.rs"
 links = "libgranite-7"
+authors = ["David Hewitt <davidmhewitt@gmail.com>"]
 readme = "../../README.md"
 description = "FFI bindings for Granite"
 license = "MIT"

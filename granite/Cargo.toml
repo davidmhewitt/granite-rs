@@ -2,6 +2,7 @@
 name = "granite-rs"
 version = "0.1.0"
 edition = "2021"
+authors = ["David Hewitt <davidmhewitt@gmail.com>"]
 readme = "../README.md"
 description = "Rust bindings for Granite"
 license = "MIT"
