@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 build = "build.rs"
 links = "libgranite-7"
-readme = "../README.md"
+readme = "../../README.md"
 description = "FFI bindings for Granite"
 license = "MIT"
 homepage = "https://github.com/davidmhewitt/granite-rs"
@@ -27,31 +27,31 @@ libc = "0.2"
 
 [dependencies.cairo]
 package = "cairo-sys-rs"
-git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.17"
 
 [dependencies.gdk]
 package = "gdk4-sys"
-git = "https://github.com/gtk-rs/gtk4-rs"
+version = "0.6"
 
 [dependencies.gdk_pixbuf]
 package = "gdk-pixbuf-sys"
-git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.17"
 
 [dependencies.gio]
 package = "gio-sys"
-git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.17"
 
 [dependencies.glib]
 package = "glib-sys"
-git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.17"
 
 [dependencies.gobject]
 package = "gobject-sys"
-git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.17"
 
 [dependencies.gtk]
 package = "gtk4-sys"
-git = "https://github.com/gtk-rs/gtk4-rs"
+version = "0.6"
 
 [build-dependencies]
 system-deps = "6"
