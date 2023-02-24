@@ -1,3 +1,4 @@
+mod accel_label_view;
 mod welcome_view;
 
 use glib::clone;
@@ -14,10 +15,12 @@ fn main() {
 }
 
 fn build_ui(app: &Application) {
+    let accel_label_view = accel_label_view::AccelLabelView::new();
     let placeholder = welcome_view::WelcomeView::new();
 
     let main_stack = gtk::Stack::new();
     main_stack.add_titled(&placeholder, Some("placeholder"), "Placeholder");
+    main_stack.add_titled(&accel_label_view, Some("accel_label"), "AccelLabel");
 
     let stack_sidebar = gtk::StackSidebar::builder().stack(&main_stack).build();
 
