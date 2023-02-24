@@ -56,6 +56,7 @@ mod imp {
                     "Click here to hide this",
                 )
                 .unwrap();
+            alert_action.set_widget_name("alert_button");
 
             let search_placeholder = granite::Placeholder::builder()
                 .title("No Apps Found")
@@ -63,7 +64,7 @@ mod imp {
                 .icon(&gio::ThemedIcon::new("edit-find-symbolic"))
                 .build();
 
-            let stack = gtk::Stack::builder().vexpand(true).build();
+            let stack = gtk::Stack::builder().vexpand(true).name("stack").build();
 
             stack.add_titled(&welcome, Some("Welcome"), "Welcome");
             stack.add_titled(&alert, Some("Alert"), "Alert");
@@ -74,6 +75,7 @@ mod imp {
                 .margin_end(24)
                 .margin_start(24)
                 .stack(&stack)
+                .name("stack_switcher")
                 .build();
 
             vala_button.connect_clicked(|_| {
@@ -115,5 +117,75 @@ impl WelcomeView {
             .property("orientation", gtk::Orientation::Vertical)
             .property("spacing", 0)
             .build()
+    }
+}
+
+impl Default for WelcomeView {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    fn find_child_widget_by_name(parent: &impl WidgetExt, name: &str) -> Option<gtk::Widget> {
+        let mut child = parent.first_child();
+        while let Some(ref inner) = child {
+            if inner.widget_name() == name {
+                child = Some(inner.clone());
+                break;
+            }
+
+            if let Some(ref recursive) = find_child_widget_by_name(inner, name) {
+                child = Some(recursive.clone());
+                break;
+            }
+
+            child = inner.next_sibling();
+        }
+
+        child
+    }
+
+    fn wait(ms: u32) {
+        let main_loop = glib::MainLoop::new(None, false);
+        glib::timeout_add(
+            std::time::Duration::from_millis(ms as u64),
+            glib::clone!(@strong main_loop => move || {
+                main_loop.quit();
+                Continue(false)
+            }),
+        );
+
+        main_loop.run();
+    }
+
+    #[gtk::test]
+    fn test_welcome_view() {
+        let window = gtk::Window::new();
+
+        let welcome_view = WelcomeView::new();
+
+        window.set_child(Some(&welcome_view));
+        window.present();
+
+        let stack =
+            find_child_widget_by_name(&welcome_view, "stack").expect("Stack cannot be found");
+        let stack = stack
+            .dynamic_cast::<gtk::Stack>()
+            .expect("Stack cannot be cast");
+        assert_eq!(stack.visible_child_name(), Some("Welcome".into()));
+
+        stack.set_visible_child_name("Alert");
+
+        assert_eq!(stack.visible_child_name(), Some("Alert".into()));
+
+        let button = find_child_widget_by_name(&stack, "alert_button").expect("Cannot find button");
+        assert!(button.is_visible());
+        button.activate();
+        wait(500);
+        assert!(!button.is_visible());
     }
 }
