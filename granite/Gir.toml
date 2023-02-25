@@ -38,11 +38,8 @@ generate = [
 ]
 
 manual = [
-    "cairo.Context",
-    "cairo.Surface",
     "Gdk.Cursor",
     "Gdk.RGBA",
-    "GdkPixbuf.Pixbuf",
     "Gio.AsyncReadyCallback",
     "Gio.AsyncResult",
     "Gio.File",
