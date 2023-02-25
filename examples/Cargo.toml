@@ -3,9 +3,13 @@ name = "granite-rs-examples"
 version = "0.1.0"
 edition = "2021"
 
+[dependencies]
+glib-macros = "0.17.2"
+
 [dependencies.granite]
 package = "granite-rs"
 path = "../granite"
+features = ["v7_1"]
 
 [dependencies.glib]
 version = "0.17"

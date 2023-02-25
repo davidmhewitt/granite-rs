@@ -51,13 +51,9 @@ mod imp {
             popover_box.append(&lock_button);
             popover_box.append(&logout_button);
 
-            let popover = gtk::Popover::builder()
-                .child(&popover_box)
-                .build();
+            let popover = gtk::Popover::builder().child(&popover_box).build();
 
-            let popover_button = gtk::MenuButton::builder()
-                .popover(&popover)
-                .build();
+            let popover_button = gtk::MenuButton::builder().popover(&popover).build();
 
             obj.attach(&accellabel_label, 0, 0, 1, 1);
             obj.attach(&copy_label, 1, 0, 1, 1);

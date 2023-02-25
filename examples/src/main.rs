@@ -1,4 +1,5 @@
 mod accel_label_view;
+mod css_view;
 mod welcome_view;
 
 use glib::clone;
@@ -15,12 +16,23 @@ fn main() {
 }
 
 fn build_ui(app: &Application) {
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title("Granite Rust Demo")
+        .default_width(900)
+        .default_height(600)
+        .width_request(750)
+        .height_request(500)
+        .build();
+
     let accel_label_view = accel_label_view::AccelLabelView::new();
+    let css_view = css_view::CssView::new(window.clone().into());
     let placeholder = welcome_view::WelcomeView::new();
 
     let main_stack = gtk::Stack::new();
     main_stack.add_titled(&placeholder, Some("placeholder"), "Placeholder");
     main_stack.add_titled(&accel_label_view, Some("accel_label"), "AccelLabel");
+    main_stack.add_titled(&css_view, Some("css"), "Style Classes");
 
     let stack_sidebar = gtk::StackSidebar::builder().stack(&main_stack).build();
 
@@ -57,16 +69,7 @@ fn build_ui(app: &Application) {
     headerbar.style_context().add_class("default-decoration");
     headerbar.pack_end(&mode_switch);
 
-    let window = ApplicationWindow::builder()
-        .application(app)
-        .title("Granite Rust Demo")
-        .default_width(900)
-        .default_height(600)
-        .width_request(750)
-        .height_request(500)
-        .child(&paned)
-        .build();
-
+    window.set_child(Some(&paned));
     window.set_titlebar(Some(&headerbar));
 
     window.present();
