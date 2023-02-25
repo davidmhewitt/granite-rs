@@ -15,7 +15,6 @@ generate = [
     "Granite.AccelLabel",
     "Granite.DatePicker",
     "Granite.Dialog",
-    "Granite.DrawingColor",
     "Granite.HeaderLabel",
     "Granite.HyperTextView",
     "Granite.MessageDialog",
@@ -79,20 +78,6 @@ manual = [
     "Gtk.Widget",
     "Gtk.Window",
 ]
-
-[[object]]
-name = "Granite.DrawingUtilities"
-status = "generate"
-    [[object.function]]
-    name = "cairo_rounded_rectangle"
-    ignore = true # Needs cairo::Context.to_glib_none_mut()
-
-[[object]]
-name = "Granite.DrawingBufferSurface"
-status = "generate"
-    [[object.function]]
-    name = "with_surface"
-    ignore = true # Needs cairo::Surface.to_glib_none_mut()
 
 [[object]]
 name = "Granite.Settings"

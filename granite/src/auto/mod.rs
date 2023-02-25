@@ -12,15 +12,6 @@ pub use self::date_picker::DatePicker;
 mod dialog;
 pub use self::dialog::Dialog;
 
-mod drawing_buffer_surface;
-pub use self::drawing_buffer_surface::DrawingBufferSurface;
-
-mod drawing_color;
-pub use self::drawing_color::DrawingColor;
-
-mod drawing_utilities;
-pub use self::drawing_utilities::DrawingUtilities;
-
 mod header_label;
 pub use self::header_label::HeaderLabel;
 
@@ -81,6 +72,9 @@ pub mod functions;
 
 mod constants;
 pub use self::constants::STYLE_CLASS_ACCENT;
+#[cfg(any(feature = "v7_1", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v7_1")))]
+pub use self::constants::STYLE_CLASS_BACKGROUND;
 pub use self::constants::STYLE_CLASS_BACK_BUTTON;
 pub use self::constants::STYLE_CLASS_BADGE;
 pub use self::constants::STYLE_CLASS_CARD;
@@ -93,18 +87,28 @@ pub use self::constants::STYLE_CLASS_DIALOG_CONTENT_AREA;
 pub use self::constants::STYLE_CLASS_DIM_LABEL;
 pub use self::constants::STYLE_CLASS_ERROR;
 pub use self::constants::STYLE_CLASS_FLAT;
+#[cfg(any(feature = "v7_1", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v7_1")))]
+pub use self::constants::STYLE_CLASS_FRAME;
 pub use self::constants::STYLE_CLASS_H1_LABEL;
 pub use self::constants::STYLE_CLASS_H2_LABEL;
 pub use self::constants::STYLE_CLASS_H3_LABEL;
 pub use self::constants::STYLE_CLASS_H4_LABEL;
 pub use self::constants::STYLE_CLASS_KEYCAP;
+pub use self::constants::STYLE_CLASS_LARGE_ICONS;
 pub use self::constants::STYLE_CLASS_LINKED;
 pub use self::constants::STYLE_CLASS_MENU;
 pub use self::constants::STYLE_CLASS_MENUITEM;
 pub use self::constants::STYLE_CLASS_MESSAGE_DIALOG;
 pub use self::constants::STYLE_CLASS_MODE_SWITCH;
 pub use self::constants::STYLE_CLASS_OSD;
+#[cfg(any(feature = "v7_1", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v7_1")))]
+pub use self::constants::STYLE_CLASS_RICH_LIST;
 pub use self::constants::STYLE_CLASS_ROUNDED;
+#[cfg(any(feature = "v7_1", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v7_1")))]
+pub use self::constants::STYLE_CLASS_SIDEBAR;
 pub use self::constants::STYLE_CLASS_SMALL_LABEL;
 pub use self::constants::STYLE_CLASS_SUGGESTED_ACTION;
 pub use self::constants::STYLE_CLASS_TEMPERATURE;
@@ -119,8 +123,6 @@ pub use self::constants::TOOLTIP_SECONDARY_TEXT_MARKUP;
 pub mod traits {
     pub use super::accel_label::AccelLabelExt;
     pub use super::date_picker::DatePickerExt;
-    pub use super::drawing_buffer_surface::DrawingBufferSurfaceExt;
-    pub use super::drawing_color::DrawingColorExt;
     pub use super::header_label::HeaderLabelExt;
     pub use super::message_dialog::MessageDialogExt;
     pub use super::mode_switch::ModeSwitchExt;
@@ -142,7 +144,6 @@ pub mod builders {
     pub use super::accel_label::AccelLabelBuilder;
     pub use super::date_picker::DatePickerBuilder;
     pub use super::dialog::DialogBuilder;
-    pub use super::drawing_buffer_surface::DrawingBufferSurfaceBuilder;
     pub use super::header_label::HeaderLabelBuilder;
     pub use super::hyper_text_view::HyperTextViewBuilder;
     pub use super::message_dialog::MessageDialogBuilder;

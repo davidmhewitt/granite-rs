@@ -241,48 +241,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GraniteDrawingBufferSurface",
-        Layout {
-            size: size_of::<GraniteDrawingBufferSurface>(),
-            alignment: align_of::<GraniteDrawingBufferSurface>(),
-        },
-    ),
-    (
-        "GraniteDrawingBufferSurfaceClass",
-        Layout {
-            size: size_of::<GraniteDrawingBufferSurfaceClass>(),
-            alignment: align_of::<GraniteDrawingBufferSurfaceClass>(),
-        },
-    ),
-    (
-        "GraniteDrawingColor",
-        Layout {
-            size: size_of::<GraniteDrawingColor>(),
-            alignment: align_of::<GraniteDrawingColor>(),
-        },
-    ),
-    (
-        "GraniteDrawingColorClass",
-        Layout {
-            size: size_of::<GraniteDrawingColorClass>(),
-            alignment: align_of::<GraniteDrawingColorClass>(),
-        },
-    ),
-    (
-        "GraniteDrawingUtilities",
-        Layout {
-            size: size_of::<GraniteDrawingUtilities>(),
-            alignment: align_of::<GraniteDrawingUtilities>(),
-        },
-    ),
-    (
-        "GraniteDrawingUtilitiesClass",
-        Layout {
-            size: size_of::<GraniteDrawingUtilitiesClass>(),
-            alignment: align_of::<GraniteDrawingUtilitiesClass>(),
-        },
-    ),
-    (
         "GraniteHeaderLabel",
         Layout {
             size: size_of::<GraniteHeaderLabel>(),
@@ -557,6 +515,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GRANITE_SETTINGS_PAGE_STATUS_TYPE_SUCCESS", "2"),
     ("(gint) GRANITE_SETTINGS_PAGE_STATUS_TYPE_WARNING", "3"),
     ("GRANITE_STYLE_CLASS_ACCENT", "accent"),
+    ("GRANITE_STYLE_CLASS_BACKGROUND", "background"),
     ("GRANITE_STYLE_CLASS_BACK_BUTTON", "back-button"),
     ("GRANITE_STYLE_CLASS_BADGE", "badge"),
     ("GRANITE_STYLE_CLASS_CARD", "card"),
@@ -578,18 +537,22 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("GRANITE_STYLE_CLASS_DIM_LABEL", "dim-label"),
     ("GRANITE_STYLE_CLASS_ERROR", "error"),
     ("GRANITE_STYLE_CLASS_FLAT", "flat"),
+    ("GRANITE_STYLE_CLASS_FRAME", "frame"),
     ("GRANITE_STYLE_CLASS_H1_LABEL", "title-1"),
     ("GRANITE_STYLE_CLASS_H2_LABEL", "title-2"),
     ("GRANITE_STYLE_CLASS_H3_LABEL", "title-3"),
     ("GRANITE_STYLE_CLASS_H4_LABEL", "title-4"),
     ("GRANITE_STYLE_CLASS_KEYCAP", "keycap"),
+    ("GRANITE_STYLE_CLASS_LARGE_ICONS", "large-icons"),
     ("GRANITE_STYLE_CLASS_LINKED", "linked"),
     ("GRANITE_STYLE_CLASS_MENU", "menu"),
     ("GRANITE_STYLE_CLASS_MENUITEM", "menuitem"),
     ("GRANITE_STYLE_CLASS_MESSAGE_DIALOG", "message"),
     ("GRANITE_STYLE_CLASS_MODE_SWITCH", "mode-switch"),
     ("GRANITE_STYLE_CLASS_OSD", "osd"),
+    ("GRANITE_STYLE_CLASS_RICH_LIST", "rich-list"),
     ("GRANITE_STYLE_CLASS_ROUNDED", "rounded"),
+    ("GRANITE_STYLE_CLASS_SIDEBAR", "sidebar"),
     ("GRANITE_STYLE_CLASS_SMALL_LABEL", "small-label"),
     ("GRANITE_STYLE_CLASS_SUGGESTED_ACTION", "suggested-action"),
     ("GRANITE_STYLE_CLASS_TEMPERATURE", "temperature"),

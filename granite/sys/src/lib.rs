@@ -41,6 +41,7 @@ pub const GRANITE_SETTINGS_PAGE_STATUS_TYPE_NONE: GraniteSettingsPageStatusType 
 // Constants
 pub const GRANITE_STYLE_CLASS_ACCENT: &[u8] = b"accent\0";
 pub const GRANITE_STYLE_CLASS_BACK_BUTTON: &[u8] = b"back-button\0";
+pub const GRANITE_STYLE_CLASS_BACKGROUND: &[u8] = b"background\0";
 pub const GRANITE_STYLE_CLASS_BADGE: &[u8] = b"badge\0";
 pub const GRANITE_STYLE_CLASS_CARD: &[u8] = b"card\0";
 pub const GRANITE_STYLE_CLASS_CHECKERBOARD: &[u8] = b"checkerboard\0";
@@ -49,14 +50,17 @@ pub const GRANITE_STYLE_CLASS_COLOR_BUTTON: &[u8] = b"color-button\0";
 pub const GRANITE_STYLE_CLASS_DEFAULT_DECORATION: &[u8] = b"default-decoration\0";
 pub const GRANITE_STYLE_CLASS_DESTRUCTIVE_ACTION: &[u8] = b"destructive-action\0";
 pub const GRANITE_STYLE_CLASS_DIALOG_CONTENT_AREA: &[u8] = b"dialog-content-area\0";
+pub const GRANITE_STYLE_CLASS_FRAME: &[u8] = b"frame\0";
 pub const GRANITE_STYLE_CLASS_H1_LABEL: &[u8] = b"title-1\0";
 pub const GRANITE_STYLE_CLASS_H2_LABEL: &[u8] = b"title-2\0";
 pub const GRANITE_STYLE_CLASS_H3_LABEL: &[u8] = b"title-3\0";
 pub const GRANITE_STYLE_CLASS_H4_LABEL: &[u8] = b"title-4\0";
 pub const GRANITE_STYLE_CLASS_KEYCAP: &[u8] = b"keycap\0";
+pub const GRANITE_STYLE_CLASS_LARGE_ICONS: &[u8] = b"large-icons\0";
 pub const GRANITE_STYLE_CLASS_MODE_SWITCH: &[u8] = b"mode-switch\0";
 pub const GRANITE_STYLE_CLASS_OSD: &[u8] = b"osd\0";
 pub const GRANITE_STYLE_CLASS_ROUNDED: &[u8] = b"rounded\0";
+pub const GRANITE_STYLE_CLASS_SIDEBAR: &[u8] = b"sidebar\0";
 pub const GRANITE_STYLE_CLASS_SMALL_LABEL: &[u8] = b"small-label\0";
 pub const GRANITE_STYLE_CLASS_TERMINAL: &[u8] = b"terminal\0";
 pub const GRANITE_STYLE_CLASS_TITLE_LABEL: &[u8] = b"title\0";
@@ -69,6 +73,7 @@ pub const GRANITE_STYLE_CLASS_DIM_LABEL: &[u8] = b"dim-label\0";
 pub const GRANITE_STYLE_CLASS_ERROR: &[u8] = b"error\0";
 pub const GRANITE_STYLE_CLASS_FLAT: &[u8] = b"flat\0";
 pub const GRANITE_STYLE_CLASS_MESSAGE_DIALOG: &[u8] = b"message\0";
+pub const GRANITE_STYLE_CLASS_RICH_LIST: &[u8] = b"rich-list\0";
 pub const GRANITE_STYLE_CLASS_SUGGESTED_ACTION: &[u8] = b"suggested-action\0";
 pub const GRANITE_STYLE_CLASS_VIEW: &[u8] = b"view\0";
 pub const GRANITE_STYLE_CLASS_WARNING: &[u8] = b"warning\0";
@@ -141,69 +146,6 @@ pub struct _GraniteDialogPrivate {
 }
 
 pub type GraniteDialogPrivate = *mut _GraniteDialogPrivate;
-
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct GraniteDrawingBufferSurfaceClass {
-    pub parent_class: gobject::GObjectClass,
-}
-
-impl ::std::fmt::Debug for GraniteDrawingBufferSurfaceClass {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GraniteDrawingBufferSurfaceClass @ {self:p}"))
-            .finish()
-    }
-}
-
-#[repr(C)]
-pub struct _GraniteDrawingBufferSurfacePrivate {
-    _data: [u8; 0],
-    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
-}
-
-pub type GraniteDrawingBufferSurfacePrivate = *mut _GraniteDrawingBufferSurfacePrivate;
-
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct GraniteDrawingColorClass {
-    pub parent_class: gobject::GObjectClass,
-}
-
-impl ::std::fmt::Debug for GraniteDrawingColorClass {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GraniteDrawingColorClass @ {self:p}"))
-            .finish()
-    }
-}
-
-#[repr(C)]
-pub struct _GraniteDrawingColorPrivate {
-    _data: [u8; 0],
-    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
-}
-
-pub type GraniteDrawingColorPrivate = *mut _GraniteDrawingColorPrivate;
-
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct GraniteDrawingUtilitiesClass {
-    pub parent_class: gobject::GObjectClass,
-}
-
-impl ::std::fmt::Debug for GraniteDrawingUtilitiesClass {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GraniteDrawingUtilitiesClass @ {self:p}"))
-            .finish()
-    }
-}
-
-#[repr(C)]
-pub struct _GraniteDrawingUtilitiesPrivate {
-    _data: [u8; 0],
-    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
-}
-
-pub type GraniteDrawingUtilitiesPrivate = *mut _GraniteDrawingUtilitiesPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -471,7 +413,7 @@ pub type GraniteSettingsPrivate = *mut _GraniteSettingsPrivate;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct GraniteSettingsSidebarClass {
-    pub parent_class: gtk::GtkBoxClass,
+    pub parent_class: gtk::GtkWidgetClass,
 }
 
 impl ::std::fmt::Debug for GraniteSettingsSidebarClass {
@@ -639,56 +581,6 @@ impl ::std::fmt::Debug for GraniteDialog {
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct GraniteDrawingBufferSurface {
-    pub parent_instance: gobject::GObject,
-    pub priv_: *mut GraniteDrawingBufferSurfacePrivate,
-}
-
-impl ::std::fmt::Debug for GraniteDrawingBufferSurface {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GraniteDrawingBufferSurface @ {self:p}"))
-            .finish()
-    }
-}
-
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct GraniteDrawingColor {
-    pub parent_instance: gobject::GObject,
-    pub R: c_double,
-    pub G: c_double,
-    pub B: c_double,
-    pub A: c_double,
-    pub priv_: *mut GraniteDrawingColorPrivate,
-}
-
-impl ::std::fmt::Debug for GraniteDrawingColor {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GraniteDrawingColor @ {self:p}"))
-            .field("R", &self.R)
-            .field("G", &self.G)
-            .field("B", &self.B)
-            .field("A", &self.A)
-            .finish()
-    }
-}
-
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct GraniteDrawingUtilities {
-    pub parent_instance: gobject::GObject,
-    pub priv_: *mut GraniteDrawingUtilitiesPrivate,
-}
-
-impl ::std::fmt::Debug for GraniteDrawingUtilities {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GraniteDrawingUtilities @ {self:p}"))
-            .finish()
-    }
-}
-
-#[derive(Copy, Clone)]
-#[repr(C)]
 pub struct GraniteHeaderLabel {
     pub parent_instance: gtk::GtkWidget,
     pub priv_: *mut GraniteHeaderLabelPrivate,
@@ -834,7 +726,7 @@ impl ::std::fmt::Debug for GraniteSettingsPage {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct GraniteSettingsSidebar {
-    pub parent_instance: gtk::GtkBox,
+    pub parent_instance: gtk::GtkWidget,
     pub priv_: *mut GraniteSettingsSidebarPrivate,
 }
 
@@ -996,156 +888,17 @@ extern "C" {
     pub fn granite_dialog_new() -> *mut GraniteDialog;
 
     //=========================================================================
-    // GraniteDrawingBufferSurface
-    //=========================================================================
-    pub fn granite_drawing_buffer_surface_get_type() -> GType;
-    pub fn granite_drawing_buffer_surface_get_surface(
-        self_: *mut GraniteDrawingBufferSurface,
-    ) -> *mut cairo::cairo_surface_t;
-    pub fn granite_drawing_buffer_surface_get_width(
-        self_: *mut GraniteDrawingBufferSurface,
-    ) -> c_int;
-    pub fn granite_drawing_buffer_surface_get_height(
-        self_: *mut GraniteDrawingBufferSurface,
-    ) -> c_int;
-    pub fn granite_drawing_buffer_surface_get_context(
-        self_: *mut GraniteDrawingBufferSurface,
-    ) -> *mut cairo::cairo_t;
-    pub fn granite_drawing_buffer_surface_new(
-        width: c_int,
-        height: c_int,
-    ) -> *mut GraniteDrawingBufferSurface;
-    pub fn granite_drawing_buffer_surface_new_with_surface(
-        width: c_int,
-        height: c_int,
-        model: *mut cairo::cairo_surface_t,
-    ) -> *mut GraniteDrawingBufferSurface;
-    pub fn granite_drawing_buffer_surface_new_with_buffer_surface(
-        width: c_int,
-        height: c_int,
-        model: *mut GraniteDrawingBufferSurface,
-    ) -> *mut GraniteDrawingBufferSurface;
-    pub fn granite_drawing_buffer_surface_clear(self_: *mut GraniteDrawingBufferSurface);
-    pub fn granite_drawing_buffer_surface_load_to_pixbuf(
-        self_: *mut GraniteDrawingBufferSurface,
-    ) -> *mut gdk_pixbuf::GdkPixbuf;
-    pub fn granite_drawing_buffer_surface_average_color(
-        self_: *mut GraniteDrawingBufferSurface,
-    ) -> *mut GraniteDrawingColor;
-    pub fn granite_drawing_buffer_surface_fast_blur(
-        self_: *mut GraniteDrawingBufferSurface,
-        radius: c_int,
-        process_count: c_int,
-    );
-    pub fn granite_drawing_buffer_surface_exponential_blur(
-        self_: *mut GraniteDrawingBufferSurface,
-        radius: c_int,
-    );
-    pub fn granite_drawing_buffer_surface_gaussian_blur(
-        self_: *mut GraniteDrawingBufferSurface,
-        radius: c_int,
-    );
-
-    //=========================================================================
-    // GraniteDrawingColor
-    //=========================================================================
-    pub fn granite_drawing_color_get_type() -> GType;
-    pub fn granite_drawing_color_alpha_from_int(color: c_int) -> u8;
-    pub fn granite_drawing_color_red_from_int(color: c_int) -> u8;
-    pub fn granite_drawing_color_green_from_int(color: c_int) -> u8;
-    pub fn granite_drawing_color_blue_from_int(color: c_int) -> u8;
-    pub fn granite_drawing_color_new(
-        R: c_double,
-        G: c_double,
-        B: c_double,
-        A: c_double,
-    ) -> *mut GraniteDrawingColor;
-    pub fn granite_drawing_color_new_from_rgba(
-        color: *mut gdk::GdkRGBA,
-    ) -> *mut GraniteDrawingColor;
-    pub fn granite_drawing_color_new_from_string(color: *const c_char) -> *mut GraniteDrawingColor;
-    pub fn granite_drawing_color_new_from_int(color: c_int) -> *mut GraniteDrawingColor;
-    pub fn granite_drawing_color_set_hue(
-        self_: *mut GraniteDrawingColor,
-        hue: c_double,
-    ) -> *mut GraniteDrawingColor;
-    pub fn granite_drawing_color_set_sat(
-        self_: *mut GraniteDrawingColor,
-        sat: c_double,
-    ) -> *mut GraniteDrawingColor;
-    pub fn granite_drawing_color_set_val(
-        self_: *mut GraniteDrawingColor,
-        val: c_double,
-    ) -> *mut GraniteDrawingColor;
-    pub fn granite_drawing_color_set_alpha(
-        self_: *mut GraniteDrawingColor,
-        alpha: c_double,
-    ) -> *mut GraniteDrawingColor;
-    pub fn granite_drawing_color_get_hue(self_: *mut GraniteDrawingColor) -> c_double;
-    pub fn granite_drawing_color_get_sat(self_: *mut GraniteDrawingColor) -> c_double;
-    pub fn granite_drawing_color_get_val(self_: *mut GraniteDrawingColor) -> c_double;
-    pub fn granite_drawing_color_add_hue(
-        self_: *mut GraniteDrawingColor,
-        val: c_double,
-    ) -> *mut GraniteDrawingColor;
-    pub fn granite_drawing_color_set_min_sat(
-        self_: *mut GraniteDrawingColor,
-        sat: c_double,
-    ) -> *mut GraniteDrawingColor;
-    pub fn granite_drawing_color_set_min_value(
-        self_: *mut GraniteDrawingColor,
-        val: c_double,
-    ) -> *mut GraniteDrawingColor;
-    pub fn granite_drawing_color_set_max_sat(
-        self_: *mut GraniteDrawingColor,
-        sat: c_double,
-    ) -> *mut GraniteDrawingColor;
-    pub fn granite_drawing_color_set_max_val(
-        self_: *mut GraniteDrawingColor,
-        val: c_double,
-    ) -> *mut GraniteDrawingColor;
-    pub fn granite_drawing_color_multiply_sat(
-        self_: *mut GraniteDrawingColor,
-        amount: c_double,
-    ) -> *mut GraniteDrawingColor;
-    pub fn granite_drawing_color_brighten_val(
-        self_: *mut GraniteDrawingColor,
-        amount: c_double,
-    ) -> *mut GraniteDrawingColor;
-    pub fn granite_drawing_color_darken_val(
-        self_: *mut GraniteDrawingColor,
-        amount: c_double,
-    ) -> *mut GraniteDrawingColor;
-    pub fn granite_drawing_color_darken_by_sat(
-        self_: *mut GraniteDrawingColor,
-        amount: c_double,
-    ) -> *mut GraniteDrawingColor;
-    pub fn granite_drawing_color_to_string(self_: *mut GraniteDrawingColor) -> *mut c_char;
-    pub fn granite_drawing_color_to_int(self_: *mut GraniteDrawingColor) -> c_int;
-
-    //=========================================================================
-    // GraniteDrawingUtilities
-    //=========================================================================
-    pub fn granite_drawing_utilities_get_type() -> GType;
-    pub fn granite_drawing_utilities_cairo_rounded_rectangle(
-        cr: *mut cairo::cairo_t,
-        x: c_double,
-        y: c_double,
-        width: c_double,
-        height: c_double,
-        radius: c_double,
-    );
-    pub fn granite_drawing_utilities_average_color(
-        source: *mut gdk_pixbuf::GdkPixbuf,
-    ) -> *mut GraniteDrawingColor;
-    pub fn granite_drawing_utilities_new() -> *mut GraniteDrawingUtilities;
-
-    //=========================================================================
     // GraniteHeaderLabel
     //=========================================================================
     pub fn granite_header_label_get_type() -> GType;
     pub fn granite_header_label_get_label(self_: *mut GraniteHeaderLabel) -> *const c_char;
     pub fn granite_header_label_set_label(self_: *mut GraniteHeaderLabel, value: *const c_char);
+    pub fn granite_header_label_get_secondary_text(self_: *mut GraniteHeaderLabel)
+        -> *const c_char;
+    pub fn granite_header_label_set_secondary_text(
+        self_: *mut GraniteHeaderLabel,
+        value: *const c_char,
+    );
     pub fn granite_header_label_new(label: *const c_char) -> *mut GraniteHeaderLabel;
 
     //=========================================================================
@@ -1555,6 +1308,9 @@ extern "C" {
         color: *mut gdk::GdkRGBA,
         priority: c_int,
     ) -> *mut gtk::GtkCssProvider;
+    #[cfg(any(feature = "v7_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v7_2")))]
+    pub fn granite_init();
     pub fn granite_accel_to_string(accel: *const c_char) -> *mut c_char;
     pub fn granite_markup_accel_tooltip(
         accels: *mut *mut c_char,

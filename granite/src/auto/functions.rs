@@ -96,6 +96,16 @@ pub fn widgets_utils_set_color_primary(
     }
 }
 
+#[cfg(any(feature = "v7_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v7_2")))]
+#[doc(alias = "granite_init")]
+pub fn init() {
+    assert_initialized_main_thread!();
+    unsafe {
+        ffi::granite_init();
+    }
+}
+
 #[doc(alias = "granite_accel_to_string")]
 pub fn accel_to_string(accel: Option<&str>) -> Option<glib::GString> {
     assert_initialized_main_thread!();

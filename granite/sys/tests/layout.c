@@ -14,12 +14,6 @@ int main() {
     printf("%s;%zu;%zu\n", "GraniteDatePickerClass", sizeof(GraniteDatePickerClass), alignof(GraniteDatePickerClass));
     printf("%s;%zu;%zu\n", "GraniteDialog", sizeof(GraniteDialog), alignof(GraniteDialog));
     printf("%s;%zu;%zu\n", "GraniteDialogClass", sizeof(GraniteDialogClass), alignof(GraniteDialogClass));
-    printf("%s;%zu;%zu\n", "GraniteDrawingBufferSurface", sizeof(GraniteDrawingBufferSurface), alignof(GraniteDrawingBufferSurface));
-    printf("%s;%zu;%zu\n", "GraniteDrawingBufferSurfaceClass", sizeof(GraniteDrawingBufferSurfaceClass), alignof(GraniteDrawingBufferSurfaceClass));
-    printf("%s;%zu;%zu\n", "GraniteDrawingColor", sizeof(GraniteDrawingColor), alignof(GraniteDrawingColor));
-    printf("%s;%zu;%zu\n", "GraniteDrawingColorClass", sizeof(GraniteDrawingColorClass), alignof(GraniteDrawingColorClass));
-    printf("%s;%zu;%zu\n", "GraniteDrawingUtilities", sizeof(GraniteDrawingUtilities), alignof(GraniteDrawingUtilities));
-    printf("%s;%zu;%zu\n", "GraniteDrawingUtilitiesClass", sizeof(GraniteDrawingUtilitiesClass), alignof(GraniteDrawingUtilitiesClass));
     printf("%s;%zu;%zu\n", "GraniteHeaderLabel", sizeof(GraniteHeaderLabel), alignof(GraniteHeaderLabel));
     printf("%s;%zu;%zu\n", "GraniteHeaderLabelClass", sizeof(GraniteHeaderLabelClass), alignof(GraniteHeaderLabelClass));
     printf("%s;%zu;%zu\n", "GraniteHyperTextView", sizeof(GraniteHyperTextView), alignof(GraniteHyperTextView));

@@ -12,7 +12,7 @@ use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "GraniteSettingsSidebar")]
-    pub struct SettingsSidebar(Object<ffi::GraniteSettingsSidebar, ffi::GraniteSettingsSidebarClass>) @extends gtk::Box, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Orientable;
+    pub struct SettingsSidebar(Object<ffi::GraniteSettingsSidebar, ffi::GraniteSettingsSidebarClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
         type_ => || ffi::granite_settings_sidebar_get_type(),
@@ -70,22 +70,6 @@ impl SettingsSidebarBuilder {
             builder: self
                 .builder
                 .property("visible-child-name", visible_child_name.into()),
-        }
-    }
-
-    //pub fn baseline_position(self, baseline_position: /*Ignored*/gtk::BaselinePosition) -> Self {
-    //    Self { builder: self.builder.property("baseline-position", baseline_position), }
-    //}
-
-    pub fn homogeneous(self, homogeneous: bool) -> Self {
-        Self {
-            builder: self.builder.property("homogeneous", homogeneous),
-        }
-    }
-
-    pub fn spacing(self, spacing: i32) -> Self {
-        Self {
-            builder: self.builder.property("spacing", spacing),
         }
     }
 
@@ -265,10 +249,6 @@ impl SettingsSidebarBuilder {
 
     //pub fn accessible_role(self, accessible_role: /*Ignored*/gtk::AccessibleRole) -> Self {
     //    Self { builder: self.builder.property("accessible-role", accessible_role), }
-    //}
-
-    //pub fn orientation(self, orientation: /*Ignored*/gtk::Orientation) -> Self {
-    //    Self { builder: self.builder.property("orientation", orientation), }
     //}
 
     // rustdoc-stripper-ignore-next
