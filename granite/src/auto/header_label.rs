@@ -269,10 +269,14 @@ pub trait HeaderLabelExt: 'static {
     #[doc(alias = "granite_header_label_set_label")]
     fn set_label(&self, value: &str);
 
+    #[cfg(any(feature = "v7_1", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v7_1")))]
     #[doc(alias = "granite_header_label_get_secondary_text")]
     #[doc(alias = "get_secondary_text")]
     fn secondary_text(&self) -> Option<glib::GString>;
 
+    #[cfg(any(feature = "v7_1", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v7_1")))]
     #[doc(alias = "granite_header_label_set_secondary_text")]
     fn set_secondary_text(&self, value: Option<&str>);
 
@@ -303,6 +307,8 @@ impl<O: IsA<HeaderLabel>> HeaderLabelExt for O {
         }
     }
 
+    #[cfg(any(feature = "v7_1", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v7_1")))]
     fn secondary_text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::granite_header_label_get_secondary_text(
@@ -311,6 +317,8 @@ impl<O: IsA<HeaderLabel>> HeaderLabelExt for O {
         }
     }
 
+    #[cfg(any(feature = "v7_1", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v7_1")))]
     fn set_secondary_text(&self, value: Option<&str>) {
         unsafe {
             ffi::granite_header_label_set_secondary_text(

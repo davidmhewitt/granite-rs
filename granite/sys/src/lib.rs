@@ -893,8 +893,12 @@ extern "C" {
     pub fn granite_header_label_get_type() -> GType;
     pub fn granite_header_label_get_label(self_: *mut GraniteHeaderLabel) -> *const c_char;
     pub fn granite_header_label_set_label(self_: *mut GraniteHeaderLabel, value: *const c_char);
+    #[cfg(any(feature = "v7_1", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v7_1")))]
     pub fn granite_header_label_get_secondary_text(self_: *mut GraniteHeaderLabel)
         -> *const c_char;
+    #[cfg(any(feature = "v7_1", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v7_1")))]
     pub fn granite_header_label_set_secondary_text(
         self_: *mut GraniteHeaderLabel,
         value: *const c_char,
