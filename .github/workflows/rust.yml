@@ -21,8 +21,8 @@ jobs:
           - beta
           - "1.64.0"
         conf:
-          - { name: "granite", features: "v7.2", test_sys: true }
-          - { name: "examples", features: "v7.2", test_sys: false }
+          - { name: "granite", features: "v7_2", test_sys: true }
+          - { name: "examples", features: "", test_sys: false }
 
     steps:
     - uses: actions/checkout@v3
