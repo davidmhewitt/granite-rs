@@ -27,7 +27,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Install dependencies
-      run: apt-get update && apt-get install -y curl xvfb-run
+      run: apt-get update && apt-get install -y curl xvfb
     - name: "Install ${{ matrix.rust }} rust"
       uses: actions-rs/toolchain@v1
       with:
