@@ -14,18 +14,27 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: elementary/docker:stable
+    strategy:
+      matrix:
+        rust:
+          - stable
+          - beta
+          - "1.64.0"
+        conf:
+          - { name: "granite", features: "v7.2", test_sys: true }
+          - { name: "examples", features: "v7.2", test_sys: false }
 
     steps:
     - uses: actions/checkout@v3
     - name: Install dependencies
-      run: |
-        apt-get update && apt-get install -y curl
-    - name: Install stable rust
+      run: apt-get update && apt-get install -y curl xvfb-run
+    - name: "Install ${{ matrix.rust }} rust"
       uses: actions-rs/toolchain@v1
       with:
-        toolchain: stable
+        toolchain: ${{ matrix.rust }}
         profile: minimal
-    - name: Build
-      run: cargo build --workspace --all-features --verbose
-    - name: Run tests
-      run: cargo test --workspace --all-features --verbose
+    - name: "${{ matrix.conf.name }}: tests"
+      run: xvfb-run --auto-servernum cargo test --manifest-path ${{ matrix.conf.name }}/Cargo.toml --features "${{ matrix.conf.features }}"
+    - name: "${{ matrix.conf.name }}/sys: tests"
+      run: xvfb-run --auto-servernum cargo test --manifest-path ${{ matrix.conf.name }}/sys/Cargo.toml
+      if: matrix.conf.test_sys
