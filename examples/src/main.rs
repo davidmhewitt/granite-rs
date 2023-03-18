@@ -1,5 +1,6 @@
 mod accel_label_view;
 mod css_view;
+mod date_time_picker_view;
 mod welcome_view;
 
 use glib::clone;
@@ -27,11 +28,13 @@ fn build_ui(app: &Application) {
 
     let accel_label_view = accel_label_view::AccelLabelView::new();
     let css_view = css_view::CssView::new(window.clone().into());
+    let date_time_picker_view = date_time_picker_view::DateTimePickerView::new();
     let placeholder = welcome_view::WelcomeView::new();
 
     let main_stack = gtk::Stack::new();
     main_stack.add_titled(&placeholder, Some("placeholder"), "Placeholder");
     main_stack.add_titled(&accel_label_view, Some("accel_label"), "AccelLabel");
+    main_stack.add_titled(&date_time_picker_view, Some("pickers"), "Date & Time");
     main_stack.add_titled(&css_view, Some("css"), "Style Classes");
 
     let stack_sidebar = gtk::StackSidebar::builder().stack(&main_stack).build();
