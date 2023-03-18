@@ -54,7 +54,7 @@ impl<O: IsA<Settings>> SettingsExt for O {
     }
 
     fn set_prefers_color_scheme(&self, prefers_color_scheme: SettingsColorScheme) {
-        glib::ObjectExt::set_property(self.as_ref(), "prefers-color-scheme", &prefers_color_scheme)
+        glib::ObjectExt::set_property(self.as_ref(), "prefers-color-scheme", prefers_color_scheme)
     }
 
     fn connect_prefers_color_scheme_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
