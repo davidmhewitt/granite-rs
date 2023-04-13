@@ -24,7 +24,7 @@ version = "7.1"
 version = "7.2"
 
 [package.metadata.docs.rs]
-features = ["dox"]
+features = []
 
 [lib]
 name = "granite_sys"

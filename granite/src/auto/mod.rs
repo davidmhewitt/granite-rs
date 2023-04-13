@@ -72,8 +72,8 @@ pub mod functions;
 
 mod constants;
 pub use self::constants::STYLE_CLASS_ACCENT;
-#[cfg(any(feature = "v7_1", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v7_1")))]
+#[cfg(any(feature = "v7_1", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
 pub use self::constants::STYLE_CLASS_BACKGROUND;
 pub use self::constants::STYLE_CLASS_BACK_BUTTON;
 pub use self::constants::STYLE_CLASS_BADGE;
@@ -87,8 +87,8 @@ pub use self::constants::STYLE_CLASS_DIALOG_CONTENT_AREA;
 pub use self::constants::STYLE_CLASS_DIM_LABEL;
 pub use self::constants::STYLE_CLASS_ERROR;
 pub use self::constants::STYLE_CLASS_FLAT;
-#[cfg(any(feature = "v7_1", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v7_1")))]
+#[cfg(any(feature = "v7_1", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
 pub use self::constants::STYLE_CLASS_FRAME;
 pub use self::constants::STYLE_CLASS_H1_LABEL;
 pub use self::constants::STYLE_CLASS_H2_LABEL;
@@ -102,12 +102,12 @@ pub use self::constants::STYLE_CLASS_MENUITEM;
 pub use self::constants::STYLE_CLASS_MESSAGE_DIALOG;
 pub use self::constants::STYLE_CLASS_MODE_SWITCH;
 pub use self::constants::STYLE_CLASS_OSD;
-#[cfg(any(feature = "v7_1", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v7_1")))]
+#[cfg(any(feature = "v7_1", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
 pub use self::constants::STYLE_CLASS_RICH_LIST;
 pub use self::constants::STYLE_CLASS_ROUNDED;
-#[cfg(any(feature = "v7_1", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v7_1")))]
+#[cfg(any(feature = "v7_1", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
 pub use self::constants::STYLE_CLASS_SIDEBAR;
 pub use self::constants::STYLE_CLASS_SMALL_LABEL;
 pub use self::constants::STYLE_CLASS_SUGGESTED_ACTION;

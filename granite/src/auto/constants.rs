@@ -11,8 +11,8 @@ pub static STYLE_CLASS_ACCENT: &GStr =
 #[doc(alias = "GRANITE_STYLE_CLASS_BACK_BUTTON")]
 pub static STYLE_CLASS_BACK_BUTTON: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_BACK_BUTTON) };
-#[cfg(any(feature = "v7_1", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v7_1")))]
+#[cfg(any(feature = "v7_1", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
 #[doc(alias = "GRANITE_STYLE_CLASS_BACKGROUND")]
 pub static STYLE_CLASS_BACKGROUND: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_BACKGROUND) };
@@ -40,8 +40,8 @@ pub static STYLE_CLASS_DESTRUCTIVE_ACTION: &GStr =
 #[doc(alias = "GRANITE_STYLE_CLASS_DIALOG_CONTENT_AREA")]
 pub static STYLE_CLASS_DIALOG_CONTENT_AREA: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_DIALOG_CONTENT_AREA) };
-#[cfg(any(feature = "v7_1", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v7_1")))]
+#[cfg(any(feature = "v7_1", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
 #[doc(alias = "GRANITE_STYLE_CLASS_FRAME")]
 pub static STYLE_CLASS_FRAME: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_FRAME) };
@@ -72,8 +72,8 @@ pub static STYLE_CLASS_OSD: &GStr =
 #[doc(alias = "GRANITE_STYLE_CLASS_ROUNDED")]
 pub static STYLE_CLASS_ROUNDED: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_ROUNDED) };
-#[cfg(any(feature = "v7_1", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v7_1")))]
+#[cfg(any(feature = "v7_1", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
 #[doc(alias = "GRANITE_STYLE_CLASS_SIDEBAR")]
 pub static STYLE_CLASS_SIDEBAR: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_SIDEBAR) };
@@ -113,8 +113,8 @@ pub static STYLE_CLASS_FLAT: &GStr =
 #[doc(alias = "GRANITE_STYLE_CLASS_MESSAGE_DIALOG")]
 pub static STYLE_CLASS_MESSAGE_DIALOG: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_MESSAGE_DIALOG) };
-#[cfg(any(feature = "v7_1", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v7_1")))]
+#[cfg(any(feature = "v7_1", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
 #[doc(alias = "GRANITE_STYLE_CLASS_RICH_LIST")]
 pub static STYLE_CLASS_RICH_LIST: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_RICH_LIST) };

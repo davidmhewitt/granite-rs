@@ -96,8 +96,8 @@ pub fn widgets_utils_set_color_primary(
     }
 }
 
-#[cfg(any(feature = "v7_2", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v7_2")))]
+#[cfg(any(feature = "v7_2", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_2")))]
 #[doc(alias = "granite_init")]
 pub fn init() {
     assert_initialized_main_thread!();

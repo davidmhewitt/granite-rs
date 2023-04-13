@@ -65,8 +65,8 @@ impl HeaderLabelBuilder {
         }
     }
 
-    #[cfg(any(feature = "v7_1", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v7_1")))]
+    #[cfg(any(feature = "v7_1", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
     pub fn secondary_text(self, secondary_text: impl Into<glib::GString>) -> Self {
         Self {
             builder: self
@@ -269,22 +269,22 @@ pub trait HeaderLabelExt: 'static {
     #[doc(alias = "granite_header_label_set_label")]
     fn set_label(&self, value: &str);
 
-    #[cfg(any(feature = "v7_1", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v7_1")))]
+    #[cfg(any(feature = "v7_1", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
     #[doc(alias = "granite_header_label_get_secondary_text")]
     #[doc(alias = "get_secondary_text")]
     fn secondary_text(&self) -> Option<glib::GString>;
 
-    #[cfg(any(feature = "v7_1", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v7_1")))]
+    #[cfg(any(feature = "v7_1", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
     #[doc(alias = "granite_header_label_set_secondary_text")]
     fn set_secondary_text(&self, value: Option<&str>);
 
     #[doc(alias = "label")]
     fn connect_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    #[cfg(any(feature = "v7_1", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v7_1")))]
+    #[cfg(any(feature = "v7_1", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
     #[doc(alias = "secondary-text")]
     fn connect_secondary_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
@@ -307,8 +307,8 @@ impl<O: IsA<HeaderLabel>> HeaderLabelExt for O {
         }
     }
 
-    #[cfg(any(feature = "v7_1", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v7_1")))]
+    #[cfg(any(feature = "v7_1", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
     fn secondary_text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::granite_header_label_get_secondary_text(
@@ -317,8 +317,8 @@ impl<O: IsA<HeaderLabel>> HeaderLabelExt for O {
         }
     }
 
-    #[cfg(any(feature = "v7_1", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v7_1")))]
+    #[cfg(any(feature = "v7_1", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
     fn set_secondary_text(&self, value: Option<&str>) {
         unsafe {
             ffi::granite_header_label_set_secondary_text(
@@ -350,8 +350,8 @@ impl<O: IsA<HeaderLabel>> HeaderLabelExt for O {
         }
     }
 
-    #[cfg(any(feature = "v7_1", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v7_1")))]
+    #[cfg(any(feature = "v7_1", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
     fn connect_secondary_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_secondary_text_trampoline<
             P: IsA<HeaderLabel>,
