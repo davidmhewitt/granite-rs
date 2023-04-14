@@ -3,8 +3,6 @@ use gtk::subclass::prelude::*;
 use granite::subclass::prelude::*;
 
 mod imp {
-    use glib::clone;
-
     use super::*;
 
     #[derive(Debug, Default)]
