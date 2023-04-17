@@ -10,6 +10,8 @@ env:
 jobs:
   check:
     runs-on: ubuntu-latest
+    container:
+      image: elementary/docker:stable
     steps:
     - uses: actions/checkout@v3
     - name: Check semver
