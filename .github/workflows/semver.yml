@@ -1,4 +1,4 @@
-name: Rust
+name: Check Semver
 
 on:
   push:
@@ -8,9 +8,11 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build:
+  check:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - name: Check semver
       uses: obi1kenobi/cargo-semver-checks-action@v1
+      with:
+        package: granite-rs
