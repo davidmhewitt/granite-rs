@@ -15,4 +15,4 @@ jobs:
     - name: Check semver
       uses: obi1kenobi/cargo-semver-checks-action@v1
       with:
-        package: granite-rs
+        crate-name: granite-rs
