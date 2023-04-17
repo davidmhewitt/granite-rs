@@ -16,6 +16,7 @@ jobs:
     - name: Install dependencies
       run: |
         apt-get update && apt-get install -y curl git jq
+        git config --global --add safe.directory ${GITHUB_WORKSPACE}
     - uses: actions/checkout@v3
     - name: Check semver
       uses: obi1kenobi/cargo-semver-checks-action@v1
