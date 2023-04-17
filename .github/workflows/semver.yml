@@ -19,6 +19,6 @@ jobs:
         git config --global --add safe.directory ${GITHUB_WORKSPACE}
     - uses: actions/checkout@v3
     - name: Check semver
-      uses: obi1kenobi/cargo-semver-checks-action@v1
+      uses: obi1kenobi/cargo-semver-checks-action@main
       with:
-        crate-name: granite-rs
+        package: granite-rs
