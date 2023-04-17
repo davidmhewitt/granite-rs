@@ -11,22 +11,13 @@ repository = "https://github.com/davidmhewitt/granite-rs"
 categories = ["api-bindings", "gui"]
 keywords = ["gtk4-rs", "GUI"]
 
-[lib]
-name = "granite"
-
 [features]
-dox = [
-    "glib/dox",
-    "gio/dox",
-    "gdk/dox",
-    "gtk/dox",
-    "ffi/dox",
-]
 v7_1 = ["ffi/v7_1"]
 v7_2 = ["ffi/v7_2", "v7_1"]
 
 [package.metadata.docs.rs]
-features = ["dox"]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
 
 [dependencies]
 libc = "0.2"
