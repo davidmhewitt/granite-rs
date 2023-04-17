@@ -13,10 +13,10 @@ jobs:
     container:
       image: elementary/docker:stable
     steps:
-    - uses: actions/checkout@v3
     - name: Install dependencies
       run: |
         apt-get update && apt-get install -y curl git jq
+    - uses: actions/checkout@v3
     - name: Check semver
       uses: obi1kenobi/cargo-semver-checks-action@v1
       with:
