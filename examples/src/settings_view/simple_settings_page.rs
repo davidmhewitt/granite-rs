@@ -1,9 +1,12 @@
-use granite::subclass::prelude::*;
+use granite::{
+    subclass::prelude::*,
+    traits::{SettingsPageExt, SimpleSettingsPageExt},
+};
 use gtk::prelude::*;
-use gtk::subclass::prelude::*;
 
 mod imp {
-    use granite::traits::SettingsPageExt;
+    use glib::clone;
+    use granite::traits::{SettingsPageExt, SimpleSettingsPageExt};
 
     use super::*;
 
@@ -34,10 +37,57 @@ mod imp {
                 .text(obj.icon_name().expect("Unable to get icon name"))
                 .build();
 
-            let title_label = gtk::Label::builder()
-                .label("Title:")
-                .xalign(1.0)
+            let title_label = gtk::Label::builder().label("Title:").xalign(1.0).build();
+
+            let title_entry = gtk::Entry::builder()
+                .hexpand(true)
+                .placeholder_text("This page's title")
                 .build();
+
+            let description_label = gtk::Label::builder()
+                .xalign(1.0)
+                .label("Description:")
+                .build();
+
+            let description_entry = gtk::Entry::builder()
+                .hexpand(true)
+                .placeholder_text("This page's description")
+                .build();
+
+            let content_area = obj.content_area().expect("Couldn't get content area");
+            content_area.attach(&icon_label, 0, 0, 1, 1);
+            content_area.attach(&icon_entry, 1, 0, 1, 1);
+            content_area.attach(&title_label, 0, 1, 1, 1);
+            content_area.attach(&title_entry, 1, 1, 1, 1);
+            content_area.attach(&description_label, 0, 2, 1, 1);
+            content_area.attach(&description_entry, 1, 2, 1, 1);
+
+            let button = gtk::Button::with_label("Test Button");
+
+            obj.update_status();
+
+            description_entry.connect_changed(
+                clone!(@weak obj as settings_page => move |desc_entry| {
+                    settings_page.set_description(&desc_entry.text());
+                }),
+            );
+
+            icon_entry.connect_changed(clone!(@weak obj as settings_page => move |icon_entry| {
+                settings_page.set_icon_name(Some(&icon_entry.text()));
+            }));
+
+            title_entry.connect_changed(clone!(@weak obj as settings_page => move |title_entry| {
+                settings_page.set_title(&title_entry.text());
+            }));
+
+            obj.status_switch()
+                .expect("Couldn't get status switch")
+                .connect_notify_local(
+                    Some("active"),
+                    clone!(@weak obj as settings_page => move |_, _| {
+                        settings_page.update_status();
+                    }),
+                );
         }
     }
     impl WidgetImpl for SimpleSettingsPage {}
@@ -63,5 +113,16 @@ impl SimpleSettingsPage {
             .property("icon-name", "preferences-system")
             .property("title", "First Test Page")
             .build()
+    }
+
+    pub fn update_status(&self) {
+        let status_switch = self.status_switch().expect("Couldn't get status switch");
+        if status_switch.is_active() {
+            self.set_status_type(granite::SettingsPageStatusType::Success);
+            self.set_status("Enabled");
+        } else {
+            self.set_status_type(granite::SettingsPageStatusType::Offline);
+            self.set_status("Disabled");
+        }
     }
 }

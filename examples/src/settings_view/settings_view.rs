@@ -22,6 +22,22 @@ mod imp {
             let obj = self.obj();
 
             let settings_page = settings_view::SimpleSettingsPage::new();
+
+            let stack = gtk::Stack::new();
+            stack.add_named(&settings_page, Some("settings_page"));
+
+            let settings_sidebar = granite::SettingsSidebar::new(&stack);
+
+            let paned = gtk::Paned::builder()
+                .orientation(gtk::Orientation::Horizontal)
+                .start_child(&settings_sidebar)
+                .end_child(&stack)
+                .resize_start_child(false)
+                .shrink_end_child(false)
+                .shrink_start_child(false)
+                .build();
+
+            obj.append(&paned);
         }
     }
     impl WidgetImpl for SettingsView {}
@@ -30,7 +46,7 @@ mod imp {
 
 glib::wrapper! {
     pub struct SettingsView(ObjectSubclass<imp::SettingsView>)
-        @extends gtk::Widget, gtk::Grid;
+        @extends gtk::Widget, gtk::Box, gtk::Grid;
 }
 
 impl SettingsView {
