@@ -1,6 +1,5 @@
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
 use granite::subclass::prelude::*;
+use gtk::prelude::*;
 
 mod imp {
     use super::*;
@@ -24,14 +23,9 @@ mod imp {
             let header = granite::HeaderLabel::new("Header");
 
             let entry = gtk::Entry::new();
-            let gtk_switch = gtk::Switch::builder()
-                .halign(gtk::Align::Start)
-                .build();
+            let gtk_switch = gtk::Switch::builder().halign(gtk::Align::Start).build();
 
-            let layout = gtk::Grid::builder()
-                .row_spacing(12)
-                .vexpand(true)
-                .build();
+            let layout = gtk::Grid::builder().row_spacing(12).vexpand(true).build();
 
             layout.attach(&header, 0, 1, 1, 1);
             layout.attach(&entry, 0, 2, 1, 1);
@@ -40,8 +34,11 @@ mod imp {
             obj.content_area().append(&layout);
             obj.add_button("Cancel", gtk::ResponseType::Cancel);
 
-            let suggested_action_button = obj.add_button("Suggested Action", gtk::ResponseType::Accept);
-            suggested_action_button.style_context().add_class(granite::STYLE_CLASS_SUGGESTED_ACTION);
+            let suggested_action_button =
+                obj.add_button("Suggested Action", gtk::ResponseType::Accept);
+            suggested_action_button
+                .style_context()
+                .add_class(granite::STYLE_CLASS_SUGGESTED_ACTION);
         }
     }
     impl WidgetImpl for SampleDialog {}

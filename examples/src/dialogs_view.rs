@@ -6,7 +6,7 @@ use gtk::subclass::prelude::*;
 use crate::sample_dialog::SampleDialog;
 
 mod imp {
-    use std::cell::{RefCell};
+    use std::cell::RefCell;
 
     use glib::clone;
     use glib_macros::Properties;
@@ -85,22 +85,21 @@ impl DialogsView {
     }
 
     fn toast(&self) -> &granite::Toast {
-        self.imp()
-            .toast
-            .get()
-            .expect("Unable to get toast")
+        self.imp().toast.get().expect("Unable to get toast")
     }
 
     fn show_dialog(&self) {
         let dialog = SampleDialog::new();
         dialog.set_transient_for(Some(&self.window()));
-        dialog.connect_response(clone!(@strong dialog, @weak self as view => move |_, resp| {
-            if resp == gtk::ResponseType::Accept {
-                view.toast().send_notification();
-            }
+        dialog.connect_response(
+            clone!(@strong dialog, @weak self as view => move |_, resp| {
+                if resp == gtk::ResponseType::Accept {
+                    view.toast().send_notification();
+                }
 
-            dialog.close();
-        }));
+                dialog.close();
+            }),
+        );
 
         dialog.show();
     }
