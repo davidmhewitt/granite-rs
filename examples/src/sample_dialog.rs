@@ -1,6 +1,5 @@
 use granite::subclass::prelude::*;
 use gtk::prelude::*;
-use gtk::subclass::prelude::*;
 
 mod imp {
     use super::*;

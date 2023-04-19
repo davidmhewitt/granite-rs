@@ -61,6 +61,7 @@ glib::wrapper! {
 impl SettingsPage {
     pub fn new() -> Self {
         let display_widget = gtk::Spinner::builder().height_request(32).build();
+        display_widget.start();
 
         glib::Object::builder()
             .property("display-widget", display_widget)
