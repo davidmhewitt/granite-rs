@@ -1,5 +1,7 @@
+use glib::clone;
 use granite::subclass::prelude::*;
-use gtk::subclass::prelude::*;
+use granite::traits::SettingsPageExt;
+use gtk::traits::{BoxExt, EditableExt};
 
 mod imp {
     use super::*;
@@ -19,6 +21,31 @@ mod imp {
             self.parent_constructed();
 
             let obj = self.obj();
+
+            let title_label = gtk::Label::builder().xalign(1.0).label("Title:").build();
+
+            let title_entry = gtk::Entry::builder()
+                .hexpand(true)
+                .placeholder_text("This page's title")
+                .build();
+
+            let content_area = gtk::Box::builder()
+                .orientation(gtk::Orientation::Horizontal)
+                .margin_bottom(12)
+                .margin_end(12)
+                .margin_start(12)
+                .margin_top(12)
+                .valign(gtk::Align::Start)
+                .build();
+
+            content_area.append(&title_label);
+            content_area.append(&title_entry);
+
+            obj.set_child(&content_area);
+
+            title_entry.connect_changed(clone!(@weak obj as settings_page => move |title_entry| {
+                settings_page.set_title(&title_entry.text());
+            }));
         }
     }
     impl WidgetImpl for SettingsPage {}

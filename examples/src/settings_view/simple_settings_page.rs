@@ -63,6 +63,8 @@ mod imp {
             content_area.attach(&description_entry, 1, 2, 1, 1);
 
             let button = gtk::Button::with_label("Test Button");
+            let action_area = obj.action_area().expect("Couldn't get action area");
+            action_area.append(&button);
 
             obj.update_status();
 

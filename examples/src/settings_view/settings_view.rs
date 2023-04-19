@@ -1,9 +1,8 @@
-use gtk::prelude::*;
+use crate::settings_view;
 use gtk::subclass::prelude::*;
+use gtk::traits::BoxExt;
 
 mod imp {
-    use crate::settings_view;
-
     use super::*;
 
     #[derive(Debug, Default)]
@@ -22,9 +21,11 @@ mod imp {
             let obj = self.obj();
 
             let settings_page = settings_view::SimpleSettingsPage::new();
+            let settings_page_two = settings_view::SettingsPage::new();
 
             let stack = gtk::Stack::new();
             stack.add_named(&settings_page, Some("settings_page"));
+            stack.add_named(&settings_page_two, Some("settings_page_two"));
 
             let settings_sidebar = granite::SettingsSidebar::new(&stack);
 
