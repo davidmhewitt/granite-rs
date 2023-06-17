@@ -514,6 +514,28 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GRANITE_SETTINGS_PAGE_STATUS_TYPE_OFFLINE", "1"),
     ("(gint) GRANITE_SETTINGS_PAGE_STATUS_TYPE_SUCCESS", "2"),
     ("(gint) GRANITE_SETTINGS_PAGE_STATUS_TYPE_WARNING", "3"),
+    (
+        "GRANITE_SETTINGS_URI_LOCATION",
+        "settings://privacy/location",
+    ),
+    ("GRANITE_SETTINGS_URI_NETWORK", "settings://network"),
+    (
+        "GRANITE_SETTINGS_URI_NOTIFICATIONS",
+        "settings://notifications",
+    ),
+    (
+        "GRANITE_SETTINGS_URI_ONLINE_ACCOUNTS",
+        "settings://accounts/online",
+    ),
+    (
+        "GRANITE_SETTINGS_URI_PERMISSIONS",
+        "settings://applications/permissions",
+    ),
+    (
+        "GRANITE_SETTINGS_URI_SHORTCUTS",
+        "settings://input/keyboard/shortcuts/custom",
+    ),
+    ("GRANITE_SETTINGS_URI_SOUND_INPUT", "settings://sound/input"),
     ("GRANITE_STYLE_CLASS_ACCENT", "accent"),
     ("GRANITE_STYLE_CLASS_BACKGROUND", "background"),
     ("GRANITE_STYLE_CLASS_BACK_BUTTON", "back-button"),

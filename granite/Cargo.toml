@@ -1,6 +1,6 @@
 [package]
 name = "granite-rs"
-version = "0.2.2"
+version = "0.2.3"
 edition = "2021"
 authors = ["David Hewitt <davidmhewitt@gmail.com>"]
 readme = "../README.md"
@@ -14,6 +14,7 @@ keywords = ["gtk4-rs", "GUI"]
 [features]
 v7_1 = ["ffi/v7_1"]
 v7_2 = ["ffi/v7_2", "v7_1"]
+v7_3 = ["ffi/v7_3", "v7_2"]
 
 [package.metadata.docs.rs]
 all-features = true

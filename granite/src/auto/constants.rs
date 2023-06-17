@@ -5,6 +5,41 @@
 
 use glib::GStr;
 
+#[cfg(any(feature = "v7_3", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
+#[doc(alias = "GRANITE_SETTINGS_URI_LOCATION")]
+pub static SettingsUriLOCATION: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_SETTINGS_URI_LOCATION) };
+#[cfg(any(feature = "v7_3", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
+#[doc(alias = "GRANITE_SETTINGS_URI_ONLINE_ACCOUNTS")]
+pub static SettingsUriONLINE_ACCOUNTS: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_SETTINGS_URI_ONLINE_ACCOUNTS) };
+#[cfg(any(feature = "v7_3", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
+#[doc(alias = "GRANITE_SETTINGS_URI_NETWORK")]
+pub static SettingsUriNETWORK: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_SETTINGS_URI_NETWORK) };
+#[cfg(any(feature = "v7_3", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
+#[doc(alias = "GRANITE_SETTINGS_URI_PERMISSIONS")]
+pub static SettingsUriPERMISSIONS: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_SETTINGS_URI_PERMISSIONS) };
+#[cfg(any(feature = "v7_3", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
+#[doc(alias = "GRANITE_SETTINGS_URI_NOTIFICATIONS")]
+pub static SettingsUriNOTIFICATIONS: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_SETTINGS_URI_NOTIFICATIONS) };
+#[cfg(any(feature = "v7_3", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
+#[doc(alias = "GRANITE_SETTINGS_URI_SOUND_INPUT")]
+pub static SettingsUriSOUND_INPUT: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_SETTINGS_URI_SOUND_INPUT) };
+#[cfg(any(feature = "v7_3", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
+#[doc(alias = "GRANITE_SETTINGS_URI_SHORTCUTS")]
+pub static SettingsUriSHORTCUTS: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_SETTINGS_URI_SHORTCUTS) };
 #[doc(alias = "GRANITE_STYLE_CLASS_ACCENT")]
 pub static STYLE_CLASS_ACCENT: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_ACCENT) };

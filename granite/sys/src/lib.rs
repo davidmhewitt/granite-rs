@@ -39,6 +39,13 @@ pub const GRANITE_SETTINGS_PAGE_STATUS_TYPE_WARNING: GraniteSettingsPageStatusTy
 pub const GRANITE_SETTINGS_PAGE_STATUS_TYPE_NONE: GraniteSettingsPageStatusType = 4;
 
 // Constants
+pub const GRANITE_SETTINGS_URI_LOCATION: &[u8] = b"settings://privacy/location\0";
+pub const GRANITE_SETTINGS_URI_ONLINE_ACCOUNTS: &[u8] = b"settings://accounts/online\0";
+pub const GRANITE_SETTINGS_URI_NETWORK: &[u8] = b"settings://network\0";
+pub const GRANITE_SETTINGS_URI_PERMISSIONS: &[u8] = b"settings://applications/permissions\0";
+pub const GRANITE_SETTINGS_URI_NOTIFICATIONS: &[u8] = b"settings://notifications\0";
+pub const GRANITE_SETTINGS_URI_SOUND_INPUT: &[u8] = b"settings://sound/input\0";
+pub const GRANITE_SETTINGS_URI_SHORTCUTS: &[u8] = b"settings://input/keyboard/shortcuts/custom\0";
 pub const GRANITE_STYLE_CLASS_ACCENT: &[u8] = b"accent\0";
 pub const GRANITE_STYLE_CLASS_BACK_BUTTON: &[u8] = b"back-button\0";
 pub const GRANITE_STYLE_CLASS_BACKGROUND: &[u8] = b"background\0";

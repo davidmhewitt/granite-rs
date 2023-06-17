@@ -71,6 +71,27 @@ pub use self::enums::SettingsPageStatusType;
 pub mod functions;
 
 mod constants;
+#[cfg(any(feature = "v7_3", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
+pub use self::constants::SettingsUriLOCATION;
+#[cfg(any(feature = "v7_3", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
+pub use self::constants::SettingsUriNETWORK;
+#[cfg(any(feature = "v7_3", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
+pub use self::constants::SettingsUriNOTIFICATIONS;
+#[cfg(any(feature = "v7_3", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
+pub use self::constants::SettingsUriONLINE_ACCOUNTS;
+#[cfg(any(feature = "v7_3", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
+pub use self::constants::SettingsUriPERMISSIONS;
+#[cfg(any(feature = "v7_3", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
+pub use self::constants::SettingsUriSHORTCUTS;
+#[cfg(any(feature = "v7_3", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
+pub use self::constants::SettingsUriSOUND_INPUT;
 pub use self::constants::STYLE_CLASS_ACCENT;
 #[cfg(any(feature = "v7_1", docsrs))]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]

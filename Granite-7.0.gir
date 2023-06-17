@@ -71,6 +71,27 @@
         </parameter>
       </parameters>
     </function>
+    <constant name="SettingsUriLOCATION" c:type="GRANITE_SETTINGS_URI_LOCATION" value="settings://privacy/location" version="7.3.0">
+      <type name="utf8" c:type="gchar*"/>
+    </constant>
+    <constant name="SettingsUriONLINE_ACCOUNTS" c:type="GRANITE_SETTINGS_URI_ONLINE_ACCOUNTS" value="settings://accounts/online" version="7.3.0">
+      <type name="utf8" c:type="gchar*"/>
+    </constant>
+    <constant name="SettingsUriNETWORK" c:type="GRANITE_SETTINGS_URI_NETWORK" value="settings://network" version="7.3.0">
+      <type name="utf8" c:type="gchar*"/>
+    </constant>
+    <constant name="SettingsUriPERMISSIONS" c:type="GRANITE_SETTINGS_URI_PERMISSIONS" value="settings://applications/permissions" version="7.3.0">
+      <type name="utf8" c:type="gchar*"/>
+    </constant>
+    <constant name="SettingsUriNOTIFICATIONS" c:type="GRANITE_SETTINGS_URI_NOTIFICATIONS" value="settings://notifications" version="7.3.0">
+      <type name="utf8" c:type="gchar*"/>
+    </constant>
+    <constant name="SettingsUriSOUND_INPUT" c:type="GRANITE_SETTINGS_URI_SOUND_INPUT" value="settings://sound/input" version="7.3.0">
+      <type name="utf8" c:type="gchar*"/>
+    </constant>
+    <constant name="SettingsUriSHORTCUTS" c:type="GRANITE_SETTINGS_URI_SHORTCUTS" value="settings://input/keyboard/shortcuts/custom" version="7.3.0">
+      <type name="utf8" c:type="gchar*"/>
+    </constant>
     <function name="services_application_set_badge" c:identifier="granite_services_application_set_badge">
       <return-value transfer-ownership="none">
         <type name="none" c:type="void"/>
