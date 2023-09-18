@@ -11,7 +11,7 @@ jobs:
   check:
     runs-on: ubuntu-latest
     container:
-      image: elementary/docker:stable
+      image: ghcr.io/elementary/docker:unstable
     steps:
     - name: Install dependencies
       run: |
