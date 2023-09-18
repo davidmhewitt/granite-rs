@@ -4,7 +4,6 @@
 // DO NOT EDIT
 
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GraniteHyperTextView")]
@@ -372,11 +371,5 @@ impl HyperTextViewBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> HyperTextView {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for HyperTextView {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("HyperTextView")
     }
 }

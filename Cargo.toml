@@ -5,3 +5,4 @@ members = [
     "granite/sys",
 ]
 exclude = ["gir"]
+resolver="2"

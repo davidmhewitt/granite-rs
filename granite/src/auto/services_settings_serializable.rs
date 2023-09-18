@@ -4,7 +4,6 @@
 // DO NOT EDIT
 
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GraniteServicesSettingsSerializable")]
@@ -19,15 +18,15 @@ impl ServicesSettingsSerializable {
     pub const NONE: Option<&'static ServicesSettingsSerializable> = None;
 }
 
-pub trait ServicesSettingsSerializableExt: 'static {
-    #[doc(alias = "granite_services_settings_serializable_settings_serialize")]
-    fn settings_serialize(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "granite_services_settings_serializable_settings_deserialize")]
-    fn settings_deserialize(&self, s: &str);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::ServicesSettingsSerializable>> Sealed for T {}
 }
 
-impl<O: IsA<ServicesSettingsSerializable>> ServicesSettingsSerializableExt for O {
+pub trait ServicesSettingsSerializableExt:
+    IsA<ServicesSettingsSerializable> + sealed::Sealed + 'static
+{
+    #[doc(alias = "granite_services_settings_serializable_settings_serialize")]
     fn settings_serialize(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(
@@ -38,6 +37,7 @@ impl<O: IsA<ServicesSettingsSerializable>> ServicesSettingsSerializableExt for O
         }
     }
 
+    #[doc(alias = "granite_services_settings_serializable_settings_deserialize")]
     fn settings_deserialize(&self, s: &str) {
         unsafe {
             ffi::granite_services_settings_serializable_settings_deserialize(
@@ -48,8 +48,4 @@ impl<O: IsA<ServicesSettingsSerializable>> ServicesSettingsSerializableExt for O
     }
 }
 
-impl fmt::Display for ServicesSettingsSerializable {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ServicesSettingsSerializable")
-    }
-}
+impl<O: IsA<ServicesSettingsSerializable>> ServicesSettingsSerializableExt for O {}

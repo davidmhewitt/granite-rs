@@ -9,7 +9,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GraniteMessageDialog")]
@@ -224,7 +224,7 @@ impl MessageDialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "gtk_v4_2", docsrs))]
+    #[cfg(feature = "gtk_v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_2")))]
     pub fn handle_menubar_accel(self, handle_menubar_accel: bool) -> Self {
         Self {
@@ -284,7 +284,7 @@ impl MessageDialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "gtk_v4_6", docsrs))]
+    #[cfg(feature = "gtk_v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_6")))]
     pub fn titlebar(self, titlebar: &impl IsA<gtk::Widget>) -> Self {
         Self {
@@ -486,64 +486,14 @@ impl MessageDialogBuilder {
     }
 }
 
-pub trait MessageDialogExt: 'static {
-    #[doc(alias = "granite_message_dialog_get_primary_text")]
-    #[doc(alias = "get_primary_text")]
-    fn primary_text(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "granite_message_dialog_set_primary_text")]
-    fn set_primary_text(&self, value: &str);
-
-    #[doc(alias = "granite_message_dialog_get_secondary_text")]
-    #[doc(alias = "get_secondary_text")]
-    fn secondary_text(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "granite_message_dialog_set_secondary_text")]
-    fn set_secondary_text(&self, value: &str);
-
-    #[doc(alias = "granite_message_dialog_get_image_icon")]
-    #[doc(alias = "get_image_icon")]
-    fn image_icon(&self) -> Option<gio::Icon>;
-
-    #[doc(alias = "granite_message_dialog_set_image_icon")]
-    fn set_image_icon(&self, value: &impl IsA<gio::Icon>);
-
-    #[doc(alias = "granite_message_dialog_get_badge_icon")]
-    #[doc(alias = "get_badge_icon")]
-    fn badge_icon(&self) -> Option<gio::Icon>;
-
-    #[doc(alias = "granite_message_dialog_set_badge_icon")]
-    fn set_badge_icon(&self, value: &impl IsA<gio::Icon>);
-
-    #[doc(alias = "granite_message_dialog_get_primary_label")]
-    #[doc(alias = "get_primary_label")]
-    fn primary_label(&self) -> Option<gtk::Label>;
-
-    #[doc(alias = "granite_message_dialog_get_secondary_label")]
-    #[doc(alias = "get_secondary_label")]
-    fn secondary_label(&self) -> Option<gtk::Label>;
-
-    #[doc(alias = "granite_message_dialog_get_custom_bin")]
-    #[doc(alias = "get_custom_bin")]
-    fn custom_bin(&self) -> Option<gtk::Box>;
-
-    #[doc(alias = "granite_message_dialog_show_error_details")]
-    fn show_error_details(&self, error_message: &str);
-
-    #[doc(alias = "primary-text")]
-    fn connect_primary_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "secondary-text")]
-    fn connect_secondary_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "image-icon")]
-    fn connect_image_icon_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "badge-icon")]
-    fn connect_badge_icon_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::MessageDialog>> Sealed for T {}
 }
 
-impl<O: IsA<MessageDialog>> MessageDialogExt for O {
+pub trait MessageDialogExt: IsA<MessageDialog> + sealed::Sealed + 'static {
+    #[doc(alias = "granite_message_dialog_get_primary_text")]
+    #[doc(alias = "get_primary_text")]
     fn primary_text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::granite_message_dialog_get_primary_text(
@@ -552,6 +502,7 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
         }
     }
 
+    #[doc(alias = "granite_message_dialog_set_primary_text")]
     fn set_primary_text(&self, value: &str) {
         unsafe {
             ffi::granite_message_dialog_set_primary_text(
@@ -561,6 +512,8 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
         }
     }
 
+    #[doc(alias = "granite_message_dialog_get_secondary_text")]
+    #[doc(alias = "get_secondary_text")]
     fn secondary_text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::granite_message_dialog_get_secondary_text(
@@ -569,6 +522,7 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
         }
     }
 
+    #[doc(alias = "granite_message_dialog_set_secondary_text")]
     fn set_secondary_text(&self, value: &str) {
         unsafe {
             ffi::granite_message_dialog_set_secondary_text(
@@ -578,6 +532,8 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
         }
     }
 
+    #[doc(alias = "granite_message_dialog_get_image_icon")]
+    #[doc(alias = "get_image_icon")]
     fn image_icon(&self) -> Option<gio::Icon> {
         unsafe {
             from_glib_full(ffi::granite_message_dialog_get_image_icon(
@@ -586,6 +542,7 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
         }
     }
 
+    #[doc(alias = "granite_message_dialog_set_image_icon")]
     fn set_image_icon(&self, value: &impl IsA<gio::Icon>) {
         unsafe {
             ffi::granite_message_dialog_set_image_icon(
@@ -595,6 +552,8 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
         }
     }
 
+    #[doc(alias = "granite_message_dialog_get_badge_icon")]
+    #[doc(alias = "get_badge_icon")]
     fn badge_icon(&self) -> Option<gio::Icon> {
         unsafe {
             from_glib_full(ffi::granite_message_dialog_get_badge_icon(
@@ -603,6 +562,7 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
         }
     }
 
+    #[doc(alias = "granite_message_dialog_set_badge_icon")]
     fn set_badge_icon(&self, value: &impl IsA<gio::Icon>) {
         unsafe {
             ffi::granite_message_dialog_set_badge_icon(
@@ -612,6 +572,8 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
         }
     }
 
+    #[doc(alias = "granite_message_dialog_get_primary_label")]
+    #[doc(alias = "get_primary_label")]
     fn primary_label(&self) -> Option<gtk::Label> {
         unsafe {
             from_glib_none(ffi::granite_message_dialog_get_primary_label(
@@ -620,6 +582,8 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
         }
     }
 
+    #[doc(alias = "granite_message_dialog_get_secondary_label")]
+    #[doc(alias = "get_secondary_label")]
     fn secondary_label(&self) -> Option<gtk::Label> {
         unsafe {
             from_glib_none(ffi::granite_message_dialog_get_secondary_label(
@@ -628,6 +592,8 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
         }
     }
 
+    #[doc(alias = "granite_message_dialog_get_custom_bin")]
+    #[doc(alias = "get_custom_bin")]
     fn custom_bin(&self) -> Option<gtk::Box> {
         unsafe {
             from_glib_none(ffi::granite_message_dialog_get_custom_bin(
@@ -636,6 +602,7 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
         }
     }
 
+    #[doc(alias = "granite_message_dialog_show_error_details")]
     fn show_error_details(&self, error_message: &str) {
         unsafe {
             ffi::granite_message_dialog_show_error_details(
@@ -645,6 +612,7 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
         }
     }
 
+    #[doc(alias = "primary-text")]
     fn connect_primary_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_primary_text_trampoline<
             P: IsA<MessageDialog>,
@@ -662,7 +630,7 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::primary-text\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_primary_text_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -670,6 +638,7 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
         }
     }
 
+    #[doc(alias = "secondary-text")]
     fn connect_secondary_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_secondary_text_trampoline<
             P: IsA<MessageDialog>,
@@ -687,7 +656,7 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::secondary-text\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_secondary_text_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -695,6 +664,7 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
         }
     }
 
+    #[doc(alias = "image-icon")]
     fn connect_image_icon_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_image_icon_trampoline<
             P: IsA<MessageDialog>,
@@ -712,7 +682,7 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::image-icon\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_image_icon_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -720,6 +690,7 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
         }
     }
 
+    #[doc(alias = "badge-icon")]
     fn connect_badge_icon_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_badge_icon_trampoline<
             P: IsA<MessageDialog>,
@@ -737,7 +708,7 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::badge-icon\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_badge_icon_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -746,8 +717,4 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
     }
 }
 
-impl fmt::Display for MessageDialog {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("MessageDialog")
-    }
-}
+impl<O: IsA<MessageDialog>> MessageDialogExt for O {}

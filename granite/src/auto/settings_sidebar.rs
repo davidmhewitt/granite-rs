@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GraniteSettingsSidebar")]
@@ -259,23 +259,14 @@ impl SettingsSidebarBuilder {
     }
 }
 
-pub trait SettingsSidebarExt: 'static {
-    #[doc(alias = "granite_settings_sidebar_get_stack")]
-    #[doc(alias = "get_stack")]
-    fn stack(&self) -> Option<gtk::Stack>;
-
-    #[doc(alias = "granite_settings_sidebar_get_visible_child_name")]
-    #[doc(alias = "get_visible_child_name")]
-    fn visible_child_name(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "granite_settings_sidebar_set_visible_child_name")]
-    fn set_visible_child_name(&self, value: Option<&str>);
-
-    #[doc(alias = "visible-child-name")]
-    fn connect_visible_child_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::SettingsSidebar>> Sealed for T {}
 }
 
-impl<O: IsA<SettingsSidebar>> SettingsSidebarExt for O {
+pub trait SettingsSidebarExt: IsA<SettingsSidebar> + sealed::Sealed + 'static {
+    #[doc(alias = "granite_settings_sidebar_get_stack")]
+    #[doc(alias = "get_stack")]
     fn stack(&self) -> Option<gtk::Stack> {
         unsafe {
             from_glib_none(ffi::granite_settings_sidebar_get_stack(
@@ -284,6 +275,8 @@ impl<O: IsA<SettingsSidebar>> SettingsSidebarExt for O {
         }
     }
 
+    #[doc(alias = "granite_settings_sidebar_get_visible_child_name")]
+    #[doc(alias = "get_visible_child_name")]
     fn visible_child_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::granite_settings_sidebar_get_visible_child_name(
@@ -292,6 +285,7 @@ impl<O: IsA<SettingsSidebar>> SettingsSidebarExt for O {
         }
     }
 
+    #[doc(alias = "granite_settings_sidebar_set_visible_child_name")]
     fn set_visible_child_name(&self, value: Option<&str>) {
         unsafe {
             ffi::granite_settings_sidebar_set_visible_child_name(
@@ -301,6 +295,7 @@ impl<O: IsA<SettingsSidebar>> SettingsSidebarExt for O {
         }
     }
 
+    #[doc(alias = "visible-child-name")]
     fn connect_visible_child_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_visible_child_name_trampoline<
             P: IsA<SettingsSidebar>,
@@ -318,7 +313,7 @@ impl<O: IsA<SettingsSidebar>> SettingsSidebarExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::visible-child-name\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_visible_child_name_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -327,8 +322,4 @@ impl<O: IsA<SettingsSidebar>> SettingsSidebarExt for O {
     }
 }
 
-impl fmt::Display for SettingsSidebar {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("SettingsSidebar")
-    }
-}
+impl<O: IsA<SettingsSidebar>> SettingsSidebarExt for O {}

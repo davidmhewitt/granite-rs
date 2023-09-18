@@ -68,32 +68,32 @@ pub use self::enums::ServicesContractorError;
 pub use self::enums::SettingsColorScheme;
 pub use self::enums::SettingsPageStatusType;
 
-pub mod functions;
+pub(crate) mod functions;
 
 mod constants;
-#[cfg(any(feature = "v7_3", docsrs))]
+#[cfg(feature = "v7_3")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
 pub use self::constants::SettingsUriLOCATION;
-#[cfg(any(feature = "v7_3", docsrs))]
+#[cfg(feature = "v7_3")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
 pub use self::constants::SettingsUriNETWORK;
-#[cfg(any(feature = "v7_3", docsrs))]
+#[cfg(feature = "v7_3")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
 pub use self::constants::SettingsUriNOTIFICATIONS;
-#[cfg(any(feature = "v7_3", docsrs))]
+#[cfg(feature = "v7_3")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
 pub use self::constants::SettingsUriONLINE_ACCOUNTS;
-#[cfg(any(feature = "v7_3", docsrs))]
+#[cfg(feature = "v7_3")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
 pub use self::constants::SettingsUriPERMISSIONS;
-#[cfg(any(feature = "v7_3", docsrs))]
+#[cfg(feature = "v7_3")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
 pub use self::constants::SettingsUriSHORTCUTS;
-#[cfg(any(feature = "v7_3", docsrs))]
+#[cfg(feature = "v7_3")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
 pub use self::constants::SettingsUriSOUND_INPUT;
 pub use self::constants::STYLE_CLASS_ACCENT;
-#[cfg(any(feature = "v7_1", docsrs))]
+#[cfg(feature = "v7_1")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
 pub use self::constants::STYLE_CLASS_BACKGROUND;
 pub use self::constants::STYLE_CLASS_BACK_BUTTON;
@@ -108,7 +108,7 @@ pub use self::constants::STYLE_CLASS_DIALOG_CONTENT_AREA;
 pub use self::constants::STYLE_CLASS_DIM_LABEL;
 pub use self::constants::STYLE_CLASS_ERROR;
 pub use self::constants::STYLE_CLASS_FLAT;
-#[cfg(any(feature = "v7_1", docsrs))]
+#[cfg(feature = "v7_1")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
 pub use self::constants::STYLE_CLASS_FRAME;
 pub use self::constants::STYLE_CLASS_H1_LABEL;
@@ -123,11 +123,11 @@ pub use self::constants::STYLE_CLASS_MENUITEM;
 pub use self::constants::STYLE_CLASS_MESSAGE_DIALOG;
 pub use self::constants::STYLE_CLASS_MODE_SWITCH;
 pub use self::constants::STYLE_CLASS_OSD;
-#[cfg(any(feature = "v7_1", docsrs))]
+#[cfg(feature = "v7_1")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
 pub use self::constants::STYLE_CLASS_RICH_LIST;
 pub use self::constants::STYLE_CLASS_ROUNDED;
-#[cfg(any(feature = "v7_1", docsrs))]
+#[cfg(feature = "v7_1")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
 pub use self::constants::STYLE_CLASS_SIDEBAR;
 pub use self::constants::STYLE_CLASS_SMALL_LABEL;
@@ -140,8 +140,7 @@ pub use self::constants::STYLE_CLASS_WARMTH;
 pub use self::constants::STYLE_CLASS_WARNING;
 pub use self::constants::TOOLTIP_SECONDARY_TEXT_MARKUP;
 
-#[doc(hidden)]
-pub mod traits {
+pub(crate) mod traits {
     pub use super::accel_label::AccelLabelExt;
     pub use super::date_picker::DatePickerExt;
     pub use super::header_label::HeaderLabelExt;
@@ -160,8 +159,7 @@ pub mod traits {
     pub use super::time_picker::TimePickerExt;
     pub use super::toast::ToastExt;
 }
-#[doc(hidden)]
-pub mod builders {
+pub(crate) mod builders {
     pub use super::accel_label::AccelLabelBuilder;
     pub use super::date_picker::DatePickerBuilder;
     pub use super::dialog::DialogBuilder;

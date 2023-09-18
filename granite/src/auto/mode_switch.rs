@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GraniteModeSwitch")]
@@ -138,6 +138,14 @@ impl ModeSwitchBuilder {
                 "secondary-icon-tooltip-text",
                 secondary_icon_tooltip_text.into(),
             ),
+        }
+    }
+
+    #[cfg(feature = "gtk_v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_12")))]
+    pub fn baseline_child(self, baseline_child: i32) -> Self {
+        Self {
+            builder: self.builder.property("baseline-child", baseline_child),
         }
     }
 
@@ -347,85 +355,14 @@ impl ModeSwitchBuilder {
     }
 }
 
-pub trait ModeSwitchExt: 'static {
-    #[doc(alias = "granite_mode_switch_get_active")]
-    #[doc(alias = "get_active")]
-    fn is_active(&self) -> bool;
-
-    #[doc(alias = "granite_mode_switch_set_active")]
-    fn set_active(&self, value: bool);
-
-    #[doc(alias = "granite_mode_switch_get_primary_icon_gicon")]
-    #[doc(alias = "get_primary_icon_gicon")]
-    fn primary_icon_gicon(&self) -> Option<gio::Icon>;
-
-    #[doc(alias = "granite_mode_switch_set_primary_icon_gicon")]
-    fn set_primary_icon_gicon(&self, value: &impl IsA<gio::Icon>);
-
-    #[doc(alias = "granite_mode_switch_get_primary_icon_name")]
-    #[doc(alias = "get_primary_icon_name")]
-    fn primary_icon_name(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "granite_mode_switch_set_primary_icon_name")]
-    fn set_primary_icon_name(&self, value: &str);
-
-    #[doc(alias = "granite_mode_switch_get_primary_icon_tooltip_text")]
-    #[doc(alias = "get_primary_icon_tooltip_text")]
-    fn primary_icon_tooltip_text(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "granite_mode_switch_set_primary_icon_tooltip_text")]
-    fn set_primary_icon_tooltip_text(&self, value: &str);
-
-    #[doc(alias = "granite_mode_switch_get_secondary_icon_gicon")]
-    #[doc(alias = "get_secondary_icon_gicon")]
-    fn secondary_icon_gicon(&self) -> Option<gio::Icon>;
-
-    #[doc(alias = "granite_mode_switch_set_secondary_icon_gicon")]
-    fn set_secondary_icon_gicon(&self, value: &impl IsA<gio::Icon>);
-
-    #[doc(alias = "granite_mode_switch_get_secondary_icon_name")]
-    #[doc(alias = "get_secondary_icon_name")]
-    fn secondary_icon_name(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "granite_mode_switch_set_secondary_icon_name")]
-    fn set_secondary_icon_name(&self, value: &str);
-
-    #[doc(alias = "granite_mode_switch_get_secondary_icon_tooltip_text")]
-    #[doc(alias = "get_secondary_icon_tooltip_text")]
-    fn secondary_icon_tooltip_text(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "granite_mode_switch_set_secondary_icon_tooltip_text")]
-    fn set_secondary_icon_tooltip_text(&self, value: &str);
-
-    #[doc(alias = "active")]
-    fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "primary-icon-gicon")]
-    fn connect_primary_icon_gicon_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "primary-icon-name")]
-    fn connect_primary_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "primary-icon-tooltip-text")]
-    fn connect_primary_icon_tooltip_text_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "secondary-icon-gicon")]
-    fn connect_secondary_icon_gicon_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "secondary-icon-name")]
-    fn connect_secondary_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "secondary-icon-tooltip-text")]
-    fn connect_secondary_icon_tooltip_text_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::ModeSwitch>> Sealed for T {}
 }
 
-impl<O: IsA<ModeSwitch>> ModeSwitchExt for O {
+pub trait ModeSwitchExt: IsA<ModeSwitch> + sealed::Sealed + 'static {
+    #[doc(alias = "granite_mode_switch_get_active")]
+    #[doc(alias = "get_active")]
     fn is_active(&self) -> bool {
         unsafe {
             from_glib(ffi::granite_mode_switch_get_active(
@@ -434,12 +371,15 @@ impl<O: IsA<ModeSwitch>> ModeSwitchExt for O {
         }
     }
 
+    #[doc(alias = "granite_mode_switch_set_active")]
     fn set_active(&self, value: bool) {
         unsafe {
             ffi::granite_mode_switch_set_active(self.as_ref().to_glib_none().0, value.into_glib());
         }
     }
 
+    #[doc(alias = "granite_mode_switch_get_primary_icon_gicon")]
+    #[doc(alias = "get_primary_icon_gicon")]
     fn primary_icon_gicon(&self) -> Option<gio::Icon> {
         unsafe {
             from_glib_none(ffi::granite_mode_switch_get_primary_icon_gicon(
@@ -448,6 +388,7 @@ impl<O: IsA<ModeSwitch>> ModeSwitchExt for O {
         }
     }
 
+    #[doc(alias = "granite_mode_switch_set_primary_icon_gicon")]
     fn set_primary_icon_gicon(&self, value: &impl IsA<gio::Icon>) {
         unsafe {
             ffi::granite_mode_switch_set_primary_icon_gicon(
@@ -457,6 +398,8 @@ impl<O: IsA<ModeSwitch>> ModeSwitchExt for O {
         }
     }
 
+    #[doc(alias = "granite_mode_switch_get_primary_icon_name")]
+    #[doc(alias = "get_primary_icon_name")]
     fn primary_icon_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::granite_mode_switch_get_primary_icon_name(
@@ -465,6 +408,7 @@ impl<O: IsA<ModeSwitch>> ModeSwitchExt for O {
         }
     }
 
+    #[doc(alias = "granite_mode_switch_set_primary_icon_name")]
     fn set_primary_icon_name(&self, value: &str) {
         unsafe {
             ffi::granite_mode_switch_set_primary_icon_name(
@@ -474,6 +418,8 @@ impl<O: IsA<ModeSwitch>> ModeSwitchExt for O {
         }
     }
 
+    #[doc(alias = "granite_mode_switch_get_primary_icon_tooltip_text")]
+    #[doc(alias = "get_primary_icon_tooltip_text")]
     fn primary_icon_tooltip_text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::granite_mode_switch_get_primary_icon_tooltip_text(
@@ -482,6 +428,7 @@ impl<O: IsA<ModeSwitch>> ModeSwitchExt for O {
         }
     }
 
+    #[doc(alias = "granite_mode_switch_set_primary_icon_tooltip_text")]
     fn set_primary_icon_tooltip_text(&self, value: &str) {
         unsafe {
             ffi::granite_mode_switch_set_primary_icon_tooltip_text(
@@ -491,6 +438,8 @@ impl<O: IsA<ModeSwitch>> ModeSwitchExt for O {
         }
     }
 
+    #[doc(alias = "granite_mode_switch_get_secondary_icon_gicon")]
+    #[doc(alias = "get_secondary_icon_gicon")]
     fn secondary_icon_gicon(&self) -> Option<gio::Icon> {
         unsafe {
             from_glib_none(ffi::granite_mode_switch_get_secondary_icon_gicon(
@@ -499,6 +448,7 @@ impl<O: IsA<ModeSwitch>> ModeSwitchExt for O {
         }
     }
 
+    #[doc(alias = "granite_mode_switch_set_secondary_icon_gicon")]
     fn set_secondary_icon_gicon(&self, value: &impl IsA<gio::Icon>) {
         unsafe {
             ffi::granite_mode_switch_set_secondary_icon_gicon(
@@ -508,6 +458,8 @@ impl<O: IsA<ModeSwitch>> ModeSwitchExt for O {
         }
     }
 
+    #[doc(alias = "granite_mode_switch_get_secondary_icon_name")]
+    #[doc(alias = "get_secondary_icon_name")]
     fn secondary_icon_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::granite_mode_switch_get_secondary_icon_name(
@@ -516,6 +468,7 @@ impl<O: IsA<ModeSwitch>> ModeSwitchExt for O {
         }
     }
 
+    #[doc(alias = "granite_mode_switch_set_secondary_icon_name")]
     fn set_secondary_icon_name(&self, value: &str) {
         unsafe {
             ffi::granite_mode_switch_set_secondary_icon_name(
@@ -525,6 +478,8 @@ impl<O: IsA<ModeSwitch>> ModeSwitchExt for O {
         }
     }
 
+    #[doc(alias = "granite_mode_switch_get_secondary_icon_tooltip_text")]
+    #[doc(alias = "get_secondary_icon_tooltip_text")]
     fn secondary_icon_tooltip_text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::granite_mode_switch_get_secondary_icon_tooltip_text(
@@ -533,6 +488,7 @@ impl<O: IsA<ModeSwitch>> ModeSwitchExt for O {
         }
     }
 
+    #[doc(alias = "granite_mode_switch_set_secondary_icon_tooltip_text")]
     fn set_secondary_icon_tooltip_text(&self, value: &str) {
         unsafe {
             ffi::granite_mode_switch_set_secondary_icon_tooltip_text(
@@ -542,6 +498,7 @@ impl<O: IsA<ModeSwitch>> ModeSwitchExt for O {
         }
     }
 
+    #[doc(alias = "active")]
     fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_active_trampoline<P: IsA<ModeSwitch>, F: Fn(&P) + 'static>(
             this: *mut ffi::GraniteModeSwitch,
@@ -556,7 +513,7 @@ impl<O: IsA<ModeSwitch>> ModeSwitchExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::active\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_active_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -564,6 +521,7 @@ impl<O: IsA<ModeSwitch>> ModeSwitchExt for O {
         }
     }
 
+    #[doc(alias = "primary-icon-gicon")]
     fn connect_primary_icon_gicon_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_primary_icon_gicon_trampoline<
             P: IsA<ModeSwitch>,
@@ -581,7 +539,7 @@ impl<O: IsA<ModeSwitch>> ModeSwitchExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::primary-icon-gicon\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_primary_icon_gicon_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -589,6 +547,7 @@ impl<O: IsA<ModeSwitch>> ModeSwitchExt for O {
         }
     }
 
+    #[doc(alias = "primary-icon-name")]
     fn connect_primary_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_primary_icon_name_trampoline<
             P: IsA<ModeSwitch>,
@@ -606,7 +565,7 @@ impl<O: IsA<ModeSwitch>> ModeSwitchExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::primary-icon-name\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_primary_icon_name_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -614,6 +573,7 @@ impl<O: IsA<ModeSwitch>> ModeSwitchExt for O {
         }
     }
 
+    #[doc(alias = "primary-icon-tooltip-text")]
     fn connect_primary_icon_tooltip_text_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
@@ -634,7 +594,7 @@ impl<O: IsA<ModeSwitch>> ModeSwitchExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::primary-icon-tooltip-text\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_primary_icon_tooltip_text_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -642,6 +602,7 @@ impl<O: IsA<ModeSwitch>> ModeSwitchExt for O {
         }
     }
 
+    #[doc(alias = "secondary-icon-gicon")]
     fn connect_secondary_icon_gicon_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_secondary_icon_gicon_trampoline<
             P: IsA<ModeSwitch>,
@@ -659,7 +620,7 @@ impl<O: IsA<ModeSwitch>> ModeSwitchExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::secondary-icon-gicon\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_secondary_icon_gicon_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -667,6 +628,7 @@ impl<O: IsA<ModeSwitch>> ModeSwitchExt for O {
         }
     }
 
+    #[doc(alias = "secondary-icon-name")]
     fn connect_secondary_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_secondary_icon_name_trampoline<
             P: IsA<ModeSwitch>,
@@ -684,7 +646,7 @@ impl<O: IsA<ModeSwitch>> ModeSwitchExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::secondary-icon-name\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_secondary_icon_name_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -692,6 +654,7 @@ impl<O: IsA<ModeSwitch>> ModeSwitchExt for O {
         }
     }
 
+    #[doc(alias = "secondary-icon-tooltip-text")]
     fn connect_secondary_icon_tooltip_text_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
@@ -712,7 +675,7 @@ impl<O: IsA<ModeSwitch>> ModeSwitchExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::secondary-icon-tooltip-text\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_secondary_icon_tooltip_text_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -721,8 +684,4 @@ impl<O: IsA<ModeSwitch>> ModeSwitchExt for O {
     }
 }
 
-impl fmt::Display for ModeSwitch {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ModeSwitch")
-    }
-}
+impl<O: IsA<ModeSwitch>> ModeSwitchExt for O {}

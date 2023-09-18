@@ -11,7 +11,7 @@ jobs:
   check:
     runs-on: ubuntu-latest
     container:
-      image: elementary/docker:stable
+      image: ghcr.io/elementary/docker:unstable
     steps:
     - name: Install dependencies
       run: |
@@ -21,4 +21,4 @@ jobs:
     - name: Check semver
       uses: obi1kenobi/cargo-semver-checks-action@main
       with:
-        package: granite-rs
+        package: granite-rs, granite-rs-sys

@@ -5,37 +5,37 @@
 
 use glib::GStr;
 
-#[cfg(any(feature = "v7_3", docsrs))]
+#[cfg(feature = "v7_3")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
 #[doc(alias = "GRANITE_SETTINGS_URI_LOCATION")]
 pub static SettingsUriLOCATION: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_SETTINGS_URI_LOCATION) };
-#[cfg(any(feature = "v7_3", docsrs))]
+#[cfg(feature = "v7_3")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
 #[doc(alias = "GRANITE_SETTINGS_URI_ONLINE_ACCOUNTS")]
 pub static SettingsUriONLINE_ACCOUNTS: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_SETTINGS_URI_ONLINE_ACCOUNTS) };
-#[cfg(any(feature = "v7_3", docsrs))]
+#[cfg(feature = "v7_3")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
 #[doc(alias = "GRANITE_SETTINGS_URI_NETWORK")]
 pub static SettingsUriNETWORK: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_SETTINGS_URI_NETWORK) };
-#[cfg(any(feature = "v7_3", docsrs))]
+#[cfg(feature = "v7_3")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
 #[doc(alias = "GRANITE_SETTINGS_URI_PERMISSIONS")]
 pub static SettingsUriPERMISSIONS: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_SETTINGS_URI_PERMISSIONS) };
-#[cfg(any(feature = "v7_3", docsrs))]
+#[cfg(feature = "v7_3")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
 #[doc(alias = "GRANITE_SETTINGS_URI_NOTIFICATIONS")]
 pub static SettingsUriNOTIFICATIONS: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_SETTINGS_URI_NOTIFICATIONS) };
-#[cfg(any(feature = "v7_3", docsrs))]
+#[cfg(feature = "v7_3")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
 #[doc(alias = "GRANITE_SETTINGS_URI_SOUND_INPUT")]
 pub static SettingsUriSOUND_INPUT: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_SETTINGS_URI_SOUND_INPUT) };
-#[cfg(any(feature = "v7_3", docsrs))]
+#[cfg(feature = "v7_3")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
 #[doc(alias = "GRANITE_SETTINGS_URI_SHORTCUTS")]
 pub static SettingsUriSHORTCUTS: &GStr =
@@ -46,7 +46,7 @@ pub static STYLE_CLASS_ACCENT: &GStr =
 #[doc(alias = "GRANITE_STYLE_CLASS_BACK_BUTTON")]
 pub static STYLE_CLASS_BACK_BUTTON: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_BACK_BUTTON) };
-#[cfg(any(feature = "v7_1", docsrs))]
+#[cfg(feature = "v7_1")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
 #[doc(alias = "GRANITE_STYLE_CLASS_BACKGROUND")]
 pub static STYLE_CLASS_BACKGROUND: &GStr =
@@ -75,7 +75,7 @@ pub static STYLE_CLASS_DESTRUCTIVE_ACTION: &GStr =
 #[doc(alias = "GRANITE_STYLE_CLASS_DIALOG_CONTENT_AREA")]
 pub static STYLE_CLASS_DIALOG_CONTENT_AREA: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_DIALOG_CONTENT_AREA) };
-#[cfg(any(feature = "v7_1", docsrs))]
+#[cfg(feature = "v7_1")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
 #[doc(alias = "GRANITE_STYLE_CLASS_FRAME")]
 pub static STYLE_CLASS_FRAME: &GStr =
@@ -107,7 +107,7 @@ pub static STYLE_CLASS_OSD: &GStr =
 #[doc(alias = "GRANITE_STYLE_CLASS_ROUNDED")]
 pub static STYLE_CLASS_ROUNDED: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_ROUNDED) };
-#[cfg(any(feature = "v7_1", docsrs))]
+#[cfg(feature = "v7_1")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
 #[doc(alias = "GRANITE_STYLE_CLASS_SIDEBAR")]
 pub static STYLE_CLASS_SIDEBAR: &GStr =
@@ -148,7 +148,7 @@ pub static STYLE_CLASS_FLAT: &GStr =
 #[doc(alias = "GRANITE_STYLE_CLASS_MESSAGE_DIALOG")]
 pub static STYLE_CLASS_MESSAGE_DIALOG: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_MESSAGE_DIALOG) };
-#[cfg(any(feature = "v7_1", docsrs))]
+#[cfg(feature = "v7_1")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
 #[doc(alias = "GRANITE_STYLE_CLASS_RICH_LIST")]
 pub static STYLE_CLASS_RICH_LIST: &GStr =

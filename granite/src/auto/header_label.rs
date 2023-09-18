@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GraniteHeaderLabel")]
@@ -65,7 +65,7 @@ impl HeaderLabelBuilder {
         }
     }
 
-    #[cfg(any(feature = "v7_1", docsrs))]
+    #[cfg(feature = "v7_1")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
     pub fn secondary_text(self, secondary_text: impl Into<glib::GString>) -> Self {
         Self {
@@ -261,35 +261,14 @@ impl HeaderLabelBuilder {
     }
 }
 
-pub trait HeaderLabelExt: 'static {
-    #[doc(alias = "granite_header_label_get_label")]
-    #[doc(alias = "get_label")]
-    fn label(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "granite_header_label_set_label")]
-    fn set_label(&self, value: &str);
-
-    #[cfg(any(feature = "v7_1", docsrs))]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
-    #[doc(alias = "granite_header_label_get_secondary_text")]
-    #[doc(alias = "get_secondary_text")]
-    fn secondary_text(&self) -> Option<glib::GString>;
-
-    #[cfg(any(feature = "v7_1", docsrs))]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
-    #[doc(alias = "granite_header_label_set_secondary_text")]
-    fn set_secondary_text(&self, value: Option<&str>);
-
-    #[doc(alias = "label")]
-    fn connect_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg(any(feature = "v7_1", docsrs))]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
-    #[doc(alias = "secondary-text")]
-    fn connect_secondary_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::HeaderLabel>> Sealed for T {}
 }
 
-impl<O: IsA<HeaderLabel>> HeaderLabelExt for O {
+pub trait HeaderLabelExt: IsA<HeaderLabel> + sealed::Sealed + 'static {
+    #[doc(alias = "granite_header_label_get_label")]
+    #[doc(alias = "get_label")]
     fn label(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::granite_header_label_get_label(
@@ -298,6 +277,7 @@ impl<O: IsA<HeaderLabel>> HeaderLabelExt for O {
         }
     }
 
+    #[doc(alias = "granite_header_label_set_label")]
     fn set_label(&self, value: &str) {
         unsafe {
             ffi::granite_header_label_set_label(
@@ -307,8 +287,10 @@ impl<O: IsA<HeaderLabel>> HeaderLabelExt for O {
         }
     }
 
-    #[cfg(any(feature = "v7_1", docsrs))]
+    #[cfg(feature = "v7_1")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
+    #[doc(alias = "granite_header_label_get_secondary_text")]
+    #[doc(alias = "get_secondary_text")]
     fn secondary_text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::granite_header_label_get_secondary_text(
@@ -317,8 +299,9 @@ impl<O: IsA<HeaderLabel>> HeaderLabelExt for O {
         }
     }
 
-    #[cfg(any(feature = "v7_1", docsrs))]
+    #[cfg(feature = "v7_1")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
+    #[doc(alias = "granite_header_label_set_secondary_text")]
     fn set_secondary_text(&self, value: Option<&str>) {
         unsafe {
             ffi::granite_header_label_set_secondary_text(
@@ -328,6 +311,7 @@ impl<O: IsA<HeaderLabel>> HeaderLabelExt for O {
         }
     }
 
+    #[doc(alias = "label")]
     fn connect_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_label_trampoline<P: IsA<HeaderLabel>, F: Fn(&P) + 'static>(
             this: *mut ffi::GraniteHeaderLabel,
@@ -342,7 +326,7 @@ impl<O: IsA<HeaderLabel>> HeaderLabelExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::label\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_label_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -350,8 +334,9 @@ impl<O: IsA<HeaderLabel>> HeaderLabelExt for O {
         }
     }
 
-    #[cfg(any(feature = "v7_1", docsrs))]
+    #[cfg(feature = "v7_1")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
+    #[doc(alias = "secondary-text")]
     fn connect_secondary_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_secondary_text_trampoline<
             P: IsA<HeaderLabel>,
@@ -369,7 +354,7 @@ impl<O: IsA<HeaderLabel>> HeaderLabelExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::secondary-text\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_secondary_text_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -378,8 +363,4 @@ impl<O: IsA<HeaderLabel>> HeaderLabelExt for O {
     }
 }
 
-impl fmt::Display for HeaderLabel {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("HeaderLabel")
-    }
-}
+impl<O: IsA<HeaderLabel>> HeaderLabelExt for O {}

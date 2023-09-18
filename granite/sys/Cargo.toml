@@ -1,6 +1,6 @@
 [package]
 name = "granite-rs-sys"
-version = "0.2.3"
+version = "0.2.4"
 edition = "2021"
 build = "build.rs"
 links = "libgranite-7"
@@ -28,6 +28,8 @@ version = "7.3"
 
 [package.metadata.docs.rs]
 features = []
+rustc-args = ["--cfg", "docsrs"]
+rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
 
 [lib]
 name = "granite_sys"
@@ -37,23 +39,23 @@ libc = "0.2"
 
 [dependencies.gdk]
 package = "gdk4-sys"
-version = "0.6"
+version = "0.7"
 
 [dependencies.gio]
 package = "gio-sys"
-version = "0.17"
+version = "0.18"
 
 [dependencies.glib]
 package = "glib-sys"
-version = "0.17"
+version = "0.18"
 
 [dependencies.gobject]
 package = "gobject-sys"
-version = "0.17"
+version = "0.18"
 
 [dependencies.gtk]
 package = "gtk4-sys"
-version = "0.6"
+version = "0.7"
 
 [build-dependencies]
 system-deps = "6"
@@ -63,7 +65,6 @@ shell-words = "1.0.0"
 tempfile = "3"
 
 [features]
-dox = ["gdk/dox", "gio/dox", "glib/dox", "gobject/dox", "gtk/dox"]
 v7_1 = []
 v7_2 = ["v7_1"]
 v7_3 = ["v7_2"]

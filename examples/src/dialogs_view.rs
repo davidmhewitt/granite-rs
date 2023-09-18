@@ -1,5 +1,5 @@
 use glib::clone;
-use granite::traits::ToastExt;
+use granite::prelude::*;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 

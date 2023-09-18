@@ -9,7 +9,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GraniteSettings")]
@@ -32,19 +32,14 @@ impl Settings {
     }
 }
 
-pub trait SettingsExt: 'static {
-    #[doc(alias = "granite_settings_get_prefers_color_scheme")]
-    #[doc(alias = "get_prefers_color_scheme")]
-    fn prefers_color_scheme(&self) -> SettingsColorScheme;
-
-    #[doc(alias = "prefers-color-scheme")]
-    fn set_prefers_color_scheme(&self, prefers_color_scheme: SettingsColorScheme);
-
-    #[doc(alias = "prefers-color-scheme")]
-    fn connect_prefers_color_scheme_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Settings>> Sealed for T {}
 }
 
-impl<O: IsA<Settings>> SettingsExt for O {
+pub trait SettingsExt: IsA<Settings> + sealed::Sealed + 'static {
+    #[doc(alias = "granite_settings_get_prefers_color_scheme")]
+    #[doc(alias = "get_prefers_color_scheme")]
     fn prefers_color_scheme(&self) -> SettingsColorScheme {
         unsafe {
             from_glib(ffi::granite_settings_get_prefers_color_scheme(
@@ -53,10 +48,12 @@ impl<O: IsA<Settings>> SettingsExt for O {
         }
     }
 
+    #[doc(alias = "prefers-color-scheme")]
     fn set_prefers_color_scheme(&self, prefers_color_scheme: SettingsColorScheme) {
-        glib::ObjectExt::set_property(self.as_ref(), "prefers-color-scheme", prefers_color_scheme)
+        ObjectExt::set_property(self.as_ref(), "prefers-color-scheme", prefers_color_scheme)
     }
 
+    #[doc(alias = "prefers-color-scheme")]
     fn connect_prefers_color_scheme_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_prefers_color_scheme_trampoline<
             P: IsA<Settings>,
@@ -74,7 +71,7 @@ impl<O: IsA<Settings>> SettingsExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::prefers-color-scheme\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_prefers_color_scheme_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -83,8 +80,4 @@ impl<O: IsA<Settings>> SettingsExt for O {
     }
 }
 
-impl fmt::Display for Settings {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Settings")
-    }
-}
+impl<O: IsA<Settings>> SettingsExt for O {}

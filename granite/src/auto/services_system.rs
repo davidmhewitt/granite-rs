@@ -4,7 +4,6 @@
 // DO NOT EDIT
 
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GraniteServicesSystem")]
@@ -34,11 +33,5 @@ impl ServicesSystem {
 impl Default for ServicesSystem {
     fn default() -> Self {
         Self::new()
-    }
-}
-
-impl fmt::Display for ServicesSystem {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ServicesSystem")
     }
 }

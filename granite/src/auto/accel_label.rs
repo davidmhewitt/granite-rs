@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GraniteAccelLabel")]
@@ -90,6 +90,14 @@ impl AccelLabelBuilder {
     pub fn label(self, label: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("label", label.into()),
+        }
+    }
+
+    #[cfg(feature = "gtk_v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_12")))]
+    pub fn baseline_child(self, baseline_child: i32) -> Self {
+        Self {
+            builder: self.builder.property("baseline-child", baseline_child),
         }
     }
 
@@ -299,39 +307,14 @@ impl AccelLabelBuilder {
     }
 }
 
-pub trait AccelLabelExt: 'static {
-    #[doc(alias = "granite_accel_label_get_action_name")]
-    #[doc(alias = "get_action_name")]
-    fn action_name(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "granite_accel_label_set_action_name")]
-    fn set_action_name(&self, value: &str);
-
-    #[doc(alias = "granite_accel_label_get_accel_string")]
-    #[doc(alias = "get_accel_string")]
-    fn accel_string(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "granite_accel_label_set_accel_string")]
-    fn set_accel_string(&self, value: Option<&str>);
-
-    #[doc(alias = "granite_accel_label_get_label")]
-    #[doc(alias = "get_label")]
-    fn label(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "granite_accel_label_set_label")]
-    fn set_label(&self, value: &str);
-
-    #[doc(alias = "action-name")]
-    fn connect_action_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "accel-string")]
-    fn connect_accel_string_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "label")]
-    fn connect_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::AccelLabel>> Sealed for T {}
 }
 
-impl<O: IsA<AccelLabel>> AccelLabelExt for O {
+pub trait AccelLabelExt: IsA<AccelLabel> + sealed::Sealed + 'static {
+    #[doc(alias = "granite_accel_label_get_action_name")]
+    #[doc(alias = "get_action_name")]
     fn action_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::granite_accel_label_get_action_name(
@@ -340,6 +323,7 @@ impl<O: IsA<AccelLabel>> AccelLabelExt for O {
         }
     }
 
+    #[doc(alias = "granite_accel_label_set_action_name")]
     fn set_action_name(&self, value: &str) {
         unsafe {
             ffi::granite_accel_label_set_action_name(
@@ -349,6 +333,8 @@ impl<O: IsA<AccelLabel>> AccelLabelExt for O {
         }
     }
 
+    #[doc(alias = "granite_accel_label_get_accel_string")]
+    #[doc(alias = "get_accel_string")]
     fn accel_string(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::granite_accel_label_get_accel_string(
@@ -357,6 +343,7 @@ impl<O: IsA<AccelLabel>> AccelLabelExt for O {
         }
     }
 
+    #[doc(alias = "granite_accel_label_set_accel_string")]
     fn set_accel_string(&self, value: Option<&str>) {
         unsafe {
             ffi::granite_accel_label_set_accel_string(
@@ -366,6 +353,8 @@ impl<O: IsA<AccelLabel>> AccelLabelExt for O {
         }
     }
 
+    #[doc(alias = "granite_accel_label_get_label")]
+    #[doc(alias = "get_label")]
     fn label(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::granite_accel_label_get_label(
@@ -374,6 +363,7 @@ impl<O: IsA<AccelLabel>> AccelLabelExt for O {
         }
     }
 
+    #[doc(alias = "granite_accel_label_set_label")]
     fn set_label(&self, value: &str) {
         unsafe {
             ffi::granite_accel_label_set_label(
@@ -383,6 +373,7 @@ impl<O: IsA<AccelLabel>> AccelLabelExt for O {
         }
     }
 
+    #[doc(alias = "action-name")]
     fn connect_action_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_action_name_trampoline<
             P: IsA<AccelLabel>,
@@ -400,7 +391,7 @@ impl<O: IsA<AccelLabel>> AccelLabelExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::action-name\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_action_name_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -408,6 +399,7 @@ impl<O: IsA<AccelLabel>> AccelLabelExt for O {
         }
     }
 
+    #[doc(alias = "accel-string")]
     fn connect_accel_string_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_accel_string_trampoline<
             P: IsA<AccelLabel>,
@@ -425,7 +417,7 @@ impl<O: IsA<AccelLabel>> AccelLabelExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::accel-string\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_accel_string_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -433,6 +425,7 @@ impl<O: IsA<AccelLabel>> AccelLabelExt for O {
         }
     }
 
+    #[doc(alias = "label")]
     fn connect_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_label_trampoline<P: IsA<AccelLabel>, F: Fn(&P) + 'static>(
             this: *mut ffi::GraniteAccelLabel,
@@ -447,7 +440,7 @@ impl<O: IsA<AccelLabel>> AccelLabelExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::label\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_label_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -456,8 +449,4 @@ impl<O: IsA<AccelLabel>> AccelLabelExt for O {
     }
 }
 
-impl fmt::Display for AccelLabel {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("AccelLabel")
-    }
-}
+impl<O: IsA<AccelLabel>> AccelLabelExt for O {}

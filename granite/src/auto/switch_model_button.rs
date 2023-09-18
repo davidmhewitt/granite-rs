@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GraniteSwitchModelButton")]
@@ -80,6 +80,14 @@ impl SwitchModelButtonBuilder {
     pub fn group(self, group: &impl IsA<gtk::ToggleButton>) -> Self {
         Self {
             builder: self.builder.property("group", group.clone().upcast()),
+        }
+    }
+
+    #[cfg(feature = "gtk_v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_12")))]
+    pub fn can_shrink(self, can_shrink: bool) -> Self {
+        Self {
+            builder: self.builder.property("can-shrink", can_shrink),
         }
     }
 
@@ -309,29 +317,14 @@ impl SwitchModelButtonBuilder {
     }
 }
 
-pub trait SwitchModelButtonExt: 'static {
-    #[doc(alias = "granite_switch_model_button_get_text")]
-    #[doc(alias = "get_text")]
-    fn text(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "granite_switch_model_button_set_text")]
-    fn set_text(&self, value: &str);
-
-    #[doc(alias = "granite_switch_model_button_get_description")]
-    #[doc(alias = "get_description")]
-    fn description(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "granite_switch_model_button_set_description")]
-    fn set_description(&self, value: Option<&str>);
-
-    #[doc(alias = "text")]
-    fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "description")]
-    fn connect_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::SwitchModelButton>> Sealed for T {}
 }
 
-impl<O: IsA<SwitchModelButton>> SwitchModelButtonExt for O {
+pub trait SwitchModelButtonExt: IsA<SwitchModelButton> + sealed::Sealed + 'static {
+    #[doc(alias = "granite_switch_model_button_get_text")]
+    #[doc(alias = "get_text")]
     fn text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::granite_switch_model_button_get_text(
@@ -340,6 +333,7 @@ impl<O: IsA<SwitchModelButton>> SwitchModelButtonExt for O {
         }
     }
 
+    #[doc(alias = "granite_switch_model_button_set_text")]
     fn set_text(&self, value: &str) {
         unsafe {
             ffi::granite_switch_model_button_set_text(
@@ -349,6 +343,8 @@ impl<O: IsA<SwitchModelButton>> SwitchModelButtonExt for O {
         }
     }
 
+    #[doc(alias = "granite_switch_model_button_get_description")]
+    #[doc(alias = "get_description")]
     fn description(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::granite_switch_model_button_get_description(
@@ -357,6 +353,7 @@ impl<O: IsA<SwitchModelButton>> SwitchModelButtonExt for O {
         }
     }
 
+    #[doc(alias = "granite_switch_model_button_set_description")]
     fn set_description(&self, value: Option<&str>) {
         unsafe {
             ffi::granite_switch_model_button_set_description(
@@ -366,6 +363,7 @@ impl<O: IsA<SwitchModelButton>> SwitchModelButtonExt for O {
         }
     }
 
+    #[doc(alias = "text")]
     fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_trampoline<
             P: IsA<SwitchModelButton>,
@@ -383,7 +381,7 @@ impl<O: IsA<SwitchModelButton>> SwitchModelButtonExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::text\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_text_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -391,6 +389,7 @@ impl<O: IsA<SwitchModelButton>> SwitchModelButtonExt for O {
         }
     }
 
+    #[doc(alias = "description")]
     fn connect_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_description_trampoline<
             P: IsA<SwitchModelButton>,
@@ -408,7 +407,7 @@ impl<O: IsA<SwitchModelButton>> SwitchModelButtonExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::description\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_description_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -417,8 +416,4 @@ impl<O: IsA<SwitchModelButton>> SwitchModelButtonExt for O {
     }
 }
 
-impl fmt::Display for SwitchModelButton {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("SwitchModelButton")
-    }
-}
+impl<O: IsA<SwitchModelButton>> SwitchModelButtonExt for O {}

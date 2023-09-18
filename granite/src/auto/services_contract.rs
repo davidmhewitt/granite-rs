@@ -4,7 +4,6 @@
 // DO NOT EDIT
 
 use glib::{prelude::*, translate::*};
-use std::{fmt, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GraniteServicesContract")]
@@ -19,27 +18,14 @@ impl ServicesContract {
     pub const NONE: Option<&'static ServicesContract> = None;
 }
 
-pub trait ServicesContractExt: 'static {
-    #[doc(alias = "granite_services_contract_get_display_name")]
-    #[doc(alias = "get_display_name")]
-    fn display_name(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "granite_services_contract_get_description")]
-    #[doc(alias = "get_description")]
-    fn description(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "granite_services_contract_get_icon")]
-    #[doc(alias = "get_icon")]
-    fn icon(&self) -> Option<gio::Icon>;
-
-    #[doc(alias = "granite_services_contract_execute_with_file")]
-    fn execute_with_file(&self, file: &impl IsA<gio::File>) -> Result<(), glib::Error>;
-
-    #[doc(alias = "granite_services_contract_execute_with_files")]
-    fn execute_with_files(&self, files: &[gio::File]) -> Result<(), glib::Error>;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::ServicesContract>> Sealed for T {}
 }
 
-impl<O: IsA<ServicesContract>> ServicesContractExt for O {
+pub trait ServicesContractExt: IsA<ServicesContract> + sealed::Sealed + 'static {
+    #[doc(alias = "granite_services_contract_get_display_name")]
+    #[doc(alias = "get_display_name")]
     fn display_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::granite_services_contract_get_display_name(
@@ -48,6 +34,8 @@ impl<O: IsA<ServicesContract>> ServicesContractExt for O {
         }
     }
 
+    #[doc(alias = "granite_services_contract_get_description")]
+    #[doc(alias = "get_description")]
     fn description(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::granite_services_contract_get_description(
@@ -56,6 +44,8 @@ impl<O: IsA<ServicesContract>> ServicesContractExt for O {
         }
     }
 
+    #[doc(alias = "granite_services_contract_get_icon")]
+    #[doc(alias = "get_icon")]
     fn icon(&self) -> Option<gio::Icon> {
         unsafe {
             from_glib_full(ffi::granite_services_contract_get_icon(
@@ -64,9 +54,10 @@ impl<O: IsA<ServicesContract>> ServicesContractExt for O {
         }
     }
 
+    #[doc(alias = "granite_services_contract_execute_with_file")]
     fn execute_with_file(&self, file: &impl IsA<gio::File>) -> Result<(), glib::Error> {
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let _ = ffi::granite_services_contract_execute_with_file(
                 self.as_ref().to_glib_none().0,
                 file.as_ref().to_glib_none().0,
@@ -80,10 +71,11 @@ impl<O: IsA<ServicesContract>> ServicesContractExt for O {
         }
     }
 
+    #[doc(alias = "granite_services_contract_execute_with_files")]
     fn execute_with_files(&self, files: &[gio::File]) -> Result<(), glib::Error> {
         let files_length1 = files.len() as _;
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let _ = ffi::granite_services_contract_execute_with_files(
                 self.as_ref().to_glib_none().0,
                 files.to_glib_none().0,
@@ -99,8 +91,4 @@ impl<O: IsA<ServicesContract>> ServicesContractExt for O {
     }
 }
 
-impl fmt::Display for ServicesContract {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ServicesContract")
-    }
-}
+impl<O: IsA<ServicesContract>> ServicesContractExt for O {}
