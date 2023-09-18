@@ -4,7 +4,6 @@
 // DO NOT EDIT
 
 use glib::{prelude::*, translate::*};
-use std::ptr;
 
 #[doc(alias = "granite_date_time_get_default_time_format")]
 pub fn date_time_get_default_time_format(is_12h: bool, with_second: bool) -> Option<glib::GString> {
@@ -96,7 +95,7 @@ pub fn widgets_utils_set_color_primary(
     }
 }
 
-#[cfg(any(feature = "v7_2", docsrs))]
+#[cfg(feature = "v7_2")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_2")))]
 #[doc(alias = "granite_init")]
 pub fn init() {

@@ -1,12 +1,8 @@
-use granite::{
-    subclass::prelude::*,
-    traits::{SettingsPageExt, SimpleSettingsPageExt},
-};
+use granite::{prelude::*, subclass::prelude::*};
 use gtk::prelude::*;
 
 mod imp {
     use glib::clone;
-    use granite::traits::{SettingsPageExt, SimpleSettingsPageExt};
 
     use super::*;
 

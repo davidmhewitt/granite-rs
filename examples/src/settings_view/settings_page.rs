@@ -1,6 +1,6 @@
 use glib::clone;
+use granite::prelude::*;
 use granite::subclass::prelude::*;
-use granite::traits::SettingsPageExt;
 use gtk::traits::{BoxExt, EditableExt};
 
 mod imp {

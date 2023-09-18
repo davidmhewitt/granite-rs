@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GranitePlaceholder")]
@@ -263,47 +263,14 @@ impl PlaceholderBuilder {
     }
 }
 
-pub trait PlaceholderExt: 'static {
-    #[doc(alias = "granite_placeholder_get_title")]
-    #[doc(alias = "get_title")]
-    fn title(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "granite_placeholder_set_title")]
-    fn set_title(&self, value: &str);
-
-    #[doc(alias = "granite_placeholder_get_description")]
-    #[doc(alias = "get_description")]
-    fn description(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "granite_placeholder_set_description")]
-    fn set_description(&self, value: &str);
-
-    #[doc(alias = "granite_placeholder_get_icon")]
-    #[doc(alias = "get_icon")]
-    fn icon(&self) -> Option<gio::Icon>;
-
-    #[doc(alias = "granite_placeholder_set_icon")]
-    fn set_icon(&self, value: &impl IsA<gio::Icon>);
-
-    #[doc(alias = "granite_placeholder_append_button")]
-    fn append_button(
-        &self,
-        icon: &impl IsA<gio::Icon>,
-        label: &str,
-        description: &str,
-    ) -> Option<gtk::Button>;
-
-    #[doc(alias = "title")]
-    fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "description")]
-    fn connect_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "icon")]
-    fn connect_icon_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Placeholder>> Sealed for T {}
 }
 
-impl<O: IsA<Placeholder>> PlaceholderExt for O {
+pub trait PlaceholderExt: IsA<Placeholder> + sealed::Sealed + 'static {
+    #[doc(alias = "granite_placeholder_get_title")]
+    #[doc(alias = "get_title")]
     fn title(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::granite_placeholder_get_title(
@@ -312,6 +279,7 @@ impl<O: IsA<Placeholder>> PlaceholderExt for O {
         }
     }
 
+    #[doc(alias = "granite_placeholder_set_title")]
     fn set_title(&self, value: &str) {
         unsafe {
             ffi::granite_placeholder_set_title(
@@ -321,6 +289,8 @@ impl<O: IsA<Placeholder>> PlaceholderExt for O {
         }
     }
 
+    #[doc(alias = "granite_placeholder_get_description")]
+    #[doc(alias = "get_description")]
     fn description(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::granite_placeholder_get_description(
@@ -329,6 +299,7 @@ impl<O: IsA<Placeholder>> PlaceholderExt for O {
         }
     }
 
+    #[doc(alias = "granite_placeholder_set_description")]
     fn set_description(&self, value: &str) {
         unsafe {
             ffi::granite_placeholder_set_description(
@@ -338,6 +309,8 @@ impl<O: IsA<Placeholder>> PlaceholderExt for O {
         }
     }
 
+    #[doc(alias = "granite_placeholder_get_icon")]
+    #[doc(alias = "get_icon")]
     fn icon(&self) -> Option<gio::Icon> {
         unsafe {
             from_glib_none(ffi::granite_placeholder_get_icon(
@@ -346,6 +319,7 @@ impl<O: IsA<Placeholder>> PlaceholderExt for O {
         }
     }
 
+    #[doc(alias = "granite_placeholder_set_icon")]
     fn set_icon(&self, value: &impl IsA<gio::Icon>) {
         unsafe {
             ffi::granite_placeholder_set_icon(
@@ -355,6 +329,7 @@ impl<O: IsA<Placeholder>> PlaceholderExt for O {
         }
     }
 
+    #[doc(alias = "granite_placeholder_append_button")]
     fn append_button(
         &self,
         icon: &impl IsA<gio::Icon>,
@@ -371,6 +346,7 @@ impl<O: IsA<Placeholder>> PlaceholderExt for O {
         }
     }
 
+    #[doc(alias = "title")]
     fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<P: IsA<Placeholder>, F: Fn(&P) + 'static>(
             this: *mut ffi::GranitePlaceholder,
@@ -385,7 +361,7 @@ impl<O: IsA<Placeholder>> PlaceholderExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_title_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -393,6 +369,7 @@ impl<O: IsA<Placeholder>> PlaceholderExt for O {
         }
     }
 
+    #[doc(alias = "description")]
     fn connect_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_description_trampoline<
             P: IsA<Placeholder>,
@@ -410,7 +387,7 @@ impl<O: IsA<Placeholder>> PlaceholderExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::description\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_description_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -418,6 +395,7 @@ impl<O: IsA<Placeholder>> PlaceholderExt for O {
         }
     }
 
+    #[doc(alias = "icon")]
     fn connect_icon_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_trampoline<P: IsA<Placeholder>, F: Fn(&P) + 'static>(
             this: *mut ffi::GranitePlaceholder,
@@ -432,7 +410,7 @@ impl<O: IsA<Placeholder>> PlaceholderExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::icon\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_icon_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -441,8 +419,4 @@ impl<O: IsA<Placeholder>> PlaceholderExt for O {
     }
 }
 
-impl fmt::Display for Placeholder {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Placeholder")
-    }
-}
+impl<O: IsA<Placeholder>> PlaceholderExt for O {}

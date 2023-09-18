@@ -1,4 +1,4 @@
-use granite::traits::PlaceholderExt;
+use granite::prelude::*;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 
@@ -155,7 +155,7 @@ mod test {
             std::time::Duration::from_millis(ms as u64),
             glib::clone!(@strong main_loop => move || {
                 main_loop.quit();
-                Continue(false)
+                glib::ControlFlow::Break
             }),
         );
 

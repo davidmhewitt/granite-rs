@@ -1,5 +1,5 @@
-use granite::traits::{DatePickerExt, TimePickerExt};
-use gtk::prelude::*;
+use granite::prelude::*;
+use gtk::prelude::{*, SettingsExt};
 use gtk::subclass::prelude::*;
 
 mod imp {

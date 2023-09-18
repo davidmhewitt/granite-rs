@@ -1,4 +1,4 @@
-#![cfg_attr(feature = "dox", feature(doc_cfg))]
+#![cfg_attr(docsrs, feature(doc_cfg))]
 
 /// No-op.
 macro_rules! skip_assert_initialized {
@@ -23,4 +23,9 @@ mod auto;
 pub use auto::functions::*;
 pub use auto::*;
 
+pub mod builders {
+    pub use super::auto::builders::*;
+}
+
+pub mod prelude;
 pub mod subclass;

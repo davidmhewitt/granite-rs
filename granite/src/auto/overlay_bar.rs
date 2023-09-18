@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GraniteOverlayBar")]
@@ -263,33 +263,14 @@ impl OverlayBarBuilder {
     }
 }
 
-pub trait OverlayBarExt: 'static {
-    #[doc(alias = "granite_overlay_bar_get_overlay")]
-    #[doc(alias = "get_overlay")]
-    fn overlay(&self) -> Option<gtk::Overlay>;
-
-    #[doc(alias = "granite_overlay_bar_get_label")]
-    #[doc(alias = "get_label")]
-    fn label(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "granite_overlay_bar_set_label")]
-    fn set_label(&self, value: &str);
-
-    #[doc(alias = "granite_overlay_bar_get_active")]
-    #[doc(alias = "get_active")]
-    fn is_active(&self) -> bool;
-
-    #[doc(alias = "granite_overlay_bar_set_active")]
-    fn set_active(&self, value: bool);
-
-    #[doc(alias = "label")]
-    fn connect_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "active")]
-    fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::OverlayBar>> Sealed for T {}
 }
 
-impl<O: IsA<OverlayBar>> OverlayBarExt for O {
+pub trait OverlayBarExt: IsA<OverlayBar> + sealed::Sealed + 'static {
+    #[doc(alias = "granite_overlay_bar_get_overlay")]
+    #[doc(alias = "get_overlay")]
     fn overlay(&self) -> Option<gtk::Overlay> {
         unsafe {
             from_glib_none(ffi::granite_overlay_bar_get_overlay(
@@ -298,6 +279,8 @@ impl<O: IsA<OverlayBar>> OverlayBarExt for O {
         }
     }
 
+    #[doc(alias = "granite_overlay_bar_get_label")]
+    #[doc(alias = "get_label")]
     fn label(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::granite_overlay_bar_get_label(
@@ -306,6 +289,7 @@ impl<O: IsA<OverlayBar>> OverlayBarExt for O {
         }
     }
 
+    #[doc(alias = "granite_overlay_bar_set_label")]
     fn set_label(&self, value: &str) {
         unsafe {
             ffi::granite_overlay_bar_set_label(
@@ -315,6 +299,8 @@ impl<O: IsA<OverlayBar>> OverlayBarExt for O {
         }
     }
 
+    #[doc(alias = "granite_overlay_bar_get_active")]
+    #[doc(alias = "get_active")]
     fn is_active(&self) -> bool {
         unsafe {
             from_glib(ffi::granite_overlay_bar_get_active(
@@ -323,12 +309,14 @@ impl<O: IsA<OverlayBar>> OverlayBarExt for O {
         }
     }
 
+    #[doc(alias = "granite_overlay_bar_set_active")]
     fn set_active(&self, value: bool) {
         unsafe {
             ffi::granite_overlay_bar_set_active(self.as_ref().to_glib_none().0, value.into_glib());
         }
     }
 
+    #[doc(alias = "label")]
     fn connect_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_label_trampoline<P: IsA<OverlayBar>, F: Fn(&P) + 'static>(
             this: *mut ffi::GraniteOverlayBar,
@@ -343,7 +331,7 @@ impl<O: IsA<OverlayBar>> OverlayBarExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::label\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_label_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -351,6 +339,7 @@ impl<O: IsA<OverlayBar>> OverlayBarExt for O {
         }
     }
 
+    #[doc(alias = "active")]
     fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_active_trampoline<P: IsA<OverlayBar>, F: Fn(&P) + 'static>(
             this: *mut ffi::GraniteOverlayBar,
@@ -365,7 +354,7 @@ impl<O: IsA<OverlayBar>> OverlayBarExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::active\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_active_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -374,8 +363,4 @@ impl<O: IsA<OverlayBar>> OverlayBarExt for O {
     }
 }
 
-impl fmt::Display for OverlayBar {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("OverlayBar")
-    }
-}
+impl<O: IsA<OverlayBar>> OverlayBarExt for O {}

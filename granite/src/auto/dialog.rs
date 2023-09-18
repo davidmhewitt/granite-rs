@@ -4,7 +4,6 @@
 // DO NOT EDIT
 
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GraniteDialog")]
@@ -129,7 +128,7 @@ impl DialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "gtk_v4_2", docsrs))]
+    #[cfg(feature = "gtk_v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_2")))]
     pub fn handle_menubar_accel(self, handle_menubar_accel: bool) -> Self {
         Self {
@@ -189,7 +188,7 @@ impl DialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "gtk_v4_6", docsrs))]
+    #[cfg(feature = "gtk_v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_6")))]
     pub fn titlebar(self, titlebar: &impl IsA<gtk::Widget>) -> Self {
         Self {
@@ -388,11 +387,5 @@ impl DialogBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Dialog {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for Dialog {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Dialog")
     }
 }

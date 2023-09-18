@@ -9,7 +9,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GraniteSimpleSettingsPage")]
@@ -24,35 +24,14 @@ impl SimpleSettingsPage {
     pub const NONE: Option<&'static SimpleSettingsPage> = None;
 }
 
-pub trait SimpleSettingsPageExt: 'static {
-    #[doc(alias = "granite_simple_settings_page_get_action_area")]
-    #[doc(alias = "get_action_area")]
-    fn action_area(&self) -> Option<gtk::Box>;
-
-    #[doc(alias = "granite_simple_settings_page_get_content_area")]
-    #[doc(alias = "get_content_area")]
-    fn content_area(&self) -> Option<gtk::Grid>;
-
-    #[doc(alias = "granite_simple_settings_page_get_status_switch")]
-    #[doc(alias = "get_status_switch")]
-    fn status_switch(&self) -> Option<gtk::Switch>;
-
-    #[doc(alias = "granite_simple_settings_page_get_activatable")]
-    #[doc(alias = "get_activatable")]
-    fn is_activatable(&self) -> bool;
-
-    #[doc(alias = "granite_simple_settings_page_get_description")]
-    #[doc(alias = "get_description")]
-    fn description(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "granite_simple_settings_page_set_description")]
-    fn set_description(&self, value: &str);
-
-    #[doc(alias = "description")]
-    fn connect_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::SimpleSettingsPage>> Sealed for T {}
 }
 
-impl<O: IsA<SimpleSettingsPage>> SimpleSettingsPageExt for O {
+pub trait SimpleSettingsPageExt: IsA<SimpleSettingsPage> + sealed::Sealed + 'static {
+    #[doc(alias = "granite_simple_settings_page_get_action_area")]
+    #[doc(alias = "get_action_area")]
     fn action_area(&self) -> Option<gtk::Box> {
         unsafe {
             from_glib_none(ffi::granite_simple_settings_page_get_action_area(
@@ -61,6 +40,8 @@ impl<O: IsA<SimpleSettingsPage>> SimpleSettingsPageExt for O {
         }
     }
 
+    #[doc(alias = "granite_simple_settings_page_get_content_area")]
+    #[doc(alias = "get_content_area")]
     fn content_area(&self) -> Option<gtk::Grid> {
         unsafe {
             from_glib_none(ffi::granite_simple_settings_page_get_content_area(
@@ -69,6 +50,8 @@ impl<O: IsA<SimpleSettingsPage>> SimpleSettingsPageExt for O {
         }
     }
 
+    #[doc(alias = "granite_simple_settings_page_get_status_switch")]
+    #[doc(alias = "get_status_switch")]
     fn status_switch(&self) -> Option<gtk::Switch> {
         unsafe {
             from_glib_none(ffi::granite_simple_settings_page_get_status_switch(
@@ -77,6 +60,8 @@ impl<O: IsA<SimpleSettingsPage>> SimpleSettingsPageExt for O {
         }
     }
 
+    #[doc(alias = "granite_simple_settings_page_get_activatable")]
+    #[doc(alias = "get_activatable")]
     fn is_activatable(&self) -> bool {
         unsafe {
             from_glib(ffi::granite_simple_settings_page_get_activatable(
@@ -85,6 +70,8 @@ impl<O: IsA<SimpleSettingsPage>> SimpleSettingsPageExt for O {
         }
     }
 
+    #[doc(alias = "granite_simple_settings_page_get_description")]
+    #[doc(alias = "get_description")]
     fn description(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::granite_simple_settings_page_get_description(
@@ -93,6 +80,7 @@ impl<O: IsA<SimpleSettingsPage>> SimpleSettingsPageExt for O {
         }
     }
 
+    #[doc(alias = "granite_simple_settings_page_set_description")]
     fn set_description(&self, value: &str) {
         unsafe {
             ffi::granite_simple_settings_page_set_description(
@@ -102,6 +90,7 @@ impl<O: IsA<SimpleSettingsPage>> SimpleSettingsPageExt for O {
         }
     }
 
+    #[doc(alias = "description")]
     fn connect_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_description_trampoline<
             P: IsA<SimpleSettingsPage>,
@@ -119,7 +108,7 @@ impl<O: IsA<SimpleSettingsPage>> SimpleSettingsPageExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::description\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_description_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -128,8 +117,4 @@ impl<O: IsA<SimpleSettingsPage>> SimpleSettingsPageExt for O {
     }
 }
 
-impl fmt::Display for SimpleSettingsPage {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("SimpleSettingsPage")
-    }
-}
+impl<O: IsA<SimpleSettingsPage>> SimpleSettingsPageExt for O {}

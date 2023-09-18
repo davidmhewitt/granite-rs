@@ -9,7 +9,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GraniteSettingsPage")]
@@ -24,67 +24,14 @@ impl SettingsPage {
     pub const NONE: Option<&'static SettingsPage> = None;
 }
 
-pub trait SettingsPageExt: 'static {
-    #[doc(alias = "granite_settings_page_get_status_type")]
-    #[doc(alias = "get_status_type")]
-    fn status_type(&self) -> SettingsPageStatusType;
-
-    #[doc(alias = "granite_settings_page_set_status_type")]
-    fn set_status_type(&self, value: SettingsPageStatusType);
-
-    #[doc(alias = "granite_settings_page_get_display_widget")]
-    #[doc(alias = "get_display_widget")]
-    fn display_widget(&self) -> Option<gtk::Widget>;
-
-    #[doc(alias = "granite_settings_page_get_header")]
-    #[doc(alias = "get_header")]
-    fn header(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "granite_settings_page_get_status")]
-    #[doc(alias = "get_status")]
-    fn status(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "granite_settings_page_set_status")]
-    fn set_status(&self, value: &str);
-
-    #[doc(alias = "granite_settings_page_get_icon_name")]
-    #[doc(alias = "get_icon_name")]
-    fn icon_name(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "granite_settings_page_set_icon_name")]
-    fn set_icon_name(&self, value: Option<&str>);
-
-    #[doc(alias = "granite_settings_page_get_title")]
-    #[doc(alias = "get_title")]
-    fn title(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "granite_settings_page_set_title")]
-    fn set_title(&self, value: &str);
-
-    #[doc(alias = "granite_settings_page_get_child")]
-    #[doc(alias = "get_child")]
-    fn child(&self) -> Option<gtk::Widget>;
-
-    #[doc(alias = "granite_settings_page_set_child")]
-    fn set_child(&self, value: &impl IsA<gtk::Widget>);
-
-    #[doc(alias = "status-type")]
-    fn connect_status_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "status")]
-    fn connect_status_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "icon-name")]
-    fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "title")]
-    fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "child")]
-    fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::SettingsPage>> Sealed for T {}
 }
 
-impl<O: IsA<SettingsPage>> SettingsPageExt for O {
+pub trait SettingsPageExt: IsA<SettingsPage> + sealed::Sealed + 'static {
+    #[doc(alias = "granite_settings_page_get_status_type")]
+    #[doc(alias = "get_status_type")]
     fn status_type(&self) -> SettingsPageStatusType {
         unsafe {
             from_glib(ffi::granite_settings_page_get_status_type(
@@ -93,6 +40,7 @@ impl<O: IsA<SettingsPage>> SettingsPageExt for O {
         }
     }
 
+    #[doc(alias = "granite_settings_page_set_status_type")]
     fn set_status_type(&self, value: SettingsPageStatusType) {
         unsafe {
             ffi::granite_settings_page_set_status_type(
@@ -102,6 +50,8 @@ impl<O: IsA<SettingsPage>> SettingsPageExt for O {
         }
     }
 
+    #[doc(alias = "granite_settings_page_get_display_widget")]
+    #[doc(alias = "get_display_widget")]
     fn display_widget(&self) -> Option<gtk::Widget> {
         unsafe {
             from_glib_none(ffi::granite_settings_page_get_display_widget(
@@ -110,6 +60,8 @@ impl<O: IsA<SettingsPage>> SettingsPageExt for O {
         }
     }
 
+    #[doc(alias = "granite_settings_page_get_header")]
+    #[doc(alias = "get_header")]
     fn header(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::granite_settings_page_get_header(
@@ -118,6 +70,8 @@ impl<O: IsA<SettingsPage>> SettingsPageExt for O {
         }
     }
 
+    #[doc(alias = "granite_settings_page_get_status")]
+    #[doc(alias = "get_status")]
     fn status(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::granite_settings_page_get_status(
@@ -126,6 +80,7 @@ impl<O: IsA<SettingsPage>> SettingsPageExt for O {
         }
     }
 
+    #[doc(alias = "granite_settings_page_set_status")]
     fn set_status(&self, value: &str) {
         unsafe {
             ffi::granite_settings_page_set_status(
@@ -135,6 +90,8 @@ impl<O: IsA<SettingsPage>> SettingsPageExt for O {
         }
     }
 
+    #[doc(alias = "granite_settings_page_get_icon_name")]
+    #[doc(alias = "get_icon_name")]
     fn icon_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::granite_settings_page_get_icon_name(
@@ -143,6 +100,7 @@ impl<O: IsA<SettingsPage>> SettingsPageExt for O {
         }
     }
 
+    #[doc(alias = "granite_settings_page_set_icon_name")]
     fn set_icon_name(&self, value: Option<&str>) {
         unsafe {
             ffi::granite_settings_page_set_icon_name(
@@ -152,6 +110,8 @@ impl<O: IsA<SettingsPage>> SettingsPageExt for O {
         }
     }
 
+    #[doc(alias = "granite_settings_page_get_title")]
+    #[doc(alias = "get_title")]
     fn title(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::granite_settings_page_get_title(
@@ -160,6 +120,7 @@ impl<O: IsA<SettingsPage>> SettingsPageExt for O {
         }
     }
 
+    #[doc(alias = "granite_settings_page_set_title")]
     fn set_title(&self, value: &str) {
         unsafe {
             ffi::granite_settings_page_set_title(
@@ -169,6 +130,8 @@ impl<O: IsA<SettingsPage>> SettingsPageExt for O {
         }
     }
 
+    #[doc(alias = "granite_settings_page_get_child")]
+    #[doc(alias = "get_child")]
     fn child(&self) -> Option<gtk::Widget> {
         unsafe {
             from_glib_none(ffi::granite_settings_page_get_child(
@@ -177,6 +140,7 @@ impl<O: IsA<SettingsPage>> SettingsPageExt for O {
         }
     }
 
+    #[doc(alias = "granite_settings_page_set_child")]
     fn set_child(&self, value: &impl IsA<gtk::Widget>) {
         unsafe {
             ffi::granite_settings_page_set_child(
@@ -186,6 +150,7 @@ impl<O: IsA<SettingsPage>> SettingsPageExt for O {
         }
     }
 
+    #[doc(alias = "status-type")]
     fn connect_status_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_status_type_trampoline<
             P: IsA<SettingsPage>,
@@ -203,7 +168,7 @@ impl<O: IsA<SettingsPage>> SettingsPageExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::status-type\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_status_type_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -211,6 +176,7 @@ impl<O: IsA<SettingsPage>> SettingsPageExt for O {
         }
     }
 
+    #[doc(alias = "status")]
     fn connect_status_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_status_trampoline<P: IsA<SettingsPage>, F: Fn(&P) + 'static>(
             this: *mut ffi::GraniteSettingsPage,
@@ -225,7 +191,7 @@ impl<O: IsA<SettingsPage>> SettingsPageExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::status\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_status_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -233,6 +199,7 @@ impl<O: IsA<SettingsPage>> SettingsPageExt for O {
         }
     }
 
+    #[doc(alias = "icon-name")]
     fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<
             P: IsA<SettingsPage>,
@@ -250,7 +217,7 @@ impl<O: IsA<SettingsPage>> SettingsPageExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::icon-name\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_icon_name_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -258,6 +225,7 @@ impl<O: IsA<SettingsPage>> SettingsPageExt for O {
         }
     }
 
+    #[doc(alias = "title")]
     fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<P: IsA<SettingsPage>, F: Fn(&P) + 'static>(
             this: *mut ffi::GraniteSettingsPage,
@@ -272,7 +240,7 @@ impl<O: IsA<SettingsPage>> SettingsPageExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_title_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -280,6 +248,7 @@ impl<O: IsA<SettingsPage>> SettingsPageExt for O {
         }
     }
 
+    #[doc(alias = "child")]
     fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<P: IsA<SettingsPage>, F: Fn(&P) + 'static>(
             this: *mut ffi::GraniteSettingsPage,
@@ -294,7 +263,7 @@ impl<O: IsA<SettingsPage>> SettingsPageExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::child\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_child_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -303,8 +272,4 @@ impl<O: IsA<SettingsPage>> SettingsPageExt for O {
     }
 }
 
-impl fmt::Display for SettingsPage {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("SettingsPage")
-    }
-}
+impl<O: IsA<SettingsPage>> SettingsPageExt for O {}

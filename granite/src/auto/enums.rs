@@ -3,10 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib::{
-    error::ErrorDomain, translate::*, value::FromValue, value::ToValue, Quark, StaticType, Type,
-};
-use std::fmt;
+use glib::{prelude::*, translate::*};
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
@@ -16,19 +13,6 @@ pub enum ServicesContractorError {
     ServiceNotAvailable,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for ServicesContractorError {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ServicesContractorError::{}",
-            match *self {
-                Self::ServiceNotAvailable => "ServiceNotAvailable",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -61,9 +45,9 @@ impl FromGlib<ffi::GraniteServicesContractorError> for ServicesContractorError {
     }
 }
 
-impl ErrorDomain for ServicesContractorError {
+impl glib::error::ErrorDomain for ServicesContractorError {
     #[inline]
-    fn domain() -> Quark {
+    fn domain() -> glib::Quark {
         skip_assert_initialized!();
 
         static QUARK: once_cell::sync::Lazy<glib::ffi::GQuark> =
@@ -92,7 +76,8 @@ impl ErrorDomain for ServicesContractorError {
 
 impl StaticType for ServicesContractorError {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "granite_services_contractor_error_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::granite_services_contractor_error_get_type()) }
     }
 }
@@ -103,7 +88,7 @@ impl glib::HasParamSpec for ServicesContractorError {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -111,7 +96,7 @@ impl glib::value::ValueType for ServicesContractorError {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for ServicesContractorError {
+unsafe impl<'a> glib::value::FromValue<'a> for ServicesContractorError {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -159,21 +144,6 @@ pub enum SettingsColorScheme {
     __Unknown(i32),
 }
 
-impl fmt::Display for SettingsColorScheme {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "SettingsColorScheme::{}",
-            match *self {
-                Self::NoPreference => "NoPreference",
-                Self::Dark => "Dark",
-                Self::Light => "Light",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for SettingsColorScheme {
     type GlibType = ffi::GraniteSettingsColorScheme;
@@ -206,7 +176,8 @@ impl FromGlib<ffi::GraniteSettingsColorScheme> for SettingsColorScheme {
 
 impl StaticType for SettingsColorScheme {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "granite_settings_color_scheme_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::granite_settings_color_scheme_get_type()) }
     }
 }
@@ -217,7 +188,7 @@ impl glib::HasParamSpec for SettingsColorScheme {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -225,7 +196,7 @@ impl glib::value::ValueType for SettingsColorScheme {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for SettingsColorScheme {
+unsafe impl<'a> glib::value::FromValue<'a> for SettingsColorScheme {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -277,23 +248,6 @@ pub enum SettingsPageStatusType {
     __Unknown(i32),
 }
 
-impl fmt::Display for SettingsPageStatusType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "SettingsPageStatusType::{}",
-            match *self {
-                Self::Error => "Error",
-                Self::Offline => "Offline",
-                Self::Success => "Success",
-                Self::Warning => "Warning",
-                Self::None => "None",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for SettingsPageStatusType {
     type GlibType = ffi::GraniteSettingsPageStatusType;
@@ -330,7 +284,8 @@ impl FromGlib<ffi::GraniteSettingsPageStatusType> for SettingsPageStatusType {
 
 impl StaticType for SettingsPageStatusType {
     #[inline]
-    fn static_type() -> Type {
+    #[doc(alias = "granite_settings_page_status_type_get_type")]
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::granite_settings_page_status_type_get_type()) }
     }
 }
@@ -341,7 +296,7 @@ impl glib::HasParamSpec for SettingsPageStatusType {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -349,7 +304,7 @@ impl glib::value::ValueType for SettingsPageStatusType {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for SettingsPageStatusType {
+unsafe impl<'a> glib::value::FromValue<'a> for SettingsPageStatusType {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]

@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute, ptr};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GraniteServicesContractorProxy")]
@@ -27,7 +27,7 @@ impl ServicesContractorProxy {
     pub fn instance() -> Result<ServicesContractorProxy, glib::Error> {
         assert_initialized_main_thread!();
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret = ffi::granite_services_contractor_proxy_get_instance(&mut error);
             if error.is_null() {
                 Ok(from_glib_full(ret))
@@ -38,12 +38,15 @@ impl ServicesContractorProxy {
     }
 }
 
-pub trait ServicesContractorProxyExt: 'static {
-    #[doc(alias = "contracts-changed")]
-    fn connect_contracts_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::ServicesContractorProxy>> Sealed for T {}
 }
 
-impl<O: IsA<ServicesContractorProxy>> ServicesContractorProxyExt for O {
+pub trait ServicesContractorProxyExt:
+    IsA<ServicesContractorProxy> + sealed::Sealed + 'static
+{
+    #[doc(alias = "contracts-changed")]
     fn connect_contracts_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn contracts_changed_trampoline<
             P: IsA<ServicesContractorProxy>,
@@ -60,7 +63,7 @@ impl<O: IsA<ServicesContractorProxy>> ServicesContractorProxyExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"contracts-changed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     contracts_changed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -69,8 +72,4 @@ impl<O: IsA<ServicesContractorProxy>> ServicesContractorProxyExt for O {
     }
 }
 
-impl fmt::Display for ServicesContractorProxy {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ServicesContractorProxy")
-    }
-}
+impl<O: IsA<ServicesContractorProxy>> ServicesContractorProxyExt for O {}

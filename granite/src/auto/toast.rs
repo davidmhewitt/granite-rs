@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GraniteToast")]
@@ -251,41 +251,26 @@ impl ToastBuilder {
     }
 }
 
-pub trait ToastExt: 'static {
-    #[doc(alias = "granite_toast_get_title")]
-    #[doc(alias = "get_title")]
-    fn title(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "granite_toast_set_title")]
-    fn set_title(&self, value: &str);
-
-    #[doc(alias = "granite_toast_set_default_action")]
-    fn set_default_action(&self, label: Option<&str>);
-
-    #[doc(alias = "granite_toast_send_notification")]
-    fn send_notification(&self);
-
-    #[doc(alias = "closed")]
-    fn connect_closed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "default-action")]
-    fn connect_default_action<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "title")]
-    fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Toast>> Sealed for T {}
 }
 
-impl<O: IsA<Toast>> ToastExt for O {
+pub trait ToastExt: IsA<Toast> + sealed::Sealed + 'static {
+    #[doc(alias = "granite_toast_get_title")]
+    #[doc(alias = "get_title")]
     fn title(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::granite_toast_get_title(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "granite_toast_set_title")]
     fn set_title(&self, value: &str) {
         unsafe {
             ffi::granite_toast_set_title(self.as_ref().to_glib_none().0, value.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "granite_toast_set_default_action")]
     fn set_default_action(&self, label: Option<&str>) {
         unsafe {
             ffi::granite_toast_set_default_action(
@@ -295,12 +280,14 @@ impl<O: IsA<Toast>> ToastExt for O {
         }
     }
 
+    #[doc(alias = "granite_toast_send_notification")]
     fn send_notification(&self) {
         unsafe {
             ffi::granite_toast_send_notification(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "closed")]
     fn connect_closed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn closed_trampoline<P: IsA<Toast>, F: Fn(&P) + 'static>(
             this: *mut ffi::GraniteToast,
@@ -314,7 +301,7 @@ impl<O: IsA<Toast>> ToastExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"closed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     closed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -322,6 +309,7 @@ impl<O: IsA<Toast>> ToastExt for O {
         }
     }
 
+    #[doc(alias = "default-action")]
     fn connect_default_action<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn default_action_trampoline<P: IsA<Toast>, F: Fn(&P) + 'static>(
             this: *mut ffi::GraniteToast,
@@ -335,7 +323,7 @@ impl<O: IsA<Toast>> ToastExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"default-action\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     default_action_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -343,6 +331,7 @@ impl<O: IsA<Toast>> ToastExt for O {
         }
     }
 
+    #[doc(alias = "title")]
     fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<P: IsA<Toast>, F: Fn(&P) + 'static>(
             this: *mut ffi::GraniteToast,
@@ -357,7 +346,7 @@ impl<O: IsA<Toast>> ToastExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_title_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -366,8 +355,4 @@ impl<O: IsA<Toast>> ToastExt for O {
     }
 }
 
-impl fmt::Display for Toast {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Toast")
-    }
-}
+impl<O: IsA<Toast>> ToastExt for O {}

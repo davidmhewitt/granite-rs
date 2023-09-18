@@ -14,3 +14,9 @@ external_libraries = [
     "GObject",
     "Gtk",
 ]
+
+extra_versions = [
+    "7.1",
+    "7.2",
+    "7.3",
+]

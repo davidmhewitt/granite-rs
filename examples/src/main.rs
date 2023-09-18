@@ -7,7 +7,7 @@ mod settings_view;
 mod welcome_view;
 
 use glib::clone;
-use granite::traits::SettingsExt;
+use granite::prelude::*;
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow};
 

@@ -18,26 +18,27 @@ v7_3 = ["ffi/v7_3", "v7_2"]
 
 [package.metadata.docs.rs]
 all-features = true
+rustc-arg = ["--cfg", "docsrs"]
 rustdoc-args = ["--cfg", "docsrs"]
 
 [dependencies]
 libc = "0.2"
-bitflags = "1.0"
+bitflags = "2.2"
 once_cell = "1.17"
 
 [dependencies.glib]
-version = "0.17"
+version = "0.18"
 
 [dependencies.gio]
-version = "0.17"
+version = "0.18"
 
 [dependencies.gdk]
 package = "gdk4"
-version = "0.6"
+version = "0.7"
 
 [dependencies.gtk]
 package = "gtk4"
-version = "0.6"
+version = "0.7"
 
 [dependencies.ffi]
 package = "granite-rs-sys"
