@@ -13,15 +13,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: elementary/docker:stable
+      image: ghcr.io/elementary/docker:unstable
     strategy:
       matrix:
         rust:
           - stable
           - beta
-          - "1.64.0"
+          - "1.70.0"
         conf:
+          - { name: "granite", features: "v7_3", test_sys: true }
           - { name: "granite", features: "v7_2", test_sys: true }
+          - { name: "granite", features: "v7_1", test_sys: true }
           - { name: "examples", features: "", test_sys: false }
 
     steps:
