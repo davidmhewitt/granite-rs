@@ -21,4 +21,4 @@ jobs:
     - name: Check semver
       uses: obi1kenobi/cargo-semver-checks-action@main
       with:
-        package: granite-rs
+        package: granite-rs, granite-rs-sys

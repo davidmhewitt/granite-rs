@@ -1,6 +1,6 @@
 [package]
 name = "granite-rs"
-version = "0.2.3"
+version = "1.0.0"
 edition = "2021"
 authors = ["David Hewitt <davidmhewitt@gmail.com>"]
 readme = "../README.md"
