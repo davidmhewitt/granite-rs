@@ -65,6 +65,16 @@ impl HeaderLabelBuilder {
         }
     }
 
+    #[cfg(feature = "v7_4")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_4")))]
+    pub fn mnemonic_widget(self, mnemonic_widget: &impl IsA<gtk::Widget>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("mnemonic-widget", mnemonic_widget.clone().upcast()),
+        }
+    }
+
     #[cfg(feature = "v7_1")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
     pub fn secondary_text(self, secondary_text: impl Into<glib::GString>) -> Self {
@@ -287,6 +297,30 @@ pub trait HeaderLabelExt: IsA<HeaderLabel> + sealed::Sealed + 'static {
         }
     }
 
+    #[cfg(feature = "v7_4")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_4")))]
+    #[doc(alias = "granite_header_label_get_mnemonic_widget")]
+    #[doc(alias = "get_mnemonic_widget")]
+    fn mnemonic_widget(&self) -> Option<gtk::Widget> {
+        unsafe {
+            from_glib_none(ffi::granite_header_label_get_mnemonic_widget(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    #[cfg(feature = "v7_4")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_4")))]
+    #[doc(alias = "granite_header_label_set_mnemonic_widget")]
+    fn set_mnemonic_widget(&self, value: Option<&impl IsA<gtk::Widget>>) {
+        unsafe {
+            ffi::granite_header_label_set_mnemonic_widget(
+                self.as_ref().to_glib_none().0,
+                value.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
     #[cfg(feature = "v7_1")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
     #[doc(alias = "granite_header_label_get_secondary_text")]
@@ -328,6 +362,34 @@ pub trait HeaderLabelExt: IsA<HeaderLabel> + sealed::Sealed + 'static {
                 b"notify::label\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_label_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v7_4")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_4")))]
+    #[doc(alias = "mnemonic-widget")]
+    fn connect_mnemonic_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_mnemonic_widget_trampoline<
+            P: IsA<HeaderLabel>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::GraniteHeaderLabel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(HeaderLabel::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::mnemonic-widget\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_mnemonic_widget_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

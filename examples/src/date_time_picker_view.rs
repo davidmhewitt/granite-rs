@@ -1,5 +1,5 @@
 use granite::prelude::*;
-use gtk::prelude::{*, SettingsExt};
+use gtk::prelude::{SettingsExt, *};
 use gtk::subclass::prelude::*;
 
 mod imp {

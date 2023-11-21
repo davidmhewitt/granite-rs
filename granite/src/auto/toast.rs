@@ -287,6 +287,15 @@ pub trait ToastExt: IsA<Toast> + sealed::Sealed + 'static {
         }
     }
 
+    #[cfg(feature = "v7_4")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_4")))]
+    #[doc(alias = "granite_toast_withdraw")]
+    fn withdraw(&self) {
+        unsafe {
+            ffi::granite_toast_withdraw(self.as_ref().to_glib_none().0);
+        }
+    }
+
     #[doc(alias = "closed")]
     fn connect_closed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn closed_trampoline<P: IsA<Toast>, F: Fn(&P) + 'static>(

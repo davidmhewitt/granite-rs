@@ -15,6 +15,7 @@ keywords = ["gtk4-rs", "GUI"]
 v7_1 = ["ffi/v7_1"]
 v7_2 = ["ffi/v7_2", "v7_1"]
 v7_3 = ["ffi/v7_3", "v7_2"]
+v7_4 = ["ffi/v7_4", "v7_3"]
 
 [package.metadata.docs.rs]
 all-features = true
