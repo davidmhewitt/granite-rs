@@ -900,6 +900,17 @@ extern "C" {
     pub fn granite_header_label_get_type() -> GType;
     pub fn granite_header_label_get_label(self_: *mut GraniteHeaderLabel) -> *const c_char;
     pub fn granite_header_label_set_label(self_: *mut GraniteHeaderLabel, value: *const c_char);
+    #[cfg(feature = "v7_4")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_4")))]
+    pub fn granite_header_label_get_mnemonic_widget(
+        self_: *mut GraniteHeaderLabel,
+    ) -> *mut gtk::GtkWidget;
+    #[cfg(feature = "v7_4")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_4")))]
+    pub fn granite_header_label_set_mnemonic_widget(
+        self_: *mut GraniteHeaderLabel,
+        value: *mut gtk::GtkWidget,
+    );
     #[cfg(feature = "v7_1")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
     pub fn granite_header_label_get_secondary_text(self_: *mut GraniteHeaderLabel)
@@ -1202,6 +1213,9 @@ extern "C" {
     pub fn granite_toast_new(title: *const c_char) -> *mut GraniteToast;
     pub fn granite_toast_set_default_action(self_: *mut GraniteToast, label: *const c_char);
     pub fn granite_toast_send_notification(self_: *mut GraniteToast);
+    #[cfg(feature = "v7_4")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_4")))]
+    pub fn granite_toast_withdraw(self_: *mut GraniteToast);
 
     //=========================================================================
     // GraniteValidatedEntry
