@@ -17,7 +17,7 @@ jobs:
       run: |
         apt-get update && apt-get install -y curl git jq
         git config --global --add safe.directory ${GITHUB_WORKSPACE}
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Check semver
       uses: obi1kenobi/cargo-semver-checks-action@main
       with:
