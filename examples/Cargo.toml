@@ -13,7 +13,7 @@ path = "../granite"
 features = ["v7_1"]
 
 [dependencies.glib]
-version = "0.18"
+version = "0.19"
 
 [dependencies.gio]
 version = "0.18"
