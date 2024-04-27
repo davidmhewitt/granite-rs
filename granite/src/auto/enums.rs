@@ -50,13 +50,13 @@ impl glib::error::ErrorDomain for ServicesContractorError {
     fn domain() -> glib::Quark {
         skip_assert_initialized!();
 
-        static QUARK: once_cell::sync::Lazy<glib::ffi::GQuark> =
-            once_cell::sync::Lazy::new(|| unsafe {
-                glib::ffi::g_quark_from_static_string(
-                    b"granite-services-contractor-error-quark\0".as_ptr() as *const _,
-                )
-            });
-        unsafe { from_glib(*QUARK) }
+        static QUARK: ::std::sync::OnceLock<glib::ffi::GQuark> = ::std::sync::OnceLock::new();
+        let quark = *QUARK.get_or_init(|| unsafe {
+            glib::ffi::g_quark_from_static_string(
+                b"granite-services-contractor-error-quark\0".as_ptr() as *const _,
+            )
+        });
+        unsafe { from_glib(quark) }
     }
 
     #[inline]

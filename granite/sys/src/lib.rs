@@ -12,11 +12,20 @@
 )]
 #![cfg_attr(docsrs, feature(doc_cfg))]
 
+use gdk_sys as gdk;
+use gio_sys as gio;
+use glib_sys as glib;
+use gobject_sys as gobject;
+use gtk_sys as gtk;
+
 #[allow(unused_imports)]
 use libc::{
     c_char, c_double, c_float, c_int, c_long, c_short, c_uchar, c_uint, c_ulong, c_ushort, c_void,
-    intptr_t, size_t, ssize_t, uintptr_t, FILE,
+    intptr_t, off_t, size_t, ssize_t, time_t, uintptr_t, FILE,
 };
+#[cfg(unix)]
+#[allow(unused_imports)]
+use libc::{dev_t, gid_t, pid_t, socklen_t, uid_t};
 
 #[allow(unused_imports)]
 use glib::{gboolean, gconstpointer, gpointer, GType};
@@ -110,7 +119,7 @@ pub struct _GraniteAccelLabelPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GraniteAccelLabelPrivate = *mut _GraniteAccelLabelPrivate;
+pub type GraniteAccelLabelPrivate = _GraniteAccelLabelPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -131,7 +140,7 @@ pub struct _GraniteDatePickerPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GraniteDatePickerPrivate = *mut _GraniteDatePickerPrivate;
+pub type GraniteDatePickerPrivate = _GraniteDatePickerPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -152,7 +161,7 @@ pub struct _GraniteDialogPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GraniteDialogPrivate = *mut _GraniteDialogPrivate;
+pub type GraniteDialogPrivate = _GraniteDialogPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -173,7 +182,7 @@ pub struct _GraniteHeaderLabelPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GraniteHeaderLabelPrivate = *mut _GraniteHeaderLabelPrivate;
+pub type GraniteHeaderLabelPrivate = _GraniteHeaderLabelPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -194,7 +203,7 @@ pub struct _GraniteHyperTextViewPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GraniteHyperTextViewPrivate = *mut _GraniteHyperTextViewPrivate;
+pub type GraniteHyperTextViewPrivate = _GraniteHyperTextViewPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -215,7 +224,7 @@ pub struct _GraniteMessageDialogPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GraniteMessageDialogPrivate = *mut _GraniteMessageDialogPrivate;
+pub type GraniteMessageDialogPrivate = _GraniteMessageDialogPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -236,7 +245,7 @@ pub struct _GraniteModeSwitchPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GraniteModeSwitchPrivate = *mut _GraniteModeSwitchPrivate;
+pub type GraniteModeSwitchPrivate = _GraniteModeSwitchPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -257,7 +266,7 @@ pub struct _GraniteOverlayBarPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GraniteOverlayBarPrivate = *mut _GraniteOverlayBarPrivate;
+pub type GraniteOverlayBarPrivate = _GraniteOverlayBarPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -278,7 +287,7 @@ pub struct _GranitePlaceholderPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GranitePlaceholderPrivate = *mut _GranitePlaceholderPrivate;
+pub type GranitePlaceholderPrivate = _GranitePlaceholderPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -331,7 +340,7 @@ pub struct _GraniteServicesContractorProxyPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GraniteServicesContractorProxyPrivate = *mut _GraniteServicesContractorProxyPrivate;
+pub type GraniteServicesContractorProxyPrivate = _GraniteServicesContractorProxyPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -373,7 +382,7 @@ pub struct _GraniteServicesSystemPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GraniteServicesSystemPrivate = *mut _GraniteServicesSystemPrivate;
+pub type GraniteServicesSystemPrivate = _GraniteServicesSystemPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -407,7 +416,7 @@ pub struct _GraniteSettingsPagePrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GraniteSettingsPagePrivate = *mut _GraniteSettingsPagePrivate;
+pub type GraniteSettingsPagePrivate = _GraniteSettingsPagePrivate;
 
 #[repr(C)]
 pub struct _GraniteSettingsPrivate {
@@ -415,7 +424,7 @@ pub struct _GraniteSettingsPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GraniteSettingsPrivate = *mut _GraniteSettingsPrivate;
+pub type GraniteSettingsPrivate = _GraniteSettingsPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -436,7 +445,7 @@ pub struct _GraniteSettingsSidebarPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GraniteSettingsSidebarPrivate = *mut _GraniteSettingsSidebarPrivate;
+pub type GraniteSettingsSidebarPrivate = _GraniteSettingsSidebarPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -457,7 +466,7 @@ pub struct _GraniteSimpleSettingsPagePrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GraniteSimpleSettingsPagePrivate = *mut _GraniteSimpleSettingsPagePrivate;
+pub type GraniteSimpleSettingsPagePrivate = _GraniteSimpleSettingsPagePrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -478,7 +487,7 @@ pub struct _GraniteSwitchModelButtonPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GraniteSwitchModelButtonPrivate = *mut _GraniteSwitchModelButtonPrivate;
+pub type GraniteSwitchModelButtonPrivate = _GraniteSwitchModelButtonPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -499,7 +508,7 @@ pub struct _GraniteTimePickerPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GraniteTimePickerPrivate = *mut _GraniteTimePickerPrivate;
+pub type GraniteTimePickerPrivate = _GraniteTimePickerPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -520,7 +529,7 @@ pub struct _GraniteToastPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GraniteToastPrivate = *mut _GraniteToastPrivate;
+pub type GraniteToastPrivate = _GraniteToastPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -541,7 +550,7 @@ pub struct _GraniteValidatedEntryPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GraniteValidatedEntryPrivate = *mut _GraniteValidatedEntryPrivate;
+pub type GraniteValidatedEntryPrivate = _GraniteValidatedEntryPrivate;
 
 // Classes
 #[derive(Copy, Clone)]

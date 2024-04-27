@@ -30,9 +30,9 @@ version = "7.3"
 version = "7.4"
 
 [package.metadata.docs.rs]
-features = []
 rustc-args = ["--cfg", "docsrs"]
 rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
+all-features = true
 
 [lib]
 name = "granite_sys"
@@ -40,23 +40,23 @@ name = "granite_sys"
 [dependencies]
 libc = "0.2"
 
-[dependencies.gdk]
+[dependencies.gdk-sys]
 package = "gdk4-sys"
 version = "0.7"
 
-[dependencies.gio]
+[dependencies.gio-sys]
 package = "gio-sys"
 version = "0.18"
 
-[dependencies.glib]
+[dependencies.glib-sys]
 package = "glib-sys"
 version = "0.18"
 
-[dependencies.gobject]
+[dependencies.gobject-sys]
 package = "gobject-sys"
 version = "0.18"
 
-[dependencies.gtk]
+[dependencies.gtk-sys]
 package = "gtk4-sys"
 version = "0.7"
 
