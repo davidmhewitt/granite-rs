@@ -16,7 +16,7 @@ features = ["v7_1"]
 version = "0.18"
 
 [dependencies.gio]
-version = "0.18"
+version = "0.19"
 
 [dependencies.gtk]
 package = "gtk4"
