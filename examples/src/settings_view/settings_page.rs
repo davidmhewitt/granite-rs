@@ -1,7 +1,7 @@
 use glib::clone;
 use granite::prelude::*;
 use granite::subclass::prelude::*;
-use gtk::traits::{BoxExt, EditableExt};
+use gtk::prelude::{BoxExt, EditableExt};
 
 mod imp {
     use super::*;

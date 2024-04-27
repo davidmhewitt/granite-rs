@@ -1,6 +1,6 @@
 use crate::settings_view;
+use gtk::prelude::BoxExt;
 use gtk::subclass::prelude::*;
-use gtk::traits::BoxExt;
 
 mod imp {
     use super::*;
