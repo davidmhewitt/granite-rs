@@ -28,7 +28,7 @@ jobs:
           - { name: "examples", features: "", test_sys: false }
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Install dependencies
       run: apt-get update && apt-get install -y curl xvfb
     - name: "Install ${{ matrix.rust }} rust"
