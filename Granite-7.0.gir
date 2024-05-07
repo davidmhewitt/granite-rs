@@ -1018,7 +1018,7 @@
           <type name="Granite.Dialog" c:type="GraniteDialog*"/>
         </return-value>
       </constructor>
-      <method name="add_button" c:identifier="granite_dialog_add_button">
+      <method name="add_button" c:identifier="granite_dialog_add_button" version="7.5.0">
         <return-value transfer-ownership="none">
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>

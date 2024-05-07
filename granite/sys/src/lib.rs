@@ -915,6 +915,8 @@ extern "C" {
     //=========================================================================
     pub fn granite_dialog_get_type() -> GType;
     pub fn granite_dialog_new() -> *mut GraniteDialog;
+    #[cfg(feature = "v7_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_5")))]
     pub fn granite_dialog_add_button(
         self_: *mut GraniteDialog,
         button_text: *const c_char,
