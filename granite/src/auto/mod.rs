@@ -45,13 +45,19 @@ pub use self::services_system::ServicesSystem;
 mod settings;
 pub use self::settings::Settings;
 
+#[cfg_attr(feature = "v7_5", deprecated = "Since 7.5")]
 mod settings_page;
+#[cfg_attr(feature = "v7_5", deprecated = "Since 7.5")]
 pub use self::settings_page::SettingsPage;
 
+#[cfg_attr(feature = "v7_5", deprecated = "Since 7.5")]
 mod settings_sidebar;
+#[cfg_attr(feature = "v7_5", deprecated = "Since 7.5")]
 pub use self::settings_sidebar::SettingsSidebar;
 
+#[cfg_attr(feature = "v7_5", deprecated = "Since 7.5")]
 mod simple_settings_page;
+#[cfg_attr(feature = "v7_5", deprecated = "Since 7.5")]
 pub use self::simple_settings_page::SimpleSettingsPage;
 
 mod switch_model_button;
@@ -67,6 +73,9 @@ mod enums;
 pub use self::enums::ServicesContractorError;
 pub use self::enums::SettingsColorScheme;
 pub use self::enums::SettingsPageStatusType;
+#[cfg(feature = "v7_5")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_5")))]
+pub use self::enums::ToastDismissReason;
 
 pub(crate) mod functions;
 
@@ -131,6 +140,9 @@ pub use self::constants::STYLE_CLASS_ROUNDED;
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
 pub use self::constants::STYLE_CLASS_SIDEBAR;
 pub use self::constants::STYLE_CLASS_SMALL_LABEL;
+#[cfg(feature = "v7_5")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_5")))]
+pub use self::constants::STYLE_CLASS_SUCCESS;
 pub use self::constants::STYLE_CLASS_SUGGESTED_ACTION;
 pub use self::constants::STYLE_CLASS_TEMPERATURE;
 pub use self::constants::STYLE_CLASS_TERMINAL;
@@ -143,6 +155,7 @@ pub use self::constants::TOOLTIP_SECONDARY_TEXT_MARKUP;
 pub(crate) mod traits {
     pub use super::accel_label::AccelLabelExt;
     pub use super::date_picker::DatePickerExt;
+    pub use super::dialog::DialogExt;
     pub use super::header_label::HeaderLabelExt;
     pub use super::message_dialog::MessageDialogExt;
     pub use super::mode_switch::ModeSwitchExt;
@@ -152,8 +165,11 @@ pub(crate) mod traits {
     pub use super::services_contractor_proxy::ServicesContractorProxyExt;
     pub use super::services_settings_serializable::ServicesSettingsSerializableExt;
     pub use super::settings::SettingsExt;
+    #[cfg_attr(feature = "v7_5", deprecated = "Since 7.5")]
     pub use super::settings_page::SettingsPageExt;
+    #[cfg_attr(feature = "v7_5", deprecated = "Since 7.5")]
     pub use super::settings_sidebar::SettingsSidebarExt;
+    #[cfg_attr(feature = "v7_5", deprecated = "Since 7.5")]
     pub use super::simple_settings_page::SimpleSettingsPageExt;
     pub use super::switch_model_button::SwitchModelButtonExt;
     pub use super::time_picker::TimePickerExt;
@@ -169,6 +185,7 @@ pub(crate) mod builders {
     pub use super::mode_switch::ModeSwitchBuilder;
     pub use super::overlay_bar::OverlayBarBuilder;
     pub use super::placeholder::PlaceholderBuilder;
+    #[cfg_attr(feature = "v7_5", deprecated = "Since 7.5")]
     pub use super::settings_sidebar::SettingsSidebarBuilder;
     pub use super::switch_model_button::SwitchModelButtonBuilder;
     pub use super::time_picker::TimePickerBuilder;

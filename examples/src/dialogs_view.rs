@@ -1,5 +1,6 @@
 use glib::clone;
 use granite::prelude::*;
+use gtk::prelude::DialogExt;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 

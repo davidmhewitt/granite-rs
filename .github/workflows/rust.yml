@@ -21,6 +21,7 @@ jobs:
           - beta
           - "1.70.0"
         conf:
+          - { name: "granite", features: "v7_5", test_sys: true }
           - { name: "granite", features: "v7_4", test_sys: true }
           - { name: "granite", features: "v7_3", test_sys: true }
           - { name: "granite", features: "v7_2", test_sys: true }

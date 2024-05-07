@@ -3,6 +3,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v7_5")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_5")))]
+use crate::ToastDismissReason;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -296,6 +299,7 @@ pub trait ToastExt: IsA<Toast> + sealed::Sealed + 'static {
         }
     }
 
+    #[cfg_attr(feature = "v7_5", deprecated = "Since 7.5")]
     #[doc(alias = "closed")]
     fn connect_closed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn closed_trampoline<P: IsA<Toast>, F: Fn(&P) + 'static>(
@@ -312,6 +316,40 @@ pub trait ToastExt: IsA<Toast> + sealed::Sealed + 'static {
                 b"closed\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     closed_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v7_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_5")))]
+    #[doc(alias = "dismissed")]
+    fn connect_dismissed<F: Fn(&Self, ToastDismissReason) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn dismissed_trampoline<
+            P: IsA<Toast>,
+            F: Fn(&P, ToastDismissReason) + 'static,
+        >(
+            this: *mut ffi::GraniteToast,
+            reason: ffi::GraniteToastDismissReason,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(
+                Toast::from_glib_borrow(this).unsafe_cast_ref(),
+                from_glib(reason),
+            )
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"dismissed\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    dismissed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
