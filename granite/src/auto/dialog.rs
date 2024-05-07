@@ -389,3 +389,25 @@ impl DialogBuilder {
         self.builder.build()
     }
 }
+
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Dialog>> Sealed for T {}
+}
+
+pub trait DialogExt: IsA<Dialog> + sealed::Sealed + 'static {
+    #[cfg(feature = "v7_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_5")))]
+    #[doc(alias = "granite_dialog_add_button")]
+    fn add_button(&self, button_text: &str, response_id: i32) -> Option<gtk::Widget> {
+        unsafe {
+            from_glib_none(ffi::granite_dialog_add_button(
+                self.as_ref().to_glib_none().0,
+                button_text.to_glib_none().0,
+                response_id,
+            ))
+        }
+    }
+}
+
+impl<O: IsA<Dialog>> DialogExt for O {}

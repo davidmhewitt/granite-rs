@@ -1,6 +1,6 @@
 [package]
 name = "granite-rs"
-version = "1.1.1"
+version = "1.2.1"
 edition = "2021"
 authors = ["David Hewitt <davidmhewitt@gmail.com>"]
 readme = "../README.md"
@@ -16,6 +16,7 @@ v7_1 = ["ffi/v7_1"]
 v7_2 = ["ffi/v7_2", "v7_1"]
 v7_3 = ["ffi/v7_3", "v7_2"]
 v7_4 = ["ffi/v7_4", "v7_3"]
+v7_5 = ["ffi/v7_5", "v7_4"]
 
 [package.metadata.docs.rs]
 all-features = true

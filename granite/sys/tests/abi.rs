@@ -490,6 +490,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GraniteToastDismissReason",
+        Layout {
+            size: size_of::<GraniteToastDismissReason>(),
+            alignment: align_of::<GraniteToastDismissReason>(),
+        },
+    ),
+    (
         "GraniteValidatedEntry",
         Layout {
             size: size_of::<GraniteValidatedEntry>(),
@@ -580,6 +587,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("GRANITE_STYLE_CLASS_ROUNDED", "rounded"),
     ("GRANITE_STYLE_CLASS_SIDEBAR", "sidebar"),
     ("GRANITE_STYLE_CLASS_SMALL_LABEL", "small-label"),
+    ("GRANITE_STYLE_CLASS_SUCCESS", "success"),
     ("GRANITE_STYLE_CLASS_SUGGESTED_ACTION", "suggested-action"),
     ("GRANITE_STYLE_CLASS_TEMPERATURE", "temperature"),
     ("GRANITE_STYLE_CLASS_TERMINAL", "terminal"),
@@ -587,6 +595,9 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("GRANITE_STYLE_CLASS_VIEW", "view"),
     ("GRANITE_STYLE_CLASS_WARMTH", "warmth"),
     ("GRANITE_STYLE_CLASS_WARNING", "warning"),
+    ("(gint) GRANITE_TOAST_DISMISS_REASON_CLOSED", "2"),
+    ("(gint) GRANITE_TOAST_DISMISS_REASON_EXPIRED", "1"),
+    ("(gint) GRANITE_TOAST_DISMISS_REASON_WITHDRAWN", "3"),
     (
         "GRANITE_TOOLTIP_SECONDARY_TEXT_MARKUP",
         "<span weight=\"600\" size=\"smaller\" alpha=\"75%\">%s</span>",

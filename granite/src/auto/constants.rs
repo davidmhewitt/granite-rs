@@ -115,6 +115,11 @@ pub static STYLE_CLASS_SIDEBAR: &GStr =
 #[doc(alias = "GRANITE_STYLE_CLASS_SMALL_LABEL")]
 pub static STYLE_CLASS_SMALL_LABEL: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_SMALL_LABEL) };
+#[cfg(feature = "v7_5")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_5")))]
+#[doc(alias = "GRANITE_STYLE_CLASS_SUCCESS")]
+pub static STYLE_CLASS_SUCCESS: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_SUCCESS) };
 #[doc(alias = "GRANITE_STYLE_CLASS_TERMINAL")]
 pub static STYLE_CLASS_TERMINAL: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_TERMINAL) };
