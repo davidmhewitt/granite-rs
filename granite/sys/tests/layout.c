@@ -49,6 +49,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GraniteTimePickerClass", sizeof(GraniteTimePickerClass), alignof(GraniteTimePickerClass));
     printf("%s;%zu;%zu\n", "GraniteToast", sizeof(GraniteToast), alignof(GraniteToast));
     printf("%s;%zu;%zu\n", "GraniteToastClass", sizeof(GraniteToastClass), alignof(GraniteToastClass));
+    printf("%s;%zu;%zu\n", "GraniteToastDismissReason", sizeof(GraniteToastDismissReason), alignof(GraniteToastDismissReason));
     printf("%s;%zu;%zu\n", "GraniteValidatedEntry", sizeof(GraniteValidatedEntry), alignof(GraniteValidatedEntry));
     printf("%s;%zu;%zu\n", "GraniteValidatedEntryClass", sizeof(GraniteValidatedEntryClass), alignof(GraniteValidatedEntryClass));
     return 0;

@@ -47,6 +47,11 @@ pub const GRANITE_SETTINGS_PAGE_STATUS_TYPE_SUCCESS: GraniteSettingsPageStatusTy
 pub const GRANITE_SETTINGS_PAGE_STATUS_TYPE_WARNING: GraniteSettingsPageStatusType = 3;
 pub const GRANITE_SETTINGS_PAGE_STATUS_TYPE_NONE: GraniteSettingsPageStatusType = 4;
 
+pub type GraniteToastDismissReason = c_int;
+pub const GRANITE_TOAST_DISMISS_REASON_EXPIRED: GraniteToastDismissReason = 1;
+pub const GRANITE_TOAST_DISMISS_REASON_CLOSED: GraniteToastDismissReason = 2;
+pub const GRANITE_TOAST_DISMISS_REASON_WITHDRAWN: GraniteToastDismissReason = 3;
+
 // Constants
 pub const GRANITE_SETTINGS_URI_LOCATION: &[u8] = b"settings://privacy/location\0";
 pub const GRANITE_SETTINGS_URI_ONLINE_ACCOUNTS: &[u8] = b"settings://accounts/online\0";
@@ -78,6 +83,7 @@ pub const GRANITE_STYLE_CLASS_OSD: &[u8] = b"osd\0";
 pub const GRANITE_STYLE_CLASS_ROUNDED: &[u8] = b"rounded\0";
 pub const GRANITE_STYLE_CLASS_SIDEBAR: &[u8] = b"sidebar\0";
 pub const GRANITE_STYLE_CLASS_SMALL_LABEL: &[u8] = b"small-label\0";
+pub const GRANITE_STYLE_CLASS_SUCCESS: &[u8] = b"success\0";
 pub const GRANITE_STYLE_CLASS_TERMINAL: &[u8] = b"terminal\0";
 pub const GRANITE_STYLE_CLASS_TITLE_LABEL: &[u8] = b"title\0";
 pub const GRANITE_STYLE_CLASS_WARMTH: &[u8] = b"warmth\0";
@@ -866,6 +872,13 @@ extern "C" {
     pub fn granite_settings_page_status_type_get_type() -> GType;
 
     //=========================================================================
+    // GraniteToastDismissReason
+    //=========================================================================
+    #[cfg(feature = "v7_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_5")))]
+    pub fn granite_toast_dismiss_reason_get_type() -> GType;
+
+    //=========================================================================
     // GraniteAccelLabel
     //=========================================================================
     pub fn granite_accel_label_get_type() -> GType;
@@ -902,6 +915,11 @@ extern "C" {
     //=========================================================================
     pub fn granite_dialog_get_type() -> GType;
     pub fn granite_dialog_new() -> *mut GraniteDialog;
+    pub fn granite_dialog_add_button(
+        self_: *mut GraniteDialog,
+        button_text: *const c_char,
+        response_id: c_int,
+    ) -> *mut gtk::GtkWidget;
 
     //=========================================================================
     // GraniteHeaderLabel
