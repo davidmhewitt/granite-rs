@@ -29,7 +29,7 @@ bitflags = "2.2"
 once_cell = "1.17"
 
 [dependencies.glib]
-version = "0.19"
+version = "0.20"
 
 [dependencies.gio]
 version = "0.19"
