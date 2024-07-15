@@ -57,7 +57,7 @@ version = "0.19"
 
 [dependencies.gobject-sys]
 package = "gobject-sys"
-version = "0.19"
+version = "0.20"
 
 [dependencies.gtk-sys]
 package = "gtk4-sys"
