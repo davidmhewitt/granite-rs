@@ -32,7 +32,7 @@ once_cell = "1.17"
 version = "0.19"
 
 [dependencies.gio]
-version = "0.19"
+version = "0.20"
 
 [dependencies.gdk]
 package = "gdk4"
