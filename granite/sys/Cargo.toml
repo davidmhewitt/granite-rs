@@ -49,7 +49,7 @@ version = "0.8"
 
 [dependencies.gio-sys]
 package = "gio-sys"
-version = "0.19"
+version = "0.20"
 
 [dependencies.glib-sys]
 package = "glib-sys"
