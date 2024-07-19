@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-glib-macros = "0.19"
+glib-macros = "0.20"
 once_cell = "1.17.1"
 
 [dependencies.granite]
@@ -13,11 +13,11 @@ path = "../granite"
 features = ["v7_1"]
 
 [dependencies.glib]
-version = "0.19"
+version = "0.20"
 
 [dependencies.gio]
-version = "0.19"
+version = "0.20"
 
 [dependencies.gtk]
 package = "gtk4"
-version = "0.8"
+version = "0.9"

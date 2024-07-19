@@ -3,6 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
 use glib::{prelude::*, translate::*};
 
 #[doc(alias = "granite_date_time_get_default_time_format")]

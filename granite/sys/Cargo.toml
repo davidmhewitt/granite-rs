@@ -45,23 +45,23 @@ libc = "0.2"
 
 [dependencies.gdk-sys]
 package = "gdk4-sys"
-version = "0.8"
+version = "0.9"
 
 [dependencies.gio-sys]
 package = "gio-sys"
-version = "0.19"
+version = "0.20"
 
 [dependencies.glib-sys]
 package = "glib-sys"
-version = "0.19"
+version = "0.20"
 
 [dependencies.gobject-sys]
 package = "gobject-sys"
-version = "0.19"
+version = "0.20"
 
 [dependencies.gtk-sys]
 package = "gtk4-sys"
-version = "0.8"
+version = "0.9"
 
 [build-dependencies]
 system-deps = "7"

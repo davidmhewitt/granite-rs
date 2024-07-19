@@ -153,10 +153,14 @@ mod test {
         let main_loop = glib::MainLoop::new(None, false);
         glib::timeout_add(
             std::time::Duration::from_millis(ms as u64),
-            glib::clone!(@strong main_loop => move || {
-                main_loop.quit();
-                glib::ControlFlow::Break
-            }),
+            glib::clone!(
+                #[strong]
+                main_loop,
+                move || {
+                    main_loop.quit();
+                    glib::ControlFlow::Break
+                }
+            ),
         );
 
         main_loop.run();

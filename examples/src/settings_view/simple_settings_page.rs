@@ -64,27 +64,41 @@ mod imp {
 
             obj.update_status();
 
-            description_entry.connect_changed(
-                clone!(@weak obj as settings_page => move |desc_entry| {
+            description_entry.connect_changed(clone!(
+                #[weak(rename_to = settings_page)]
+                obj,
+                move |desc_entry| {
                     settings_page.set_description(&desc_entry.text());
-                }),
-            );
+                }
+            ));
 
-            icon_entry.connect_changed(clone!(@weak obj as settings_page => move |icon_entry| {
-                settings_page.set_icon_name(Some(&icon_entry.text()));
-            }));
+            icon_entry.connect_changed(clone!(
+                #[weak(rename_to = settings_page)]
+                obj,
+                move |icon_entry| {
+                    settings_page.set_icon_name(Some(&icon_entry.text()));
+                }
+            ));
 
-            title_entry.connect_changed(clone!(@weak obj as settings_page => move |title_entry| {
-                settings_page.set_title(&title_entry.text());
-            }));
+            title_entry.connect_changed(clone!(
+                #[weak(rename_to = settings_page)]
+                obj,
+                move |title_entry| {
+                    settings_page.set_title(&title_entry.text());
+                }
+            ));
 
             obj.status_switch()
                 .expect("Couldn't get status switch")
                 .connect_notify_local(
                     Some("active"),
-                    clone!(@weak obj as settings_page => move |_, _| {
-                        settings_page.update_status();
-                    }),
+                    clone!(
+                        #[weak(rename_to = settings_page)]
+                        obj,
+                        move |_, _| {
+                            settings_page.update_status();
+                        }
+                    ),
                 );
         }
     }

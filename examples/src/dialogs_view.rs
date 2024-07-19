@@ -68,7 +68,11 @@ mod imp {
 
             obj.imp().toast.set(toast).expect("Unable to set toast");
 
-            dialog_button.connect_clicked(clone!(@weak obj => move |_| obj.show_dialog()));
+            dialog_button.connect_clicked(clone!(
+                #[weak]
+                obj,
+                move |_| obj.show_dialog()
+            ));
         }
     }
     impl WidgetImpl for DialogsView {}
@@ -92,15 +96,19 @@ impl DialogsView {
     fn show_dialog(&self) {
         let dialog = SampleDialog::new();
         dialog.set_transient_for(Some(&self.window()));
-        dialog.connect_response(
-            clone!(@strong dialog, @weak self as view => move |_, resp| {
+        dialog.connect_response(clone!(
+            #[strong]
+            dialog,
+            #[weak(rename_to = view)]
+            self,
+            move |_, resp| {
                 if resp == gtk::ResponseType::Accept {
                     view.toast().send_notification();
                 }
 
                 dialog.close();
-            }),
-        );
+            }
+        ));
 
         dialog.show();
     }

@@ -6,8 +6,6 @@ pub mod prelude {
     #[doc(hidden)]
     pub use gio::subclass::prelude::*;
     #[doc(hidden)]
-    pub use glib::subclass::prelude::*;
-    #[doc(hidden)]
     pub use gtk::subclass::prelude::*;
 
     pub use super::dialog::GraniteDialogImpl;

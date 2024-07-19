@@ -43,9 +43,13 @@ mod imp {
 
             obj.set_child(&content_area);
 
-            title_entry.connect_changed(clone!(@weak obj as settings_page => move |title_entry| {
-                settings_page.set_title(&title_entry.text());
-            }));
+            title_entry.connect_changed(clone!(
+                #[weak(rename_to = settings_page)]
+                obj,
+                move |title_entry| {
+                    settings_page.set_title(&title_entry.text());
+                }
+            ));
         }
     }
     impl WidgetImpl for SettingsPage {}

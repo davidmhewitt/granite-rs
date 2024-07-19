@@ -12,11 +12,11 @@ categories = ["api-bindings", "gui"]
 keywords = ["gtk4-rs", "GUI"]
 
 [features]
-v7_1 = ["ffi/v7_1"]
-v7_2 = ["ffi/v7_2", "v7_1"]
-v7_3 = ["ffi/v7_3", "v7_2"]
-v7_4 = ["ffi/v7_4", "v7_3"]
-v7_5 = ["ffi/v7_5", "v7_4"]
+v7_1 = ["granite-rs-sys/v7_1"]
+v7_2 = ["granite-rs-sys/v7_2", "v7_1"]
+v7_3 = ["granite-rs-sys/v7_3", "v7_2"]
+v7_4 = ["granite-rs-sys/v7_4", "v7_3"]
+v7_5 = ["granite-rs-sys/v7_5", "v7_4"]
 
 [package.metadata.docs.rs]
 all-features = true
@@ -27,22 +27,18 @@ rustdoc-args = ["--cfg", "docsrs"]
 libc = "0.2"
 bitflags = "2.2"
 once_cell = "1.17"
+granite-rs-sys = { path = "./sys", version = "0.3.5" }
 
 [dependencies.glib]
-version = "0.19"
+version = "0.20"
 
 [dependencies.gio]
-version = "0.19"
+version = "0.20"
 
 [dependencies.gdk]
 package = "gdk4"
-version = "0.8"
+version = "0.9"
 
 [dependencies.gtk]
 package = "gtk4"
-version = "0.8"
-
-[dependencies.ffi]
-package = "granite-rs-sys"
-path = "./sys"
-version = "0.3.5"
+version = "0.9"

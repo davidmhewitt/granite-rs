@@ -3,6 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
 #[cfg(feature = "v7_5")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_5")))]
 use crate::ToastDismissReason;
@@ -314,7 +315,7 @@ pub trait ToastExt: IsA<Toast> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"closed\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     closed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -348,7 +349,7 @@ pub trait ToastExt: IsA<Toast> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"dismissed\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     dismissed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -370,7 +371,7 @@ pub trait ToastExt: IsA<Toast> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"default-action\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     default_action_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -393,7 +394,7 @@ pub trait ToastExt: IsA<Toast> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_title_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),

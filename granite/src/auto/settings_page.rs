@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::SettingsPageStatusType;
+use crate::{ffi, SettingsPageStatusType};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -168,7 +168,7 @@ pub trait SettingsPageExt: IsA<SettingsPage> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::status-type\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_status_type_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -191,7 +191,7 @@ pub trait SettingsPageExt: IsA<SettingsPage> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::status\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_status_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -217,7 +217,7 @@ pub trait SettingsPageExt: IsA<SettingsPage> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::icon-name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_icon_name_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -240,7 +240,7 @@ pub trait SettingsPageExt: IsA<SettingsPage> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_title_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -263,7 +263,7 @@ pub trait SettingsPageExt: IsA<SettingsPage> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::child\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_child_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),

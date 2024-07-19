@@ -221,8 +221,10 @@ mod imp {
 
             obj.append(&scrolled);
 
-            primary_color_button.connect_color_set(
-                glib::clone!(@weak obj => move |primary_color_button| {
+            primary_color_button.connect_color_set(glib::clone!(
+                #[weak]
+                obj,
+                move |primary_color_button| {
                     granite::widgets_utils_set_color_primary(
                         &obj.window(),
                         &mut primary_color_button.rgba(),
@@ -230,8 +232,8 @@ mod imp {
                             .try_into()
                             .expect("Unable to convert style provider priority"),
                     );
-                }),
-            );
+                }
+            ));
         }
     }
     impl WidgetImpl for CssView {}

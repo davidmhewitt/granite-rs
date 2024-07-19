@@ -3,6 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -391,7 +392,7 @@ pub trait AccelLabelExt: IsA<AccelLabel> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::action-name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_action_name_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -417,7 +418,7 @@ pub trait AccelLabelExt: IsA<AccelLabel> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::accel-string\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_accel_string_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -440,7 +441,7 @@ pub trait AccelLabelExt: IsA<AccelLabel> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::label\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_label_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
