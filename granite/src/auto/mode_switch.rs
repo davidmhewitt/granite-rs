@@ -3,6 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -513,7 +514,7 @@ pub trait ModeSwitchExt: IsA<ModeSwitch> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::active\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_active_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -539,7 +540,7 @@ pub trait ModeSwitchExt: IsA<ModeSwitch> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::primary-icon-gicon\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_primary_icon_gicon_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -565,7 +566,7 @@ pub trait ModeSwitchExt: IsA<ModeSwitch> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::primary-icon-name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_primary_icon_name_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -594,7 +595,7 @@ pub trait ModeSwitchExt: IsA<ModeSwitch> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::primary-icon-tooltip-text\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_primary_icon_tooltip_text_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -620,7 +621,7 @@ pub trait ModeSwitchExt: IsA<ModeSwitch> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::secondary-icon-gicon\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_secondary_icon_gicon_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -646,7 +647,7 @@ pub trait ModeSwitchExt: IsA<ModeSwitch> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::secondary-icon-name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_secondary_icon_name_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -675,7 +676,7 @@ pub trait ModeSwitchExt: IsA<ModeSwitch> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::secondary-icon-tooltip-text\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_secondary_icon_tooltip_text_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),

@@ -110,12 +110,20 @@ mod imp {
             self.relative_datetime.set(Some(&relative_datetime));
 
             obj.set_selected_datetime();
-            date_picker.connect_changed(glib::clone!(@weak obj => move |_| {
-                obj.set_selected_datetime();
-            }));
-            time_picker.connect_changed(glib::clone!(@weak obj => move |_| {
-                obj.set_selected_datetime();
-            }));
+            date_picker.connect_changed(glib::clone!(
+                #[weak]
+                obj,
+                move |_| {
+                    obj.set_selected_datetime();
+                }
+            ));
+            time_picker.connect_changed(glib::clone!(
+                #[weak]
+                obj,
+                move |_| {
+                    obj.set_selected_datetime();
+                }
+            ));
 
             obj.attach(&pickers_label, 0, 0, 1, 1);
             obj.attach(&date_label, 0, 1, 1, 1);

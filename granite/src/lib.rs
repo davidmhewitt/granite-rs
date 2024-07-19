@@ -18,6 +18,8 @@ macro_rules! assert_initialized_main_thread {
     };
 }
 
+pub use granite_sys as ffi;
+
 mod auto;
 
 pub use auto::functions::*;
