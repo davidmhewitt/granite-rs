@@ -18,14 +18,15 @@ use glib_sys as glib;
 use gobject_sys as gobject;
 use gtk_sys as gtk;
 
-#[allow(unused_imports)]
-use libc::{
-    c_char, c_double, c_float, c_int, c_long, c_short, c_uchar, c_uint, c_ulong, c_ushort, c_void,
-    intptr_t, off_t, size_t, ssize_t, time_t, uintptr_t, FILE,
-};
 #[cfg(unix)]
 #[allow(unused_imports)]
 use libc::{dev_t, gid_t, pid_t, socklen_t, uid_t};
+#[allow(unused_imports)]
+use libc::{intptr_t, off_t, size_t, ssize_t, time_t, uintptr_t, FILE};
+#[allow(unused_imports)]
+use std::ffi::{
+    c_char, c_double, c_float, c_int, c_long, c_short, c_uchar, c_uint, c_ulong, c_ushort, c_void,
+};
 
 #[allow(unused_imports)]
 use glib::{gboolean, gconstpointer, gpointer, GType};
@@ -120,6 +121,7 @@ impl ::std::fmt::Debug for GraniteAccelLabelClass {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GraniteAccelLabelPrivate {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -141,6 +143,7 @@ impl ::std::fmt::Debug for GraniteDatePickerClass {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GraniteDatePickerPrivate {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -162,6 +165,7 @@ impl ::std::fmt::Debug for GraniteDialogClass {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GraniteDialogPrivate {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -183,6 +187,7 @@ impl ::std::fmt::Debug for GraniteHeaderLabelClass {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GraniteHeaderLabelPrivate {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -204,6 +209,7 @@ impl ::std::fmt::Debug for GraniteHyperTextViewClass {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GraniteHyperTextViewPrivate {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -225,6 +231,7 @@ impl ::std::fmt::Debug for GraniteMessageDialogClass {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GraniteMessageDialogPrivate {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -246,6 +253,7 @@ impl ::std::fmt::Debug for GraniteModeSwitchClass {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GraniteModeSwitchPrivate {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -267,6 +275,7 @@ impl ::std::fmt::Debug for GraniteOverlayBarClass {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GraniteOverlayBarPrivate {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -288,6 +297,7 @@ impl ::std::fmt::Debug for GranitePlaceholderClass {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GranitePlaceholderPrivate {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -341,6 +351,7 @@ impl ::std::fmt::Debug for GraniteServicesContractorProxyClass {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GraniteServicesContractorProxyPrivate {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -383,6 +394,7 @@ impl ::std::fmt::Debug for GraniteServicesSystemClass {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GraniteServicesSystemPrivate {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -417,6 +429,7 @@ impl ::std::fmt::Debug for GraniteSettingsPageClass {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GraniteSettingsPagePrivate {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -425,6 +438,7 @@ pub struct _GraniteSettingsPagePrivate {
 pub type GraniteSettingsPagePrivate = _GraniteSettingsPagePrivate;
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GraniteSettingsPrivate {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -446,6 +460,7 @@ impl ::std::fmt::Debug for GraniteSettingsSidebarClass {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GraniteSettingsSidebarPrivate {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -467,6 +482,7 @@ impl ::std::fmt::Debug for GraniteSimpleSettingsPageClass {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GraniteSimpleSettingsPagePrivate {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -488,6 +504,7 @@ impl ::std::fmt::Debug for GraniteSwitchModelButtonClass {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GraniteSwitchModelButtonPrivate {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -509,6 +526,7 @@ impl ::std::fmt::Debug for GraniteTimePickerClass {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GraniteTimePickerPrivate {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -530,6 +548,7 @@ impl ::std::fmt::Debug for GraniteToastClass {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GraniteToastPrivate {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -551,6 +570,7 @@ impl ::std::fmt::Debug for GraniteValidatedEntryClass {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct _GraniteValidatedEntryPrivate {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -830,6 +850,7 @@ impl ::std::fmt::Debug for GraniteValidatedEntry {
 
 // Interfaces
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GraniteServicesContract {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -842,6 +863,7 @@ impl ::std::fmt::Debug for GraniteServicesContract {
 }
 
 #[repr(C)]
+#[allow(dead_code)]
 pub struct GraniteServicesSettingsSerializable {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -853,7 +875,6 @@ impl ::std::fmt::Debug for GraniteServicesSettingsSerializable {
     }
 }
 
-#[link(name = "granite-7")]
 extern "C" {
 
     //=========================================================================

@@ -387,16 +387,12 @@ impl DialogBuilder {
     /// Build the [`Dialog`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Dialog {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::Dialog>> Sealed for T {}
-}
-
-pub trait DialogExt: IsA<Dialog> + sealed::Sealed + 'static {
+pub trait DialogExt: IsA<Dialog> + 'static {
     #[cfg(feature = "v7_5")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v7_5")))]
     #[doc(alias = "granite_dialog_add_button")]

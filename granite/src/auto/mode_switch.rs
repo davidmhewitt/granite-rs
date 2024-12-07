@@ -352,16 +352,12 @@ impl ModeSwitchBuilder {
     /// Build the [`ModeSwitch`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> ModeSwitch {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::ModeSwitch>> Sealed for T {}
-}
-
-pub trait ModeSwitchExt: IsA<ModeSwitch> + sealed::Sealed + 'static {
+pub trait ModeSwitchExt: IsA<ModeSwitch> + 'static {
     #[doc(alias = "granite_mode_switch_get_active")]
     #[doc(alias = "get_active")]
     fn is_active(&self) -> bool {

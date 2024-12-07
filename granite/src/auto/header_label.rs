@@ -268,16 +268,12 @@ impl HeaderLabelBuilder {
     /// Build the [`HeaderLabel`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> HeaderLabel {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::HeaderLabel>> Sealed for T {}
-}
-
-pub trait HeaderLabelExt: IsA<HeaderLabel> + sealed::Sealed + 'static {
+pub trait HeaderLabelExt: IsA<HeaderLabel> + 'static {
     #[doc(alias = "granite_header_label_get_label")]
     #[doc(alias = "get_label")]
     fn label(&self) -> Option<glib::GString> {

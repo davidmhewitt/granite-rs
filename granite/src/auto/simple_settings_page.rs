@@ -24,12 +24,7 @@ impl SimpleSettingsPage {
     pub const NONE: Option<&'static SimpleSettingsPage> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::SimpleSettingsPage>> Sealed for T {}
-}
-
-pub trait SimpleSettingsPageExt: IsA<SimpleSettingsPage> + sealed::Sealed + 'static {
+pub trait SimpleSettingsPageExt: IsA<SimpleSettingsPage> + 'static {
     #[doc(alias = "granite_simple_settings_page_get_action_area")]
     #[doc(alias = "get_action_area")]
     fn action_area(&self) -> Option<gtk::Box> {

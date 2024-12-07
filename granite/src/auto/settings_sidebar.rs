@@ -256,16 +256,12 @@ impl SettingsSidebarBuilder {
     /// Build the [`SettingsSidebar`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> SettingsSidebar {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::SettingsSidebar>> Sealed for T {}
-}
-
-pub trait SettingsSidebarExt: IsA<SettingsSidebar> + sealed::Sealed + 'static {
+pub trait SettingsSidebarExt: IsA<SettingsSidebar> + 'static {
     #[doc(alias = "granite_settings_sidebar_get_stack")]
     #[doc(alias = "get_stack")]
     fn stack(&self) -> Option<gtk::Stack> {

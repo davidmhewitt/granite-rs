@@ -549,16 +549,12 @@ impl DatePickerBuilder {
     /// Build the [`DatePicker`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> DatePicker {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::DatePicker>> Sealed for T {}
-}
-
-pub trait DatePickerExt: IsA<DatePicker> + sealed::Sealed + 'static {
+pub trait DatePickerExt: IsA<DatePicker> + 'static {
     #[doc(alias = "granite_date_picker_get_format")]
     #[doc(alias = "get_format")]
     fn format(&self) -> Option<glib::GString> {

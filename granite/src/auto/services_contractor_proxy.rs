@@ -39,14 +39,7 @@ impl ServicesContractorProxy {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::ServicesContractorProxy>> Sealed for T {}
-}
-
-pub trait ServicesContractorProxyExt:
-    IsA<ServicesContractorProxy> + sealed::Sealed + 'static
-{
+pub trait ServicesContractorProxyExt: IsA<ServicesContractorProxy> + 'static {
     #[doc(alias = "contracts-changed")]
     fn connect_contracts_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn contracts_changed_trampoline<

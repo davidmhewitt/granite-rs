@@ -19,14 +19,7 @@ impl ServicesSettingsSerializable {
     pub const NONE: Option<&'static ServicesSettingsSerializable> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::ServicesSettingsSerializable>> Sealed for T {}
-}
-
-pub trait ServicesSettingsSerializableExt:
-    IsA<ServicesSettingsSerializable> + sealed::Sealed + 'static
-{
+pub trait ServicesSettingsSerializableExt: IsA<ServicesSettingsSerializable> + 'static {
     #[doc(alias = "granite_services_settings_serializable_settings_serialize")]
     fn settings_serialize(&self) -> Option<glib::GString> {
         unsafe {

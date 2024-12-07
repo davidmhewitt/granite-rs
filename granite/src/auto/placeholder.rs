@@ -260,16 +260,12 @@ impl PlaceholderBuilder {
     /// Build the [`Placeholder`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Placeholder {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::Placeholder>> Sealed for T {}
-}
-
-pub trait PlaceholderExt: IsA<Placeholder> + sealed::Sealed + 'static {
+pub trait PlaceholderExt: IsA<Placeholder> + 'static {
     #[doc(alias = "granite_placeholder_get_title")]
     #[doc(alias = "get_title")]
     fn title(&self) -> Option<glib::GString> {

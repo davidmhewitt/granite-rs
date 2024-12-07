@@ -19,12 +19,7 @@ impl ServicesContract {
     pub const NONE: Option<&'static ServicesContract> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::ServicesContract>> Sealed for T {}
-}
-
-pub trait ServicesContractExt: IsA<ServicesContract> + sealed::Sealed + 'static {
+pub trait ServicesContractExt: IsA<ServicesContract> + 'static {
     #[doc(alias = "granite_services_contract_get_display_name")]
     #[doc(alias = "get_display_name")]
     fn display_name(&self) -> Option<glib::GString> {

@@ -260,16 +260,12 @@ impl OverlayBarBuilder {
     /// Build the [`OverlayBar`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> OverlayBar {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::OverlayBar>> Sealed for T {}
-}
-
-pub trait OverlayBarExt: IsA<OverlayBar> + sealed::Sealed + 'static {
+pub trait OverlayBarExt: IsA<OverlayBar> + 'static {
     #[doc(alias = "granite_overlay_bar_get_overlay")]
     #[doc(alias = "get_overlay")]
     fn overlay(&self) -> Option<gtk::Overlay> {

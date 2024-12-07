@@ -251,16 +251,12 @@ impl ToastBuilder {
     /// Build the [`Toast`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Toast {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::Toast>> Sealed for T {}
-}
-
-pub trait ToastExt: IsA<Toast> + sealed::Sealed + 'static {
+pub trait ToastExt: IsA<Toast> + 'static {
     #[doc(alias = "granite_toast_get_title")]
     #[doc(alias = "get_title")]
     fn title(&self) -> Option<glib::GString> {

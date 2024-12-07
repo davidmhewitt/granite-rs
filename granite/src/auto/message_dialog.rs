@@ -482,16 +482,12 @@ impl MessageDialogBuilder {
     /// Build the [`MessageDialog`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> MessageDialog {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::MessageDialog>> Sealed for T {}
-}
-
-pub trait MessageDialogExt: IsA<MessageDialog> + sealed::Sealed + 'static {
+pub trait MessageDialogExt: IsA<MessageDialog> + 'static {
     #[doc(alias = "granite_message_dialog_get_primary_text")]
     #[doc(alias = "get_primary_text")]
     fn primary_text(&self) -> Option<glib::GString> {

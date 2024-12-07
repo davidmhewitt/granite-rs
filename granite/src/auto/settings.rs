@@ -32,12 +32,7 @@ impl Settings {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::Settings>> Sealed for T {}
-}
-
-pub trait SettingsExt: IsA<Settings> + sealed::Sealed + 'static {
+pub trait SettingsExt: IsA<Settings> + 'static {
     #[doc(alias = "granite_settings_get_prefers_color_scheme")]
     #[doc(alias = "get_prefers_color_scheme")]
     fn prefers_color_scheme(&self) -> SettingsColorScheme {

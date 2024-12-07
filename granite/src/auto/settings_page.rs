@@ -24,12 +24,7 @@ impl SettingsPage {
     pub const NONE: Option<&'static SettingsPage> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::SettingsPage>> Sealed for T {}
-}
-
-pub trait SettingsPageExt: IsA<SettingsPage> + sealed::Sealed + 'static {
+pub trait SettingsPageExt: IsA<SettingsPage> + 'static {
     #[doc(alias = "granite_settings_page_get_status_type")]
     #[doc(alias = "get_status_type")]
     fn status_type(&self) -> SettingsPageStatusType {

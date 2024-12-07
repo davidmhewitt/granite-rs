@@ -304,16 +304,12 @@ impl AccelLabelBuilder {
     /// Build the [`AccelLabel`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> AccelLabel {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::AccelLabel>> Sealed for T {}
-}
-
-pub trait AccelLabelExt: IsA<AccelLabel> + sealed::Sealed + 'static {
+pub trait AccelLabelExt: IsA<AccelLabel> + 'static {
     #[doc(alias = "granite_accel_label_get_action_name")]
     #[doc(alias = "get_action_name")]
     fn action_name(&self) -> Option<glib::GString> {

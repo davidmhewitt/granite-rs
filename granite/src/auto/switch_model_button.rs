@@ -314,16 +314,12 @@ impl SwitchModelButtonBuilder {
     /// Build the [`SwitchModelButton`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> SwitchModelButton {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::SwitchModelButton>> Sealed for T {}
-}
-
-pub trait SwitchModelButtonExt: IsA<SwitchModelButton> + sealed::Sealed + 'static {
+pub trait SwitchModelButtonExt: IsA<SwitchModelButton> + 'static {
     #[doc(alias = "granite_switch_model_button_get_text")]
     #[doc(alias = "get_text")]
     fn text(&self) -> Option<glib::GString> {

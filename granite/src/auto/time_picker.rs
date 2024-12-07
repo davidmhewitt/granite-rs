@@ -556,16 +556,12 @@ impl TimePickerBuilder {
     /// Build the [`TimePicker`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> TimePicker {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::TimePicker>> Sealed for T {}
-}
-
-pub trait TimePickerExt: IsA<TimePicker> + sealed::Sealed + 'static {
+pub trait TimePickerExt: IsA<TimePicker> + 'static {
     #[doc(alias = "granite_time_picker_get_format_12")]
     #[doc(alias = "get_format_12")]
     fn format_12(&self) -> Option<glib::GString> {
