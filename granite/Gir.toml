@@ -13,6 +13,7 @@ generate_builder = true
 generate = [
     "Granite.*",
     "Granite.AccelLabel",
+    "Granite.Bin",
     "Granite.DatePicker",
     "Granite.Dialog",
     "Granite.HeaderLabel",

@@ -6,6 +6,13 @@
 mod accel_label;
 pub use self::accel_label::AccelLabel;
 
+#[cfg(feature = "v7_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_6")))]
+mod bin;
+#[cfg(feature = "v7_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_6")))]
+pub use self::bin::Bin;
+
 mod date_picker;
 pub use self::date_picker::DatePicker;
 
@@ -154,6 +161,9 @@ pub use self::constants::TOOLTIP_SECONDARY_TEXT_MARKUP;
 
 pub(crate) mod traits {
     pub use super::accel_label::AccelLabelExt;
+    #[cfg(feature = "v7_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_6")))]
+    pub use super::bin::BinExt;
     pub use super::date_picker::DatePickerExt;
     pub use super::dialog::DialogExt;
     pub use super::header_label::HeaderLabelExt;
@@ -177,6 +187,9 @@ pub(crate) mod traits {
 }
 pub(crate) mod builders {
     pub use super::accel_label::AccelLabelBuilder;
+    #[cfg(feature = "v7_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_6")))]
+    pub use super::bin::BinBuilder;
     pub use super::date_picker::DatePickerBuilder;
     pub use super::dialog::DialogBuilder;
     pub use super::header_label::HeaderLabelBuilder;

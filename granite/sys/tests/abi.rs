@@ -217,6 +217,20 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GraniteBin",
+        Layout {
+            size: size_of::<GraniteBin>(),
+            alignment: align_of::<GraniteBin>(),
+        },
+    ),
+    (
+        "GraniteBinClass",
+        Layout {
+            size: size_of::<GraniteBinClass>(),
+            alignment: align_of::<GraniteBinClass>(),
+        },
+    ),
+    (
         "GraniteDatePicker",
         Layout {
             size: size_of::<GraniteDatePicker>(),

@@ -131,6 +131,28 @@ pub type GraniteAccelLabelPrivate = _GraniteAccelLabelPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
+pub struct GraniteBinClass {
+    pub parent_class: gtk::GtkWidgetClass,
+}
+
+impl ::std::fmt::Debug for GraniteBinClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GraniteBinClass @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[allow(dead_code)]
+pub struct _GraniteBinPrivate {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GraniteBinPrivate = _GraniteBinPrivate;
+
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GraniteDatePickerClass {
     pub parent_class: gtk::GtkEntryClass,
 }
@@ -595,6 +617,19 @@ impl ::std::fmt::Debug for GraniteAccelLabel {
 
 #[derive(Copy, Clone)]
 #[repr(C)]
+pub struct GraniteBin {
+    pub parent_instance: gtk::GtkWidget,
+    pub priv_: *mut GraniteBinPrivate,
+}
+
+impl ::std::fmt::Debug for GraniteBin {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GraniteBin @ {self:p}")).finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GraniteDatePicker {
     pub parent_instance: gtk::GtkEntry,
     pub priv_: *mut GraniteDatePickerPrivate,
@@ -920,6 +955,22 @@ extern "C" {
         label: *const c_char,
         action_name: *const c_char,
     ) -> *mut GraniteAccelLabel;
+
+    //=========================================================================
+    // GraniteBin
+    //=========================================================================
+    #[cfg(feature = "v7_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_6")))]
+    pub fn granite_bin_get_type() -> GType;
+    #[cfg(feature = "v7_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_6")))]
+    pub fn granite_bin_get_child(self_: *mut GraniteBin) -> *mut gtk::GtkWidget;
+    #[cfg(feature = "v7_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_6")))]
+    pub fn granite_bin_set_child(self_: *mut GraniteBin, value: *mut gtk::GtkWidget);
+    #[cfg(feature = "v7_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_6")))]
+    pub fn granite_bin_new() -> *mut GraniteBin;
 
     //=========================================================================
     // GraniteDatePicker

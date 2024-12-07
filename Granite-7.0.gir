@@ -940,6 +940,51 @@
       </field>
     </record>
     <record name="AccelLabelPrivate" c:type="GraniteAccelLabelPrivate" disguised="1"/>
+    <class name="Bin" c:type="GraniteBin" c:symbol-prefix="bin" glib:type-name="GraniteBin" glib:get-type="granite_bin_get_type" glib:type-struct="BinClass" parent="Gtk.Widget" version="7.6.0">
+      <field name="parent_instance" readable="0" private="1">
+        <type name="Gtk.Widget" c:type="GtkWidget"/>
+      </field>
+      <property name="child" writable="1">
+        <type name="Gtk.Widget" c:type="GtkWidget*"/>
+      </property>
+      <method name="get_child" c:identifier="granite_bin_get_child">
+        <return-value transfer-ownership="none" nullable="1">
+          <type name="Gtk.Widget" c:type="GtkWidget*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <type name="Granite.Bin" c:type="GraniteBin*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="set_child" c:identifier="granite_bin_set_child">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <type name="Granite.Bin" c:type="GraniteBin*"/>
+          </instance-parameter>
+          <parameter name="value" transfer-ownership="none" nullable="1">
+            <type name="Gtk.Widget" c:type="GtkWidget*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <constructor name="new" c:identifier="granite_bin_new">
+        <return-value transfer-ownership="none">
+          <type name="Granite.Bin" c:type="GraniteBin*"/>
+        </return-value>
+      </constructor>
+      <field name="priv" readable="0" private="1">
+        <type name="BinPrivate" c:type="GraniteBinPrivate*"/>
+      </field>
+    </class>
+    <record name="BinClass" c:type="GraniteBinClass" glib:is-gtype-struct-for="Bin">
+      <field name="parent_class" readable="0" private="1">
+        <type name="Gtk.WidgetClass" c:type="GtkWidgetClass"/>
+      </field>
+    </record>
+    <record name="BinPrivate" c:type="GraniteBinPrivate" disguised="1"/>
     <class name="DatePicker" c:type="GraniteDatePicker" c:symbol-prefix="date_picker" glib:type-name="GraniteDatePicker" glib:get-type="granite_date_picker_get_type" glib:type-struct="DatePickerClass" parent="Gtk.Entry">
       <implements name="Gtk.Buildable"/>
       <field name="parent_instance" readable="0" private="1">

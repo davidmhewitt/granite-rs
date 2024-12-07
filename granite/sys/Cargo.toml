@@ -32,6 +32,9 @@ version = "7.4"
 [package.metadata.system-deps.granite_7.v7_5]
 version = "7.5"
 
+[package.metadata.system-deps.granite_7.v7_6]
+version = "7.6"
+
 [package.metadata.docs.rs]
 rustc-args = ["--cfg", "docsrs"]
 rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
@@ -76,3 +79,4 @@ v7_2 = ["v7_1"]
 v7_3 = ["v7_2"]
 v7_4 = ["v7_3"]
 v7_5 = ["v7_4"]
+v7_6 = ["v7_5"]

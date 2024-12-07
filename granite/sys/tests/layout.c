@@ -10,6 +10,8 @@
 int main() {
     printf("%s;%zu;%zu\n", "GraniteAccelLabel", sizeof(GraniteAccelLabel), alignof(GraniteAccelLabel));
     printf("%s;%zu;%zu\n", "GraniteAccelLabelClass", sizeof(GraniteAccelLabelClass), alignof(GraniteAccelLabelClass));
+    printf("%s;%zu;%zu\n", "GraniteBin", sizeof(GraniteBin), alignof(GraniteBin));
+    printf("%s;%zu;%zu\n", "GraniteBinClass", sizeof(GraniteBinClass), alignof(GraniteBinClass));
     printf("%s;%zu;%zu\n", "GraniteDatePicker", sizeof(GraniteDatePicker), alignof(GraniteDatePicker));
     printf("%s;%zu;%zu\n", "GraniteDatePickerClass", sizeof(GraniteDatePickerClass), alignof(GraniteDatePickerClass));
     printf("%s;%zu;%zu\n", "GraniteDialog", sizeof(GraniteDialog), alignof(GraniteDialog));
