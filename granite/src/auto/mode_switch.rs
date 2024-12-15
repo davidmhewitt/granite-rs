@@ -377,7 +377,7 @@ pub trait ModeSwitchExt: IsA<ModeSwitch> + 'static {
 
     #[doc(alias = "granite_mode_switch_get_primary_icon_gicon")]
     #[doc(alias = "get_primary_icon_gicon")]
-    fn primary_icon_gicon(&self) -> Option<gio::Icon> {
+    fn primary_icon_gicon(&self) -> gio::Icon {
         unsafe {
             from_glib_none(ffi::granite_mode_switch_get_primary_icon_gicon(
                 self.as_ref().to_glib_none().0,
@@ -397,7 +397,7 @@ pub trait ModeSwitchExt: IsA<ModeSwitch> + 'static {
 
     #[doc(alias = "granite_mode_switch_get_primary_icon_name")]
     #[doc(alias = "get_primary_icon_name")]
-    fn primary_icon_name(&self) -> Option<glib::GString> {
+    fn primary_icon_name(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::granite_mode_switch_get_primary_icon_name(
                 self.as_ref().to_glib_none().0,
@@ -417,7 +417,7 @@ pub trait ModeSwitchExt: IsA<ModeSwitch> + 'static {
 
     #[doc(alias = "granite_mode_switch_get_primary_icon_tooltip_text")]
     #[doc(alias = "get_primary_icon_tooltip_text")]
-    fn primary_icon_tooltip_text(&self) -> Option<glib::GString> {
+    fn primary_icon_tooltip_text(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::granite_mode_switch_get_primary_icon_tooltip_text(
                 self.as_ref().to_glib_none().0,
@@ -437,7 +437,7 @@ pub trait ModeSwitchExt: IsA<ModeSwitch> + 'static {
 
     #[doc(alias = "granite_mode_switch_get_secondary_icon_gicon")]
     #[doc(alias = "get_secondary_icon_gicon")]
-    fn secondary_icon_gicon(&self) -> Option<gio::Icon> {
+    fn secondary_icon_gicon(&self) -> gio::Icon {
         unsafe {
             from_glib_none(ffi::granite_mode_switch_get_secondary_icon_gicon(
                 self.as_ref().to_glib_none().0,
@@ -457,7 +457,7 @@ pub trait ModeSwitchExt: IsA<ModeSwitch> + 'static {
 
     #[doc(alias = "granite_mode_switch_get_secondary_icon_name")]
     #[doc(alias = "get_secondary_icon_name")]
-    fn secondary_icon_name(&self) -> Option<glib::GString> {
+    fn secondary_icon_name(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::granite_mode_switch_get_secondary_icon_name(
                 self.as_ref().to_glib_none().0,
@@ -477,7 +477,7 @@ pub trait ModeSwitchExt: IsA<ModeSwitch> + 'static {
 
     #[doc(alias = "granite_mode_switch_get_secondary_icon_tooltip_text")]
     #[doc(alias = "get_secondary_icon_tooltip_text")]
-    fn secondary_icon_tooltip_text(&self) -> Option<glib::GString> {
+    fn secondary_icon_tooltip_text(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::granite_mode_switch_get_secondary_icon_tooltip_text(
                 self.as_ref().to_glib_none().0,

@@ -312,7 +312,7 @@ impl AccelLabelBuilder {
 pub trait AccelLabelExt: IsA<AccelLabel> + 'static {
     #[doc(alias = "granite_accel_label_get_action_name")]
     #[doc(alias = "get_action_name")]
-    fn action_name(&self) -> Option<glib::GString> {
+    fn action_name(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::granite_accel_label_get_action_name(
                 self.as_ref().to_glib_none().0,
@@ -352,7 +352,7 @@ pub trait AccelLabelExt: IsA<AccelLabel> + 'static {
 
     #[doc(alias = "granite_accel_label_get_label")]
     #[doc(alias = "get_label")]
-    fn label(&self) -> Option<glib::GString> {
+    fn label(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::granite_accel_label_get_label(
                 self.as_ref().to_glib_none().0,

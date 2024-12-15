@@ -557,7 +557,7 @@ impl DatePickerBuilder {
 pub trait DatePickerExt: IsA<DatePicker> + 'static {
     #[doc(alias = "granite_date_picker_get_format")]
     #[doc(alias = "get_format")]
-    fn format(&self) -> Option<glib::GString> {
+    fn format(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::granite_date_picker_get_format(
                 self.as_ref().to_glib_none().0,
@@ -567,7 +567,7 @@ pub trait DatePickerExt: IsA<DatePicker> + 'static {
 
     #[doc(alias = "granite_date_picker_get_date")]
     #[doc(alias = "get_date")]
-    fn date(&self) -> Option<glib::DateTime> {
+    fn date(&self) -> glib::DateTime {
         unsafe {
             from_glib_none(ffi::granite_date_picker_get_date(
                 self.as_ref().to_glib_none().0,

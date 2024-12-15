@@ -259,7 +259,7 @@ impl ToastBuilder {
 pub trait ToastExt: IsA<Toast> + 'static {
     #[doc(alias = "granite_toast_get_title")]
     #[doc(alias = "get_title")]
-    fn title(&self) -> Option<glib::GString> {
+    fn title(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::granite_toast_get_title(self.as_ref().to_glib_none().0)) }
     }
 

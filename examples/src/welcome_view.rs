@@ -26,21 +26,17 @@ mod imp {
                 .description("This is a demo of the Granite library")
                 .build();
 
-            let vala_button = welcome
-                .append_button(
-                    &gio::ThemedIcon::new("text-x-vala"),
-                    "Visit Valadoc",
-                    "The canonical source for Vala API references",
-                )
-                .unwrap();
+            let vala_button = welcome.append_button(
+                &gio::ThemedIcon::new("text-x-vala"),
+                "Visit Valadoc",
+                "The canonical source for Vala API references",
+            );
 
-            let source_button = welcome
-                .append_button(
-                    &gio::ThemedIcon::new("text-x-source"),
-                    "Get Granite Source",
-                    "Granite's source code is hosted on GitHub",
-                )
-                .unwrap();
+            let source_button = welcome.append_button(
+                &gio::ThemedIcon::new("text-x-source"),
+                "Get Granite Source",
+                "Granite's source code is hosted on GitHub",
+            );
 
             let alert = granite::Placeholder::builder()
                 .title("Panic! At the button")
@@ -49,13 +45,11 @@ mod imp {
                 .build();
             alert.add_css_class(granite::STYLE_CLASS_WARNING);
 
-            let alert_action = alert
-                .append_button(
-                    &gio::ThemedIcon::new("edit-delete"),
-                    "Hide This Button",
-                    "Click here to hide this",
-                )
-                .unwrap();
+            let alert_action = alert.append_button(
+                &gio::ThemedIcon::new("edit-delete"),
+                "Hide This Button",
+                "Click here to hide this",
+            );
             alert_action.set_widget_name("alert_button");
 
             let search_placeholder = granite::Placeholder::builder()

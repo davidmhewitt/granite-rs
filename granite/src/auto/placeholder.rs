@@ -268,7 +268,7 @@ impl PlaceholderBuilder {
 pub trait PlaceholderExt: IsA<Placeholder> + 'static {
     #[doc(alias = "granite_placeholder_get_title")]
     #[doc(alias = "get_title")]
-    fn title(&self) -> Option<glib::GString> {
+    fn title(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::granite_placeholder_get_title(
                 self.as_ref().to_glib_none().0,
@@ -288,7 +288,7 @@ pub trait PlaceholderExt: IsA<Placeholder> + 'static {
 
     #[doc(alias = "granite_placeholder_get_description")]
     #[doc(alias = "get_description")]
-    fn description(&self) -> Option<glib::GString> {
+    fn description(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::granite_placeholder_get_description(
                 self.as_ref().to_glib_none().0,
@@ -308,7 +308,7 @@ pub trait PlaceholderExt: IsA<Placeholder> + 'static {
 
     #[doc(alias = "granite_placeholder_get_icon")]
     #[doc(alias = "get_icon")]
-    fn icon(&self) -> Option<gio::Icon> {
+    fn icon(&self) -> gio::Icon {
         unsafe {
             from_glib_none(ffi::granite_placeholder_get_icon(
                 self.as_ref().to_glib_none().0,
@@ -332,7 +332,7 @@ pub trait PlaceholderExt: IsA<Placeholder> + 'static {
         icon: &impl IsA<gio::Icon>,
         label: &str,
         description: &str,
-    ) -> Option<gtk::Button> {
+    ) -> gtk::Button {
         unsafe {
             from_glib_full(ffi::granite_placeholder_append_button(
                 self.as_ref().to_glib_none().0,

@@ -564,7 +564,7 @@ impl TimePickerBuilder {
 pub trait TimePickerExt: IsA<TimePicker> + 'static {
     #[doc(alias = "granite_time_picker_get_format_12")]
     #[doc(alias = "get_format_12")]
-    fn format_12(&self) -> Option<glib::GString> {
+    fn format_12(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::granite_time_picker_get_format_12(
                 self.as_ref().to_glib_none().0,
@@ -574,7 +574,7 @@ pub trait TimePickerExt: IsA<TimePicker> + 'static {
 
     #[doc(alias = "granite_time_picker_get_format_24")]
     #[doc(alias = "get_format_24")]
-    fn format_24(&self) -> Option<glib::GString> {
+    fn format_24(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::granite_time_picker_get_format_24(
                 self.as_ref().to_glib_none().0,
@@ -584,7 +584,7 @@ pub trait TimePickerExt: IsA<TimePicker> + 'static {
 
     #[doc(alias = "granite_time_picker_get_time")]
     #[doc(alias = "get_time")]
-    fn time(&self) -> Option<glib::DateTime> {
+    fn time(&self) -> glib::DateTime {
         unsafe {
             from_glib_none(ffi::granite_time_picker_get_time(
                 self.as_ref().to_glib_none().0,

@@ -322,7 +322,7 @@ impl SwitchModelButtonBuilder {
 pub trait SwitchModelButtonExt: IsA<SwitchModelButton> + 'static {
     #[doc(alias = "granite_switch_model_button_get_text")]
     #[doc(alias = "get_text")]
-    fn text(&self) -> Option<glib::GString> {
+    fn text(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::granite_switch_model_button_get_text(
                 self.as_ref().to_glib_none().0,

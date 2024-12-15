@@ -22,7 +22,7 @@ impl ServicesContract {
 pub trait ServicesContractExt: IsA<ServicesContract> + 'static {
     #[doc(alias = "granite_services_contract_get_display_name")]
     #[doc(alias = "get_display_name")]
-    fn display_name(&self) -> Option<glib::GString> {
+    fn display_name(&self) -> glib::GString {
         unsafe {
             from_glib_full(ffi::granite_services_contract_get_display_name(
                 self.as_ref().to_glib_none().0,
@@ -32,7 +32,7 @@ pub trait ServicesContractExt: IsA<ServicesContract> + 'static {
 
     #[doc(alias = "granite_services_contract_get_description")]
     #[doc(alias = "get_description")]
-    fn description(&self) -> Option<glib::GString> {
+    fn description(&self) -> glib::GString {
         unsafe {
             from_glib_full(ffi::granite_services_contract_get_description(
                 self.as_ref().to_glib_none().0,
@@ -42,7 +42,7 @@ pub trait ServicesContractExt: IsA<ServicesContract> + 'static {
 
     #[doc(alias = "granite_services_contract_get_icon")]
     #[doc(alias = "get_icon")]
-    fn icon(&self) -> Option<gio::Icon> {
+    fn icon(&self) -> gio::Icon {
         unsafe {
             from_glib_full(ffi::granite_services_contract_get_icon(
                 self.as_ref().to_glib_none().0,

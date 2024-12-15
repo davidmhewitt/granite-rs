@@ -67,7 +67,7 @@ pub trait SettingsPageExt: IsA<SettingsPage> + 'static {
 
     #[doc(alias = "granite_settings_page_get_status")]
     #[doc(alias = "get_status")]
-    fn status(&self) -> Option<glib::GString> {
+    fn status(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::granite_settings_page_get_status(
                 self.as_ref().to_glib_none().0,
@@ -107,7 +107,7 @@ pub trait SettingsPageExt: IsA<SettingsPage> + 'static {
 
     #[doc(alias = "granite_settings_page_get_title")]
     #[doc(alias = "get_title")]
-    fn title(&self) -> Option<glib::GString> {
+    fn title(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::granite_settings_page_get_title(
                 self.as_ref().to_glib_none().0,
@@ -127,7 +127,7 @@ pub trait SettingsPageExt: IsA<SettingsPage> + 'static {
 
     #[doc(alias = "granite_settings_page_get_child")]
     #[doc(alias = "get_child")]
-    fn child(&self) -> Option<gtk::Widget> {
+    fn child(&self) -> gtk::Widget {
         unsafe {
             from_glib_none(ffi::granite_settings_page_get_child(
                 self.as_ref().to_glib_none().0,

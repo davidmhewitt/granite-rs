@@ -26,7 +26,7 @@ impl Settings {
     #[doc(alias = "granite_settings_get_default")]
     #[doc(alias = "get_default")]
     #[allow(clippy::should_implement_trait)]
-    pub fn default() -> Option<Settings> {
+    pub fn default() -> Settings {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::granite_settings_get_default()) }
     }

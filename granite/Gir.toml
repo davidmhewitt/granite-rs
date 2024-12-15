@@ -9,6 +9,7 @@ single_version_file = true
 generate_safety_asserts = true
 deprecate_by_min_version = true
 generate_builder = true
+trust_return_value_nullability = true
 
 generate = [
     "Granite.*",

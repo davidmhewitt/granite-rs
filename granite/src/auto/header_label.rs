@@ -276,7 +276,7 @@ impl HeaderLabelBuilder {
 pub trait HeaderLabelExt: IsA<HeaderLabel> + 'static {
     #[doc(alias = "granite_header_label_get_label")]
     #[doc(alias = "get_label")]
-    fn label(&self) -> Option<glib::GString> {
+    fn label(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::granite_header_label_get_label(
                 self.as_ref().to_glib_none().0,

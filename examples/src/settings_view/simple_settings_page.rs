@@ -50,7 +50,7 @@ mod imp {
                 .placeholder_text("This page's description")
                 .build();
 
-            let content_area = obj.content_area().expect("Couldn't get content area");
+            let content_area = obj.content_area();
             content_area.attach(&icon_label, 0, 0, 1, 1);
             content_area.attach(&icon_entry, 1, 0, 1, 1);
             content_area.attach(&title_label, 0, 1, 1, 1);
@@ -59,7 +59,7 @@ mod imp {
             content_area.attach(&description_entry, 1, 2, 1, 1);
 
             let button = gtk::Button::with_label("Test Button");
-            let action_area = obj.action_area().expect("Couldn't get action area");
+            let action_area = obj.action_area();
             action_area.append(&button);
 
             obj.update_status();

@@ -21,7 +21,7 @@ impl ServicesSettingsSerializable {
 
 pub trait ServicesSettingsSerializableExt: IsA<ServicesSettingsSerializable> + 'static {
     #[doc(alias = "granite_services_settings_serializable_settings_serialize")]
-    fn settings_serialize(&self) -> Option<glib::GString> {
+    fn settings_serialize(&self) -> glib::GString {
         unsafe {
             from_glib_full(
                 ffi::granite_services_settings_serializable_settings_serialize(

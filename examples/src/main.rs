@@ -69,7 +69,7 @@ fn build_ui(app: &Application) {
         .bidirectional()
         .build();
 
-    let granite_settings = granite::Settings::default().unwrap();
+    let granite_settings = granite::Settings::default();
     gtk_settings.set_gtk_application_prefer_dark_theme(
         granite_settings.prefers_color_scheme() == granite::SettingsColorScheme::Dark,
     );

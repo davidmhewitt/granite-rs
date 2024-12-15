@@ -7,7 +7,7 @@ use crate::ffi;
 use glib::{prelude::*, translate::*};
 
 #[doc(alias = "granite_date_time_get_default_time_format")]
-pub fn date_time_get_default_time_format(is_12h: bool, with_second: bool) -> Option<glib::GString> {
+pub fn date_time_get_default_time_format(is_12h: bool, with_second: bool) -> glib::GString {
     assert_initialized_main_thread!();
     unsafe {
         from_glib_full(ffi::granite_date_time_get_default_time_format(
@@ -18,7 +18,7 @@ pub fn date_time_get_default_time_format(is_12h: bool, with_second: bool) -> Opt
 }
 
 #[doc(alias = "granite_date_time_get_relative_datetime")]
-pub fn date_time_get_relative_datetime(date_time: &glib::DateTime) -> Option<glib::GString> {
+pub fn date_time_get_relative_datetime(date_time: &glib::DateTime) -> glib::GString {
     assert_initialized_main_thread!();
     unsafe {
         from_glib_full(ffi::granite_date_time_get_relative_datetime(
@@ -43,7 +43,7 @@ pub fn date_time_get_default_date_format(
     with_weekday: bool,
     with_day: bool,
     with_year: bool,
-) -> Option<glib::GString> {
+) -> glib::GString {
     assert_initialized_main_thread!();
     unsafe {
         from_glib_full(ffi::granite_date_time_get_default_date_format(
@@ -55,7 +55,7 @@ pub fn date_time_get_default_date_format(
 }
 
 #[doc(alias = "granite_date_time_seconds_to_time")]
-pub fn date_time_seconds_to_time(seconds: i32) -> Option<glib::GString> {
+pub fn date_time_seconds_to_time(seconds: i32) -> glib::GString {
     assert_initialized_main_thread!();
     unsafe { from_glib_full(ffi::granite_date_time_seconds_to_time(seconds)) }
 }
@@ -107,13 +107,13 @@ pub fn init() {
 }
 
 #[doc(alias = "granite_accel_to_string")]
-pub fn accel_to_string(accel: Option<&str>) -> Option<glib::GString> {
+pub fn accel_to_string(accel: Option<&str>) -> glib::GString {
     assert_initialized_main_thread!();
     unsafe { from_glib_full(ffi::granite_accel_to_string(accel.to_glib_none().0)) }
 }
 
 #[doc(alias = "granite_markup_accel_tooltip")]
-pub fn markup_accel_tooltip(accels: &[&str], description: Option<&str>) -> Option<glib::GString> {
+pub fn markup_accel_tooltip(accels: &[&str], description: Option<&str>) -> glib::GString {
     assert_initialized_main_thread!();
     let accels_length1 = accels.len() as _;
     unsafe {

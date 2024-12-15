@@ -264,7 +264,7 @@ impl SettingsSidebarBuilder {
 pub trait SettingsSidebarExt: IsA<SettingsSidebar> + 'static {
     #[doc(alias = "granite_settings_sidebar_get_stack")]
     #[doc(alias = "get_stack")]
-    fn stack(&self) -> Option<gtk::Stack> {
+    fn stack(&self) -> gtk::Stack {
         unsafe {
             from_glib_none(ffi::granite_settings_sidebar_get_stack(
                 self.as_ref().to_glib_none().0,

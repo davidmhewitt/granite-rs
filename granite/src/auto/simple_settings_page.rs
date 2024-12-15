@@ -27,7 +27,7 @@ impl SimpleSettingsPage {
 pub trait SimpleSettingsPageExt: IsA<SimpleSettingsPage> + 'static {
     #[doc(alias = "granite_simple_settings_page_get_action_area")]
     #[doc(alias = "get_action_area")]
-    fn action_area(&self) -> Option<gtk::Box> {
+    fn action_area(&self) -> gtk::Box {
         unsafe {
             from_glib_none(ffi::granite_simple_settings_page_get_action_area(
                 self.as_ref().to_glib_none().0,
@@ -37,7 +37,7 @@ pub trait SimpleSettingsPageExt: IsA<SimpleSettingsPage> + 'static {
 
     #[doc(alias = "granite_simple_settings_page_get_content_area")]
     #[doc(alias = "get_content_area")]
-    fn content_area(&self) -> Option<gtk::Grid> {
+    fn content_area(&self) -> gtk::Grid {
         unsafe {
             from_glib_none(ffi::granite_simple_settings_page_get_content_area(
                 self.as_ref().to_glib_none().0,
@@ -67,7 +67,7 @@ pub trait SimpleSettingsPageExt: IsA<SimpleSettingsPage> + 'static {
 
     #[doc(alias = "granite_simple_settings_page_get_description")]
     #[doc(alias = "get_description")]
-    fn description(&self) -> Option<glib::GString> {
+    fn description(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::granite_simple_settings_page_get_description(
                 self.as_ref().to_glib_none().0,

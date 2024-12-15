@@ -71,8 +71,7 @@ mod imp {
             let time_format = granite::date_time_get_default_time_format(
                 settings.enum_("clock-format") == 1,
                 false,
-            )
-            .expect("Unable to get default time format");
+            );
 
             let current_time = gtk::Label::builder()
                 .label(
@@ -88,9 +87,7 @@ mod imp {
                 .halign(gtk::Align::End)
                 .build();
 
-            let date_format = granite::date_time_get_default_date_format(true, true, true)
-                .expect("Unable to get default date format");
-
+            let date_format = granite::date_time_get_default_date_format(true, true, true);
             let current_date = gtk::Label::builder()
                 .label(
                     now.format(date_format.as_str())
@@ -164,8 +161,7 @@ impl DateTimePickerView {
             .date_picker
             .upgrade()
             .expect("Unable to get date picker")
-            .date()
-            .expect("Unable to get date from date picker");
+            .date();
 
         selected_datetime = selected_datetime
             .add_hours(
@@ -174,7 +170,6 @@ impl DateTimePickerView {
                     .upgrade()
                     .expect("Unable to get time picker")
                     .time()
-                    .expect("Unable to get time from time picker")
                     .hour(),
             )
             .expect("Unable to add hours to time");
@@ -186,7 +181,6 @@ impl DateTimePickerView {
                     .upgrade()
                     .expect("Unable to get time picker")
                     .time()
-                    .expect("Unable to get time from time picker")
                     .minute(),
             )
             .expect("Unable to add minutes to time");
@@ -195,11 +189,7 @@ impl DateTimePickerView {
             .relative_datetime
             .upgrade()
             .expect("Unable to get relative datetime label")
-            .set_label(
-                granite::date_time_get_relative_datetime(&selected_datetime)
-                    .expect("Unable to format relative datetime")
-                    .as_str(),
-            );
+            .set_label(granite::date_time_get_relative_datetime(&selected_datetime).as_str());
     }
 }
 

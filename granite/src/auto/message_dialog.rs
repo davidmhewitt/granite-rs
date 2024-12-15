@@ -490,7 +490,7 @@ impl MessageDialogBuilder {
 pub trait MessageDialogExt: IsA<MessageDialog> + 'static {
     #[doc(alias = "granite_message_dialog_get_primary_text")]
     #[doc(alias = "get_primary_text")]
-    fn primary_text(&self) -> Option<glib::GString> {
+    fn primary_text(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::granite_message_dialog_get_primary_text(
                 self.as_ref().to_glib_none().0,
@@ -510,7 +510,7 @@ pub trait MessageDialogExt: IsA<MessageDialog> + 'static {
 
     #[doc(alias = "granite_message_dialog_get_secondary_text")]
     #[doc(alias = "get_secondary_text")]
-    fn secondary_text(&self) -> Option<glib::GString> {
+    fn secondary_text(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::granite_message_dialog_get_secondary_text(
                 self.as_ref().to_glib_none().0,
@@ -530,7 +530,7 @@ pub trait MessageDialogExt: IsA<MessageDialog> + 'static {
 
     #[doc(alias = "granite_message_dialog_get_image_icon")]
     #[doc(alias = "get_image_icon")]
-    fn image_icon(&self) -> Option<gio::Icon> {
+    fn image_icon(&self) -> gio::Icon {
         unsafe {
             from_glib_full(ffi::granite_message_dialog_get_image_icon(
                 self.as_ref().to_glib_none().0,
@@ -550,7 +550,7 @@ pub trait MessageDialogExt: IsA<MessageDialog> + 'static {
 
     #[doc(alias = "granite_message_dialog_get_badge_icon")]
     #[doc(alias = "get_badge_icon")]
-    fn badge_icon(&self) -> Option<gio::Icon> {
+    fn badge_icon(&self) -> gio::Icon {
         unsafe {
             from_glib_full(ffi::granite_message_dialog_get_badge_icon(
                 self.as_ref().to_glib_none().0,
@@ -570,7 +570,7 @@ pub trait MessageDialogExt: IsA<MessageDialog> + 'static {
 
     #[doc(alias = "granite_message_dialog_get_primary_label")]
     #[doc(alias = "get_primary_label")]
-    fn primary_label(&self) -> Option<gtk::Label> {
+    fn primary_label(&self) -> gtk::Label {
         unsafe {
             from_glib_none(ffi::granite_message_dialog_get_primary_label(
                 self.as_ref().to_glib_none().0,
@@ -580,7 +580,7 @@ pub trait MessageDialogExt: IsA<MessageDialog> + 'static {
 
     #[doc(alias = "granite_message_dialog_get_secondary_label")]
     #[doc(alias = "get_secondary_label")]
-    fn secondary_label(&self) -> Option<gtk::Label> {
+    fn secondary_label(&self) -> gtk::Label {
         unsafe {
             from_glib_none(ffi::granite_message_dialog_get_secondary_label(
                 self.as_ref().to_glib_none().0,
@@ -590,7 +590,7 @@ pub trait MessageDialogExt: IsA<MessageDialog> + 'static {
 
     #[doc(alias = "granite_message_dialog_get_custom_bin")]
     #[doc(alias = "get_custom_bin")]
-    fn custom_bin(&self) -> Option<gtk::Box> {
+    fn custom_bin(&self) -> gtk::Box {
         unsafe {
             from_glib_none(ffi::granite_message_dialog_get_custom_bin(
                 self.as_ref().to_glib_none().0,
