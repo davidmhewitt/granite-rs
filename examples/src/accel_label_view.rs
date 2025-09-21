@@ -67,7 +67,8 @@ mod imp {
 
 glib::wrapper! {
     pub struct AccelLabelView(ObjectSubclass<imp::AccelLabelView>)
-        @extends gtk::Widget, gtk::Grid;
+        @extends gtk::Widget, gtk::Grid,
+        @implements gtk::Orientable, gtk::ConstraintTarget, gtk::Buildable, gtk::Accessible;
 }
 
 impl AccelLabelView {

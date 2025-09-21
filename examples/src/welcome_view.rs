@@ -102,7 +102,8 @@ mod imp {
 
 glib::wrapper! {
     pub struct WelcomeView(ObjectSubclass<imp::WelcomeView>)
-        @extends gtk::Widget, gtk::Box;
+        @extends gtk::Widget, gtk::Box,
+        @implements gtk::ConstraintTarget, gtk::Buildable, gtk::Accessible;
 }
 
 impl WelcomeView {

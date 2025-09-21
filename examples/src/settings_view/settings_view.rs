@@ -47,7 +47,8 @@ mod imp {
 
 glib::wrapper! {
     pub struct SettingsView(ObjectSubclass<imp::SettingsView>)
-        @extends gtk::Widget, gtk::Box, gtk::Grid;
+        @extends gtk::Widget, gtk::Box, gtk::Grid,
+        @implements gtk::ConstraintTarget, gtk::Buildable, gtk::Accessible;
 }
 
 impl SettingsView {

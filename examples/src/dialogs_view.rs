@@ -81,7 +81,8 @@ mod imp {
 
 glib::wrapper! {
     pub struct DialogsView(ObjectSubclass<imp::DialogsView>)
-        @extends gtk::Widget, gtk::Box;
+        @extends gtk::Widget, gtk::Box,
+        @implements gtk::ConstraintTarget, gtk::Buildable, gtk::Accessible;
 }
 
 impl DialogsView {
