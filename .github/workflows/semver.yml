@@ -11,13 +11,11 @@ jobs:
   check:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/elementary/docker:unstable
+      image: fedora:rawhide
     steps:
-    - name: Install dependencies
-      run: |
-        apt-get update && apt-get install -y curl git jq
-        git config --global --add safe.directory ${GITHUB_WORKSPACE}
     - uses: actions/checkout@v4
+    - name: Install dependencies
+      run: dnf install -y curl git gcc gcc-c++ make cmake libtool autoconf automake pkgconf-pkg-config glib2-devel gobject-introspection-devel gtk4-devel granite-7-devel
     - name: Check semver
       uses: obi1kenobi/cargo-semver-checks-action@main
       with:
