@@ -1,6 +1,6 @@
 [package]
 name = "granite-rs"
-version = "2.0.0"
+version = "3.0.0"
 edition = "2021"
 authors = ["David Hewitt <davidmhewitt@gmail.com>"]
 readme = "../README.md"
@@ -36,7 +36,7 @@ libc = "0.2"
 bitflags = "2.2"
 once_cell = "1.17"
 relm4 = { version = "0.10", optional = true }
-granite-rs-sys = { path = "./sys", version = "0.5.0" }
+granite-rs-sys = { path = "./sys", version = "0.6.0" }
 
 [dependencies.glib]
 version = "0.21"
