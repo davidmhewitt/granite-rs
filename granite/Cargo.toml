@@ -19,6 +19,12 @@ v7_4 = ["granite-rs-sys/v7_4", "v7_3"]
 v7_5 = ["granite-rs-sys/v7_5", "v7_4"]
 v7_6 = ["granite-rs-sys/v7_6", "v7_5"]
 relm4 = ["dep:relm4"]
+gtk_v4_2 = ["gtk/v4_2"]
+gtk_v4_6 = ["gtk_v4_2", "gtk/v4_6"]
+gtk_v4_12 = ["gtk_v4_6", "gtk/v4_12"]
+gtk_v4_18 = ["gtk_v4_12", "gtk/v4_18"]
+gtk_v4_20 = ["gtk_v4_18", "gtk/v4_20"]
+
 
 [package.metadata.docs.rs]
 all-features = true
