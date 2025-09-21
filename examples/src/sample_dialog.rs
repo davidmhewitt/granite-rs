@@ -49,7 +49,8 @@ mod imp {
 
 glib::wrapper! {
     pub struct SampleDialog(ObjectSubclass<imp::SampleDialog>)
-        @extends gtk::Widget, gtk::Window, gtk::Dialog, granite::Dialog;
+        @extends gtk::Widget, gtk::Window, gtk::Dialog, granite::Dialog,
+        @implements gtk::ShortcutManager, gtk::Root, gtk::Native, gtk::ConstraintTarget, gtk:: Buildable, gtk::Accessible;
 }
 
 impl SampleDialog {

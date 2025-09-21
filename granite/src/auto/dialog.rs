@@ -129,6 +129,14 @@ impl DialogBuilder {
         }
     }
 
+    #[cfg(feature = "gtk_v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_20")))]
+    pub fn gravity(self, gravity: gtk::WindowGravity) -> Self {
+        Self {
+            builder: self.builder.property("gravity", gravity),
+        }
+    }
+
     #[cfg(feature = "gtk_v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_2")))]
     pub fn handle_menubar_accel(self, handle_menubar_accel: bool) -> Self {
@@ -280,6 +288,14 @@ impl DialogBuilder {
     //pub fn layout_manager(self, layout_manager: &impl IsA</*Ignored*/gtk::LayoutManager>) -> Self {
     //    Self { builder: self.builder.property("layout-manager", layout_manager.clone().upcast()), }
     //}
+
+    #[cfg(feature = "gtk_v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_18")))]
+    pub fn limit_events(self, limit_events: bool) -> Self {
+        Self {
+            builder: self.builder.property("limit-events", limit_events),
+        }
+    }
 
     pub fn margin_bottom(self, margin_bottom: i32) -> Self {
         Self {

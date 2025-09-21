@@ -224,6 +224,14 @@ impl MessageDialogBuilder {
         }
     }
 
+    #[cfg(feature = "gtk_v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_20")))]
+    pub fn gravity(self, gravity: gtk::WindowGravity) -> Self {
+        Self {
+            builder: self.builder.property("gravity", gravity),
+        }
+    }
+
     #[cfg(feature = "gtk_v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_2")))]
     pub fn handle_menubar_accel(self, handle_menubar_accel: bool) -> Self {
@@ -375,6 +383,14 @@ impl MessageDialogBuilder {
     //pub fn layout_manager(self, layout_manager: &impl IsA</*Ignored*/gtk::LayoutManager>) -> Self {
     //    Self { builder: self.builder.property("layout-manager", layout_manager.clone().upcast()), }
     //}
+
+    #[cfg(feature = "gtk_v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_18")))]
+    pub fn limit_events(self, limit_events: bool) -> Self {
+        Self {
+            builder: self.builder.property("limit-events", limit_events),
+        }
+    }
 
     pub fn margin_bottom(self, margin_bottom: i32) -> Self {
         Self {
@@ -625,7 +641,7 @@ pub trait MessageDialogExt: IsA<MessageDialog> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::primary-text\0".as_ptr() as *const _,
+                c"notify::primary-text".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_primary_text_trampoline::<Self, F> as *const (),
                 )),
@@ -651,7 +667,7 @@ pub trait MessageDialogExt: IsA<MessageDialog> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::secondary-text\0".as_ptr() as *const _,
+                c"notify::secondary-text".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_secondary_text_trampoline::<Self, F> as *const (),
                 )),
@@ -677,7 +693,7 @@ pub trait MessageDialogExt: IsA<MessageDialog> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::image-icon\0".as_ptr() as *const _,
+                c"notify::image-icon".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_image_icon_trampoline::<Self, F> as *const (),
                 )),
@@ -703,7 +719,7 @@ pub trait MessageDialogExt: IsA<MessageDialog> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::badge-icon\0".as_ptr() as *const _,
+                c"notify::badge-icon".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_badge_icon_trampoline::<Self, F> as *const (),
                 )),

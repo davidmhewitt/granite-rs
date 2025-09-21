@@ -142,7 +142,8 @@ mod imp {
 
 glib::wrapper! {
     pub struct DateTimePickerView(ObjectSubclass<imp::DateTimePickerView>)
-        @extends gtk::Widget, gtk::Grid;
+        @extends gtk::Widget, gtk::Grid,
+        @implements gtk::Orientable, gtk::ConstraintTarget, gtk::Buildable, gtk::Accessible;
 }
 
 impl DateTimePickerView {

@@ -150,6 +150,34 @@ impl DatePickerBuilder {
         }
     }
 
+    #[cfg(feature = "gtk_v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_20")))]
+    pub fn menu_entry_icon_primary_text(
+        self,
+        menu_entry_icon_primary_text: impl Into<glib::GString>,
+    ) -> Self {
+        Self {
+            builder: self.builder.property(
+                "menu-entry-icon-primary-text",
+                menu_entry_icon_primary_text.into(),
+            ),
+        }
+    }
+
+    #[cfg(feature = "gtk_v4_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_20")))]
+    pub fn menu_entry_icon_secondary_text(
+        self,
+        menu_entry_icon_secondary_text: impl Into<glib::GString>,
+    ) -> Self {
+        Self {
+            builder: self.builder.property(
+                "menu-entry-icon-secondary-text",
+                menu_entry_icon_secondary_text.into(),
+            ),
+        }
+    }
+
     pub fn overwrite_mode(self, overwrite_mode: bool) -> Self {
         Self {
             builder: self.builder.property("overwrite-mode", overwrite_mode),
@@ -401,6 +429,14 @@ impl DatePickerBuilder {
     //    Self { builder: self.builder.property("layout-manager", layout_manager.clone().upcast()), }
     //}
 
+    #[cfg(feature = "gtk_v4_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_18")))]
+    pub fn limit_events(self, limit_events: bool) -> Self {
+        Self {
+            builder: self.builder.property("limit-events", limit_events),
+        }
+    }
+
     pub fn margin_bottom(self, margin_bottom: i32) -> Self {
         Self {
             builder: self.builder.property("margin-bottom", margin_bottom),
@@ -599,7 +635,7 @@ pub trait DatePickerExt: IsA<DatePicker> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::date\0".as_ptr() as *const _,
+                c"notify::date".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_date_trampoline::<Self, F> as *const (),
                 )),

@@ -59,7 +59,8 @@ mod imp {
 
 glib::wrapper! {
     pub struct SettingsPage(ObjectSubclass<imp::SettingsPage>)
-        @extends granite::SettingsPage, gtk::Box, gtk::Widget, gtk::Grid;
+        @extends granite::SettingsPage, gtk::Box, gtk::Widget, gtk::Grid,
+        @implements gtk::ConstraintTarget, gtk::Buildable, gtk::Accessible;
 }
 
 impl SettingsPage {
