@@ -19,7 +19,7 @@ jobs:
         rust:
           - stable
           - beta
-          - "1.70.0"
+          - "1.85.0"
         conf:
           - { name: "granite", features: "v7_6", test_sys: true }
           - { name: "granite", features: "v7_5", test_sys: true }
