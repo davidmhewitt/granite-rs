@@ -6,6 +6,71 @@
 use crate::ffi;
 use glib::GStr;
 
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+#[doc(alias = "GRANITE_CSS_CLASS_ACCENT")]
+pub static CssClassACCENT: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_CSS_CLASS_ACCENT) };
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+#[doc(alias = "GRANITE_CSS_CLASS_CARD")]
+pub static CssClassCARD: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_CSS_CLASS_CARD) };
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+#[doc(alias = "GRANITE_CSS_CLASS_CHECKERBOARD")]
+pub static CssClassCHECKERBOARD: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_CSS_CLASS_CHECKERBOARD) };
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+#[doc(alias = "GRANITE_CSS_CLASS_CIRCULAR")]
+pub static CssClassCIRCULAR: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_CSS_CLASS_CIRCULAR) };
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+#[doc(alias = "GRANITE_CSS_CLASS_DESTRUCTIVE")]
+pub static CssClassDESTRUCTIVE: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_CSS_CLASS_DESTRUCTIVE) };
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+#[doc(alias = "GRANITE_CSS_CLASS_DIM")]
+pub static CssClassDIM: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_CSS_CLASS_DIM) };
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+#[doc(alias = "GRANITE_CSS_CLASS_ERROR")]
+pub static CssClassERROR: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_CSS_CLASS_ERROR) };
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+#[doc(alias = "GRANITE_CSS_CLASS_NUMERIC")]
+pub static CssClassNUMERIC: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_CSS_CLASS_NUMERIC) };
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+#[doc(alias = "GRANITE_CSS_CLASS_SMALL")]
+pub static CssClassSMALL: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_CSS_CLASS_SMALL) };
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+#[doc(alias = "GRANITE_CSS_CLASS_SUGGESTED")]
+pub static CssClassSUGGESTED: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_CSS_CLASS_SUGGESTED) };
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+#[doc(alias = "GRANITE_CSS_CLASS_SUCCESS")]
+pub static CssClassSUCCESS: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_CSS_CLASS_SUCCESS) };
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+#[doc(alias = "GRANITE_CSS_CLASS_WARNING")]
+pub static CssClassWARNING: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_CSS_CLASS_WARNING) };
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+#[doc(alias = "GRANITE_CSS_CLASS_MONOSPACE")]
+pub static CssClassMONOSPACE: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_CSS_CLASS_MONOSPACE) };
 #[cfg(feature = "v7_3")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
 #[doc(alias = "GRANITE_SETTINGS_URI_LOCATION")]
@@ -41,9 +106,11 @@ pub static SettingsUriSOUND_INPUT: &GStr =
 #[doc(alias = "GRANITE_SETTINGS_URI_SHORTCUTS")]
 pub static SettingsUriSHORTCUTS: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_SETTINGS_URI_SHORTCUTS) };
+#[cfg_attr(feature = "v7_7", deprecated = "Since 7.7")]
 #[doc(alias = "GRANITE_STYLE_CLASS_ACCENT")]
 pub static STYLE_CLASS_ACCENT: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_ACCENT) };
+#[cfg_attr(feature = "v7_7", deprecated = "Since 7.7")]
 #[doc(alias = "GRANITE_STYLE_CLASS_BACK_BUTTON")]
 pub static STYLE_CLASS_BACK_BUTTON: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_BACK_BUTTON) };
@@ -55,12 +122,15 @@ pub static STYLE_CLASS_BACKGROUND: &GStr =
 #[doc(alias = "GRANITE_STYLE_CLASS_BADGE")]
 pub static STYLE_CLASS_BADGE: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_BADGE) };
+#[cfg_attr(feature = "v7_7", deprecated = "Since 7.7")]
 #[doc(alias = "GRANITE_STYLE_CLASS_CARD")]
 pub static STYLE_CLASS_CARD: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_CARD) };
+#[cfg_attr(feature = "v7_7", deprecated = "Since 7.7")]
 #[doc(alias = "GRANITE_STYLE_CLASS_CHECKERBOARD")]
 pub static STYLE_CLASS_CHECKERBOARD: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_CHECKERBOARD) };
+#[cfg_attr(feature = "v7_7", deprecated = "Since 7.7")]
 #[doc(alias = "GRANITE_STYLE_CLASS_CIRCULAR")]
 pub static STYLE_CLASS_CIRCULAR: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_CIRCULAR) };
@@ -70,41 +140,51 @@ pub static STYLE_CLASS_COLOR_BUTTON: &GStr =
 #[doc(alias = "GRANITE_STYLE_CLASS_DEFAULT_DECORATION")]
 pub static STYLE_CLASS_DEFAULT_DECORATION: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_DEFAULT_DECORATION) };
+#[cfg_attr(feature = "v7_7", deprecated = "Since 7.7")]
 #[doc(alias = "GRANITE_STYLE_CLASS_DESTRUCTIVE_ACTION")]
 pub static STYLE_CLASS_DESTRUCTIVE_ACTION: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_DESTRUCTIVE_ACTION) };
+#[cfg_attr(feature = "v7_7", deprecated = "Since 7.7")]
 #[doc(alias = "GRANITE_STYLE_CLASS_DIALOG_CONTENT_AREA")]
 pub static STYLE_CLASS_DIALOG_CONTENT_AREA: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_DIALOG_CONTENT_AREA) };
+#[cfg_attr(feature = "v7_7", deprecated = "Since 7.7")]
 #[cfg(feature = "v7_1")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
 #[doc(alias = "GRANITE_STYLE_CLASS_FRAME")]
 pub static STYLE_CLASS_FRAME: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_FRAME) };
+#[cfg_attr(feature = "v7_7", deprecated = "Since 7.7")]
 #[doc(alias = "GRANITE_STYLE_CLASS_H1_LABEL")]
 pub static STYLE_CLASS_H1_LABEL: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_H1_LABEL) };
+#[cfg_attr(feature = "v7_7", deprecated = "Since 7.7")]
 #[doc(alias = "GRANITE_STYLE_CLASS_H2_LABEL")]
 pub static STYLE_CLASS_H2_LABEL: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_H2_LABEL) };
+#[cfg_attr(feature = "v7_7", deprecated = "Since 7.7")]
 #[doc(alias = "GRANITE_STYLE_CLASS_H3_LABEL")]
 pub static STYLE_CLASS_H3_LABEL: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_H3_LABEL) };
+#[cfg_attr(feature = "v7_7", deprecated = "Since 7.7")]
 #[doc(alias = "GRANITE_STYLE_CLASS_H4_LABEL")]
 pub static STYLE_CLASS_H4_LABEL: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_H4_LABEL) };
+#[cfg_attr(feature = "v7_7", deprecated = "Since 7.7")]
 #[doc(alias = "GRANITE_STYLE_CLASS_KEYCAP")]
 pub static STYLE_CLASS_KEYCAP: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_KEYCAP) };
 #[doc(alias = "GRANITE_STYLE_CLASS_LARGE_ICONS")]
 pub static STYLE_CLASS_LARGE_ICONS: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_LARGE_ICONS) };
+#[cfg_attr(feature = "v7_7", deprecated = "Since 7.7")]
 #[doc(alias = "GRANITE_STYLE_CLASS_MODE_SWITCH")]
 pub static STYLE_CLASS_MODE_SWITCH: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_MODE_SWITCH) };
 #[doc(alias = "GRANITE_STYLE_CLASS_OSD")]
 pub static STYLE_CLASS_OSD: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_OSD) };
+#[cfg_attr(feature = "v7_7", deprecated = "Since 7.7")]
 #[doc(alias = "GRANITE_STYLE_CLASS_ROUNDED")]
 pub static STYLE_CLASS_ROUNDED: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_ROUNDED) };
@@ -113,9 +193,11 @@ pub static STYLE_CLASS_ROUNDED: &GStr =
 #[doc(alias = "GRANITE_STYLE_CLASS_SIDEBAR")]
 pub static STYLE_CLASS_SIDEBAR: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_SIDEBAR) };
+#[cfg_attr(feature = "v7_7", deprecated = "Since 7.7")]
 #[doc(alias = "GRANITE_STYLE_CLASS_SMALL_LABEL")]
 pub static STYLE_CLASS_SMALL_LABEL: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_SMALL_LABEL) };
+#[cfg_attr(feature = "v7_7", deprecated = "Since 7.7")]
 #[cfg(feature = "v7_5")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_5")))]
 #[doc(alias = "GRANITE_STYLE_CLASS_SUCCESS")]
@@ -124,47 +206,59 @@ pub static STYLE_CLASS_SUCCESS: &GStr =
 #[doc(alias = "GRANITE_STYLE_CLASS_TERMINAL")]
 pub static STYLE_CLASS_TERMINAL: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_TERMINAL) };
+#[cfg_attr(feature = "v7_7", deprecated = "Since 7.7")]
 #[doc(alias = "GRANITE_STYLE_CLASS_TITLE_LABEL")]
 pub static STYLE_CLASS_TITLE_LABEL: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_TITLE_LABEL) };
+#[cfg_attr(feature = "v7_7", deprecated = "Since 7.7")]
 #[doc(alias = "GRANITE_STYLE_CLASS_WARMTH")]
 pub static STYLE_CLASS_WARMTH: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_WARMTH) };
+#[cfg_attr(feature = "v7_7", deprecated = "Since 7.7")]
 #[doc(alias = "GRANITE_STYLE_CLASS_TEMPERATURE")]
 pub static STYLE_CLASS_TEMPERATURE: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_TEMPERATURE) };
+#[cfg_attr(feature = "v7_7", deprecated = "Since 7.7")]
 #[doc(alias = "GRANITE_STYLE_CLASS_LINKED")]
 pub static STYLE_CLASS_LINKED: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_LINKED) };
+#[cfg_attr(feature = "v7_7", deprecated = "Since 7.7")]
 #[doc(alias = "GRANITE_STYLE_CLASS_MENU")]
 pub static STYLE_CLASS_MENU: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_MENU) };
+#[cfg_attr(feature = "v7_7", deprecated = "Since 7.7")]
 #[doc(alias = "GRANITE_STYLE_CLASS_MENUITEM")]
 pub static STYLE_CLASS_MENUITEM: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_MENUITEM) };
+#[cfg_attr(feature = "v7_7", deprecated = "Since 7.7")]
 #[doc(alias = "GRANITE_STYLE_CLASS_DIM_LABEL")]
 pub static STYLE_CLASS_DIM_LABEL: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_DIM_LABEL) };
+#[cfg_attr(feature = "v7_7", deprecated = "Since 7.7")]
 #[doc(alias = "GRANITE_STYLE_CLASS_ERROR")]
 pub static STYLE_CLASS_ERROR: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_ERROR) };
 #[doc(alias = "GRANITE_STYLE_CLASS_FLAT")]
 pub static STYLE_CLASS_FLAT: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_FLAT) };
+#[cfg_attr(feature = "v7_7", deprecated = "Since 7.7")]
 #[doc(alias = "GRANITE_STYLE_CLASS_MESSAGE_DIALOG")]
 pub static STYLE_CLASS_MESSAGE_DIALOG: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_MESSAGE_DIALOG) };
+#[cfg_attr(feature = "v7_7", deprecated = "Since 7.7")]
 #[cfg(feature = "v7_1")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
 #[doc(alias = "GRANITE_STYLE_CLASS_RICH_LIST")]
 pub static STYLE_CLASS_RICH_LIST: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_RICH_LIST) };
+#[cfg_attr(feature = "v7_7", deprecated = "Since 7.7")]
 #[doc(alias = "GRANITE_STYLE_CLASS_SUGGESTED_ACTION")]
 pub static STYLE_CLASS_SUGGESTED_ACTION: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_SUGGESTED_ACTION) };
 #[doc(alias = "GRANITE_STYLE_CLASS_VIEW")]
 pub static STYLE_CLASS_VIEW: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_VIEW) };
+#[cfg_attr(feature = "v7_7", deprecated = "Since 7.7")]
 #[doc(alias = "GRANITE_STYLE_CLASS_WARNING")]
 pub static STYLE_CLASS_WARNING: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GRANITE_STYLE_CLASS_WARNING) };

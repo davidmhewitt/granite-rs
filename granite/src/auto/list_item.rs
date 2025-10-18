@@ -12,65 +12,71 @@ use glib::{
 use std::boxed::Box as Box_;
 
 glib::wrapper! {
-    #[doc(alias = "GraniteSettingsSidebar")]
-    pub struct SettingsSidebar(Object<ffi::GraniteSettingsSidebar, ffi::GraniteSettingsSidebarClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
+    #[doc(alias = "GraniteListItem")]
+    pub struct ListItem(Object<ffi::GraniteListItem, ffi::GraniteListItemClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
-        type_ => || ffi::granite_settings_sidebar_get_type(),
+        type_ => || ffi::granite_list_item_get_type(),
     }
 }
 
-impl SettingsSidebar {
-    pub const NONE: Option<&'static SettingsSidebar> = None;
+impl ListItem {
+    pub const NONE: Option<&'static ListItem> = None;
 
-    #[doc(alias = "granite_settings_sidebar_new")]
-    pub fn new(stack: &gtk::Stack) -> SettingsSidebar {
+    #[doc(alias = "granite_list_item_new")]
+    pub fn new() -> ListItem {
         assert_initialized_main_thread!();
-        unsafe { from_glib_none(ffi::granite_settings_sidebar_new(stack.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::granite_list_item_new()) }
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`SettingsSidebar`] objects.
+    /// Creates a new builder-pattern struct instance to construct [`ListItem`] objects.
     ///
-    /// This method returns an instance of [`SettingsSidebarBuilder`](crate::builders::SettingsSidebarBuilder) which can be used to create [`SettingsSidebar`] objects.
-    pub fn builder() -> SettingsSidebarBuilder {
-        SettingsSidebarBuilder::new()
+    /// This method returns an instance of [`ListItemBuilder`](crate::builders::ListItemBuilder) which can be used to create [`ListItem`] objects.
+    pub fn builder() -> ListItemBuilder {
+        ListItemBuilder::new()
     }
 }
 
-impl Default for SettingsSidebar {
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+impl Default for ListItem {
     fn default() -> Self {
-        glib::object::Object::new::<Self>()
+        Self::new()
     }
 }
 
 // rustdoc-stripper-ignore-next
-/// A [builder-pattern] type to construct [`SettingsSidebar`] objects.
+/// A [builder-pattern] type to construct [`ListItem`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
-pub struct SettingsSidebarBuilder {
-    builder: glib::object::ObjectBuilder<'static, SettingsSidebar>,
+pub struct ListItemBuilder {
+    builder: glib::object::ObjectBuilder<'static, ListItem>,
 }
 
-impl SettingsSidebarBuilder {
+impl ListItemBuilder {
     fn new() -> Self {
         Self {
             builder: glib::object::Object::builder(),
         }
     }
 
-    pub fn stack(self, stack: &gtk::Stack) -> Self {
+    pub fn text(self, text: impl Into<glib::GString>) -> Self {
         Self {
-            builder: self.builder.property("stack", stack.clone()),
+            builder: self.builder.property("text", text.into()),
         }
     }
 
-    pub fn visible_child_name(self, visible_child_name: impl Into<glib::GString>) -> Self {
+    pub fn description(self, description: impl Into<glib::GString>) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("visible-child-name", visible_child_name.into()),
+            builder: self.builder.property("description", description.into()),
+        }
+    }
+
+    pub fn child(self, child: &impl IsA<gtk::Widget>) -> Self {
+        Self {
+            builder: self.builder.property("child", child.clone().upcast()),
         }
     }
 
@@ -267,65 +273,162 @@ impl SettingsSidebarBuilder {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Build the [`SettingsSidebar`].
+    /// Build the [`ListItem`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
-    pub fn build(self) -> SettingsSidebar {
+    pub fn build(self) -> ListItem {
         assert_initialized_main_thread!();
         self.builder.build()
     }
 }
 
-pub trait SettingsSidebarExt: IsA<SettingsSidebar> + 'static {
-    #[doc(alias = "granite_settings_sidebar_get_stack")]
-    #[doc(alias = "get_stack")]
-    fn stack(&self) -> gtk::Stack {
+pub trait ListItemExt: IsA<ListItem> + 'static {
+    #[doc(alias = "granite_list_item_get_text")]
+    #[doc(alias = "get_text")]
+    fn text(&self) -> glib::GString {
         unsafe {
-            from_glib_none(ffi::granite_settings_sidebar_get_stack(
+            from_glib_none(ffi::granite_list_item_get_text(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "granite_settings_sidebar_get_visible_child_name")]
-    #[doc(alias = "get_visible_child_name")]
-    fn visible_child_name(&self) -> Option<glib::GString> {
+    #[doc(alias = "granite_list_item_set_text")]
+    fn set_text(&self, value: &str) {
         unsafe {
-            from_glib_none(ffi::granite_settings_sidebar_get_visible_child_name(
+            ffi::granite_list_item_set_text(self.as_ref().to_glib_none().0, value.to_glib_none().0);
+        }
+    }
+
+    #[doc(alias = "granite_list_item_get_description")]
+    #[doc(alias = "get_description")]
+    fn description(&self) -> Option<glib::GString> {
+        unsafe {
+            from_glib_none(ffi::granite_list_item_get_description(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "granite_settings_sidebar_set_visible_child_name")]
-    fn set_visible_child_name(&self, value: Option<&str>) {
+    #[doc(alias = "granite_list_item_set_description")]
+    fn set_description(&self, value: Option<&str>) {
         unsafe {
-            ffi::granite_settings_sidebar_set_visible_child_name(
+            ffi::granite_list_item_set_description(
                 self.as_ref().to_glib_none().0,
                 value.to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "visible-child-name")]
-    fn connect_visible_child_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_visible_child_name_trampoline<
-            P: IsA<SettingsSidebar>,
-            F: Fn(&P) + 'static,
-        >(
-            this: *mut ffi::GraniteSettingsSidebar,
+    #[doc(alias = "granite_list_item_get_child")]
+    #[doc(alias = "get_child")]
+    fn child(&self) -> Option<gtk::Widget> {
+        unsafe {
+            from_glib_none(ffi::granite_list_item_get_child(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    #[doc(alias = "granite_list_item_set_child")]
+    fn set_child(&self, value: Option<&impl IsA<gtk::Widget>>) {
+        unsafe {
+            ffi::granite_list_item_set_child(
+                self.as_ref().to_glib_none().0,
+                value.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    fn get_property_text(&self) -> Option<glib::GString> {
+        ObjectExt::property(self.as_ref(), "text")
+    }
+
+    fn set_property_text(&self, text: Option<&str>) {
+        ObjectExt::set_property(self.as_ref(), "text", text)
+    }
+
+    fn get_property_description(&self) -> Option<glib::GString> {
+        ObjectExt::property(self.as_ref(), "description")
+    }
+
+    fn set_property_description(&self, description: Option<&str>) {
+        ObjectExt::set_property(self.as_ref(), "description", description)
+    }
+
+    fn get_property_child(&self) -> Option<gtk::Widget> {
+        ObjectExt::property(self.as_ref(), "child")
+    }
+
+    fn set_property_child<P: IsA<gtk::Widget>>(&self, child: Option<&P>) {
+        ObjectExt::set_property(self.as_ref(), "child", child)
+    }
+
+    #[doc(alias = "text")]
+    fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_text_trampoline<P: IsA<ListItem>, F: Fn(&P) + 'static>(
+            this: *mut ffi::GraniteListItem,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(SettingsSidebar::from_glib_borrow(this).unsafe_cast_ref())
+            f(ListItem::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::visible-child-name".as_ptr() as *const _,
+                c"notify::text".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
-                    notify_visible_child_name_trampoline::<Self, F> as *const (),
+                    notify_text_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[doc(alias = "description")]
+    fn connect_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_description_trampoline<
+            P: IsA<ListItem>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::GraniteListItem,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(ListItem::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::description".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_description_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[doc(alias = "child")]
+    fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_child_trampoline<P: IsA<ListItem>, F: Fn(&P) + 'static>(
+            this: *mut ffi::GraniteListItem,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(ListItem::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::child".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_child_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -333,4 +436,4 @@ pub trait SettingsSidebarExt: IsA<SettingsSidebar> + 'static {
     }
 }
 
-impl<O: IsA<SettingsSidebar>> SettingsSidebarExt for O {}
+impl<O: IsA<ListItem>> ListItemExt for O {}

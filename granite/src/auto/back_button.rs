@@ -6,184 +6,94 @@
 use crate::ffi;
 use glib::{prelude::*, translate::*};
 
-#[cfg(feature = "gtk_v4_14")]
-#[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_14")))]
 glib::wrapper! {
-    #[doc(alias = "GraniteHyperTextView")]
-    pub struct HyperTextView(Object<ffi::GraniteHyperTextView, ffi::GraniteHyperTextViewClass>) @extends gtk::TextView, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::AccessibleText, gtk::Scrollable;
+    #[doc(alias = "GraniteBackButton")]
+    pub struct BackButton(Object<ffi::GraniteBackButton, ffi::GraniteBackButtonClass>) @extends gtk::Button, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Actionable;
 
     match fn {
-        type_ => || ffi::granite_hyper_text_view_get_type(),
+        type_ => || ffi::granite_back_button_get_type(),
     }
 }
 
-#[cfg(not(any(feature = "gtk_v4_14")))]
-glib::wrapper! {
-    #[doc(alias = "GraniteHyperTextView")]
-    pub struct HyperTextView(Object<ffi::GraniteHyperTextView, ffi::GraniteHyperTextViewClass>) @extends gtk::TextView, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Scrollable;
+impl BackButton {
+    pub const NONE: Option<&'static BackButton> = None;
 
-    match fn {
-        type_ => || ffi::granite_hyper_text_view_get_type(),
-    }
-}
-
-impl HyperTextView {
-    pub const NONE: Option<&'static HyperTextView> = None;
-
-    #[doc(alias = "granite_hyper_text_view_new")]
-    pub fn new() -> HyperTextView {
+    #[doc(alias = "granite_back_button_new")]
+    pub fn new(label: &str) -> BackButton {
         assert_initialized_main_thread!();
-        unsafe { from_glib_none(ffi::granite_hyper_text_view_new()) }
+        unsafe { from_glib_none(ffi::granite_back_button_new(label.to_glib_none().0)) }
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`HyperTextView`] objects.
+    /// Creates a new builder-pattern struct instance to construct [`BackButton`] objects.
     ///
-    /// This method returns an instance of [`HyperTextViewBuilder`](crate::builders::HyperTextViewBuilder) which can be used to create [`HyperTextView`] objects.
-    pub fn builder() -> HyperTextViewBuilder {
-        HyperTextViewBuilder::new()
+    /// This method returns an instance of [`BackButtonBuilder`](crate::builders::BackButtonBuilder) which can be used to create [`BackButton`] objects.
+    pub fn builder() -> BackButtonBuilder {
+        BackButtonBuilder::new()
     }
 }
 
-impl Default for HyperTextView {
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+impl Default for BackButton {
     fn default() -> Self {
-        Self::new()
+        glib::object::Object::new::<Self>()
     }
 }
 
 // rustdoc-stripper-ignore-next
-/// A [builder-pattern] type to construct [`HyperTextView`] objects.
+/// A [builder-pattern] type to construct [`BackButton`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
-pub struct HyperTextViewBuilder {
-    builder: glib::object::ObjectBuilder<'static, HyperTextView>,
+pub struct BackButtonBuilder {
+    builder: glib::object::ObjectBuilder<'static, BackButton>,
 }
 
-impl HyperTextViewBuilder {
+impl BackButtonBuilder {
     fn new() -> Self {
         Self {
             builder: glib::object::Object::builder(),
         }
     }
 
-    pub fn accepts_tab(self, accepts_tab: bool) -> Self {
+    pub fn label(self, label: impl Into<glib::GString>) -> Self {
         Self {
-            builder: self.builder.property("accepts-tab", accepts_tab),
+            builder: self.builder.property("label", label.into()),
         }
     }
 
-    pub fn bottom_margin(self, bottom_margin: i32) -> Self {
+    #[cfg(feature = "gtk_v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_12")))]
+    pub fn can_shrink(self, can_shrink: bool) -> Self {
         Self {
-            builder: self.builder.property("bottom-margin", bottom_margin),
+            builder: self.builder.property("can-shrink", can_shrink),
         }
     }
 
-    //pub fn buffer(self, buffer: &impl IsA</*Ignored*/gtk::TextBuffer>) -> Self {
-    //    Self { builder: self.builder.property("buffer", buffer.clone().upcast()), }
-    //}
-
-    pub fn cursor_visible(self, cursor_visible: bool) -> Self {
+    pub fn child(self, child: &impl IsA<gtk::Widget>) -> Self {
         Self {
-            builder: self.builder.property("cursor-visible", cursor_visible),
+            builder: self.builder.property("child", child.clone().upcast()),
         }
     }
 
-    pub fn editable(self, editable: bool) -> Self {
+    pub fn has_frame(self, has_frame: bool) -> Self {
         Self {
-            builder: self.builder.property("editable", editable),
+            builder: self.builder.property("has-frame", has_frame),
         }
     }
 
-    //pub fn extra_menu(self, extra_menu: &impl IsA</*Ignored*/gio::MenuModel>) -> Self {
-    //    Self { builder: self.builder.property("extra-menu", extra_menu.clone().upcast()), }
-    //}
-
-    pub fn im_module(self, im_module: impl Into<glib::GString>) -> Self {
+    pub fn icon_name(self, icon_name: impl Into<glib::GString>) -> Self {
         Self {
-            builder: self.builder.property("im-module", im_module.into()),
+            builder: self.builder.property("icon-name", icon_name.into()),
         }
     }
 
-    pub fn indent(self, indent: i32) -> Self {
+    pub fn use_underline(self, use_underline: bool) -> Self {
         Self {
-            builder: self.builder.property("indent", indent),
+            builder: self.builder.property("use-underline", use_underline),
         }
     }
-
-    //pub fn input_hints(self, input_hints: /*Ignored*/gtk::InputHints) -> Self {
-    //    Self { builder: self.builder.property("input-hints", input_hints), }
-    //}
-
-    //pub fn input_purpose(self, input_purpose: /*Ignored*/gtk::InputPurpose) -> Self {
-    //    Self { builder: self.builder.property("input-purpose", input_purpose), }
-    //}
-
-    //pub fn justification(self, justification: /*Ignored*/gtk::Justification) -> Self {
-    //    Self { builder: self.builder.property("justification", justification), }
-    //}
-
-    pub fn left_margin(self, left_margin: i32) -> Self {
-        Self {
-            builder: self.builder.property("left-margin", left_margin),
-        }
-    }
-
-    pub fn monospace(self, monospace: bool) -> Self {
-        Self {
-            builder: self.builder.property("monospace", monospace),
-        }
-    }
-
-    pub fn overwrite(self, overwrite: bool) -> Self {
-        Self {
-            builder: self.builder.property("overwrite", overwrite),
-        }
-    }
-
-    pub fn pixels_above_lines(self, pixels_above_lines: i32) -> Self {
-        Self {
-            builder: self
-                .builder
-                .property("pixels-above-lines", pixels_above_lines),
-        }
-    }
-
-    pub fn pixels_below_lines(self, pixels_below_lines: i32) -> Self {
-        Self {
-            builder: self
-                .builder
-                .property("pixels-below-lines", pixels_below_lines),
-        }
-    }
-
-    pub fn pixels_inside_wrap(self, pixels_inside_wrap: i32) -> Self {
-        Self {
-            builder: self
-                .builder
-                .property("pixels-inside-wrap", pixels_inside_wrap),
-        }
-    }
-
-    pub fn right_margin(self, right_margin: i32) -> Self {
-        Self {
-            builder: self.builder.property("right-margin", right_margin),
-        }
-    }
-
-    //pub fn tabs(self, tabs: /*Ignored*/&pango::TabArray) -> Self {
-    //    Self { builder: self.builder.property("tabs", tabs), }
-    //}
-
-    pub fn top_margin(self, top_margin: i32) -> Self {
-        Self {
-            builder: self.builder.property("top-margin", top_margin),
-        }
-    }
-
-    //pub fn wrap_mode(self, wrap_mode: /*Ignored*/gtk::WrapMode) -> Self {
-    //    Self { builder: self.builder.property("wrap-mode", wrap_mode), }
-    //}
 
     pub fn can_focus(self, can_focus: bool) -> Self {
         Self {
@@ -377,27 +287,49 @@ impl HyperTextViewBuilder {
         }
     }
 
-    //pub fn hadjustment(self, hadjustment: &impl IsA</*Ignored*/gtk::Adjustment>) -> Self {
-    //    Self { builder: self.builder.property("hadjustment", hadjustment.clone().upcast()), }
-    //}
+    pub fn action_name(self, action_name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("action-name", action_name.into()),
+        }
+    }
 
-    //pub fn hscroll_policy(self, hscroll_policy: /*Ignored*/gtk::ScrollablePolicy) -> Self {
-    //    Self { builder: self.builder.property("hscroll-policy", hscroll_policy), }
-    //}
-
-    //pub fn vadjustment(self, vadjustment: &impl IsA</*Ignored*/gtk::Adjustment>) -> Self {
-    //    Self { builder: self.builder.property("vadjustment", vadjustment.clone().upcast()), }
-    //}
-
-    //pub fn vscroll_policy(self, vscroll_policy: /*Ignored*/gtk::ScrollablePolicy) -> Self {
-    //    Self { builder: self.builder.property("vscroll-policy", vscroll_policy), }
-    //}
+    pub fn action_target(self, action_target: &glib::Variant) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("action-target", action_target.clone()),
+        }
+    }
 
     // rustdoc-stripper-ignore-next
-    /// Build the [`HyperTextView`].
+    /// Build the [`BackButton`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
-    pub fn build(self) -> HyperTextView {
+    pub fn build(self) -> BackButton {
         assert_initialized_main_thread!();
         self.builder.build()
     }
 }
+
+pub trait BackButtonExt: IsA<BackButton> + 'static {
+    #[doc(alias = "granite_back_button_get_label")]
+    #[doc(alias = "get_label")]
+    fn label(&self) -> glib::GString {
+        unsafe {
+            from_glib_none(ffi::granite_back_button_get_label(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    #[doc(alias = "granite_back_button_set_label")]
+    fn set_label(&self, value: &str) {
+        unsafe {
+            ffi::granite_back_button_set_label(
+                self.as_ref().to_glib_none().0,
+                value.to_glib_none().0,
+            );
+        }
+    }
+}
+
+impl<O: IsA<BackButton>> BackButtonExt for O {}

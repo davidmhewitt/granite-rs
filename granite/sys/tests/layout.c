@@ -10,16 +10,24 @@
 int main() {
     printf("%s;%zu;%zu\n", "GraniteAccelLabel", sizeof(GraniteAccelLabel), alignof(GraniteAccelLabel));
     printf("%s;%zu;%zu\n", "GraniteAccelLabelClass", sizeof(GraniteAccelLabelClass), alignof(GraniteAccelLabelClass));
+    printf("%s;%zu;%zu\n", "GraniteBackButton", sizeof(GraniteBackButton), alignof(GraniteBackButton));
+    printf("%s;%zu;%zu\n", "GraniteBackButtonClass", sizeof(GraniteBackButtonClass), alignof(GraniteBackButtonClass));
     printf("%s;%zu;%zu\n", "GraniteBin", sizeof(GraniteBin), alignof(GraniteBin));
     printf("%s;%zu;%zu\n", "GraniteBinClass", sizeof(GraniteBinClass), alignof(GraniteBinClass));
+    printf("%s;%zu;%zu\n", "GraniteBox", sizeof(GraniteBox), alignof(GraniteBox));
+    printf("%s;%zu;%zu\n", "GraniteBoxClass", sizeof(GraniteBoxClass), alignof(GraniteBoxClass));
+    printf("%s;%zu;%zu\n", "GraniteBoxSpacing", sizeof(GraniteBoxSpacing), alignof(GraniteBoxSpacing));
     printf("%s;%zu;%zu\n", "GraniteDatePicker", sizeof(GraniteDatePicker), alignof(GraniteDatePicker));
     printf("%s;%zu;%zu\n", "GraniteDatePickerClass", sizeof(GraniteDatePickerClass), alignof(GraniteDatePickerClass));
     printf("%s;%zu;%zu\n", "GraniteDialog", sizeof(GraniteDialog), alignof(GraniteDialog));
     printf("%s;%zu;%zu\n", "GraniteDialogClass", sizeof(GraniteDialogClass), alignof(GraniteDialogClass));
     printf("%s;%zu;%zu\n", "GraniteHeaderLabel", sizeof(GraniteHeaderLabel), alignof(GraniteHeaderLabel));
     printf("%s;%zu;%zu\n", "GraniteHeaderLabelClass", sizeof(GraniteHeaderLabelClass), alignof(GraniteHeaderLabelClass));
+    printf("%s;%zu;%zu\n", "GraniteHeaderLabelSize", sizeof(GraniteHeaderLabelSize), alignof(GraniteHeaderLabelSize));
     printf("%s;%zu;%zu\n", "GraniteHyperTextView", sizeof(GraniteHyperTextView), alignof(GraniteHyperTextView));
     printf("%s;%zu;%zu\n", "GraniteHyperTextViewClass", sizeof(GraniteHyperTextViewClass), alignof(GraniteHyperTextViewClass));
+    printf("%s;%zu;%zu\n", "GraniteListItem", sizeof(GraniteListItem), alignof(GraniteListItem));
+    printf("%s;%zu;%zu\n", "GraniteListItemClass", sizeof(GraniteListItemClass), alignof(GraniteListItemClass));
     printf("%s;%zu;%zu\n", "GraniteMessageDialog", sizeof(GraniteMessageDialog), alignof(GraniteMessageDialog));
     printf("%s;%zu;%zu\n", "GraniteMessageDialogClass", sizeof(GraniteMessageDialogClass), alignof(GraniteMessageDialogClass));
     printf("%s;%zu;%zu\n", "GraniteModeSwitch", sizeof(GraniteModeSwitch), alignof(GraniteModeSwitch));
@@ -45,6 +53,8 @@ int main() {
     printf("%s;%zu;%zu\n", "GraniteSettingsSidebarClass", sizeof(GraniteSettingsSidebarClass), alignof(GraniteSettingsSidebarClass));
     printf("%s;%zu;%zu\n", "GraniteSimpleSettingsPage", sizeof(GraniteSimpleSettingsPage), alignof(GraniteSimpleSettingsPage));
     printf("%s;%zu;%zu\n", "GraniteSimpleSettingsPageClass", sizeof(GraniteSimpleSettingsPageClass), alignof(GraniteSimpleSettingsPageClass));
+    printf("%s;%zu;%zu\n", "GraniteStyleManager", sizeof(GraniteStyleManager), alignof(GraniteStyleManager));
+    printf("%s;%zu;%zu\n", "GraniteStyleManagerClass", sizeof(GraniteStyleManagerClass), alignof(GraniteStyleManagerClass));
     printf("%s;%zu;%zu\n", "GraniteSwitchModelButton", sizeof(GraniteSwitchModelButton), alignof(GraniteSwitchModelButton));
     printf("%s;%zu;%zu\n", "GraniteSwitchModelButtonClass", sizeof(GraniteSwitchModelButtonClass), alignof(GraniteSwitchModelButtonClass));
     printf("%s;%zu;%zu\n", "GraniteTimePicker", sizeof(GraniteTimePicker), alignof(GraniteTimePicker));
@@ -52,6 +62,8 @@ int main() {
     printf("%s;%zu;%zu\n", "GraniteToast", sizeof(GraniteToast), alignof(GraniteToast));
     printf("%s;%zu;%zu\n", "GraniteToastClass", sizeof(GraniteToastClass), alignof(GraniteToastClass));
     printf("%s;%zu;%zu\n", "GraniteToastDismissReason", sizeof(GraniteToastDismissReason), alignof(GraniteToastDismissReason));
+    printf("%s;%zu;%zu\n", "GraniteToolBox", sizeof(GraniteToolBox), alignof(GraniteToolBox));
+    printf("%s;%zu;%zu\n", "GraniteToolBoxClass", sizeof(GraniteToolBoxClass), alignof(GraniteToolBoxClass));
     printf("%s;%zu;%zu\n", "GraniteValidatedEntry", sizeof(GraniteValidatedEntry), alignof(GraniteValidatedEntry));
     printf("%s;%zu;%zu\n", "GraniteValidatedEntryClass", sizeof(GraniteValidatedEntryClass), alignof(GraniteValidatedEntryClass));
     return 0;

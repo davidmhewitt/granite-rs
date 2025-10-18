@@ -33,6 +33,19 @@ impl Settings {
 }
 
 pub trait SettingsExt: IsA<Settings> + 'static {
+    #[doc(alias = "granite_settings_get_accent_color")]
+    #[doc(alias = "get_accent_color")]
+    fn accent_color(&self) -> gdk::RGBA {
+        unsafe {
+            let mut result = gdk::RGBA::uninitialized();
+            ffi::granite_settings_get_accent_color(
+                self.as_ref().to_glib_none().0,
+                result.to_glib_none_mut().0,
+            );
+            result
+        }
+    }
+
     #[doc(alias = "granite_settings_get_prefers_color_scheme")]
     #[doc(alias = "get_prefers_color_scheme")]
     fn prefers_color_scheme(&self) -> SettingsColorScheme {
@@ -43,9 +56,44 @@ pub trait SettingsExt: IsA<Settings> + 'static {
         }
     }
 
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    #[doc(alias = "accent-color")]
+    fn set_accent_color(&self, accent_color: Option<&gdk::RGBA>) {
+        ObjectExt::set_property(self.as_ref(), "accent-color", accent_color)
+    }
+
     #[doc(alias = "prefers-color-scheme")]
     fn set_prefers_color_scheme(&self, prefers_color_scheme: SettingsColorScheme) {
         ObjectExt::set_property(self.as_ref(), "prefers-color-scheme", prefers_color_scheme)
+    }
+
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    #[doc(alias = "accent-color")]
+    fn connect_accent_color_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_accent_color_trampoline<
+            P: IsA<Settings>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::GraniteSettings,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(Settings::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::accent-color".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_accent_color_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
     }
 
     #[doc(alias = "prefers-color-scheme")]

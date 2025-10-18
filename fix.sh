@@ -42,3 +42,12 @@ xmlstarlet ed -L \
 xmlstarlet ed -L \
     -u '///_:type[@c:type="GdkRGBA"]/@c:type' -v 'GdkRGBA*' \
     Granite-7.0.gir
+
+# Change instance-parameter to parameter on enum methods, gir gets confused by an instance-parameter on a non-class function
+xmlstarlet ed -L \
+    -r '///_:function[@name="box_spacing_to_string"]/_:parameters/_:instance-parameter' -v 'parameter' \
+    Granite-7.0.gir
+
+xmlstarlet ed -L \
+    -r '///_:function[@name="header_label_size_to_string"]/_:parameters/_:instance-parameter' -v 'parameter' \
+    Granite-7.0.gir

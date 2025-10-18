@@ -3,187 +3,103 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
-use glib::{prelude::*, translate::*};
+use crate::{ffi, BoxSpacing};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::boxed::Box as Box_;
 
-#[cfg(feature = "gtk_v4_14")]
-#[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_14")))]
 glib::wrapper! {
-    #[doc(alias = "GraniteHyperTextView")]
-    pub struct HyperTextView(Object<ffi::GraniteHyperTextView, ffi::GraniteHyperTextViewClass>) @extends gtk::TextView, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::AccessibleText, gtk::Scrollable;
+    #[doc(alias = "GraniteBox")]
+    pub struct Box(Object<ffi::GraniteBox, ffi::GraniteBoxClass>) @extends gtk::Box, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Orientable;
 
     match fn {
-        type_ => || ffi::granite_hyper_text_view_get_type(),
+        type_ => || ffi::granite_box_get_type(),
     }
 }
 
-#[cfg(not(any(feature = "gtk_v4_14")))]
-glib::wrapper! {
-    #[doc(alias = "GraniteHyperTextView")]
-    pub struct HyperTextView(Object<ffi::GraniteHyperTextView, ffi::GraniteHyperTextViewClass>) @extends gtk::TextView, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Scrollable;
+impl Box {
+    pub const NONE: Option<&'static Box> = None;
 
-    match fn {
-        type_ => || ffi::granite_hyper_text_view_get_type(),
-    }
-}
-
-impl HyperTextView {
-    pub const NONE: Option<&'static HyperTextView> = None;
-
-    #[doc(alias = "granite_hyper_text_view_new")]
-    pub fn new() -> HyperTextView {
+    #[doc(alias = "granite_box_new")]
+    pub fn new(orientation: gtk::Orientation, child_spacing: BoxSpacing) -> Box {
         assert_initialized_main_thread!();
-        unsafe { from_glib_none(ffi::granite_hyper_text_view_new()) }
+        unsafe {
+            from_glib_none(ffi::granite_box_new(
+                orientation.into_glib(),
+                child_spacing.into_glib(),
+            ))
+        }
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`HyperTextView`] objects.
+    /// Creates a new builder-pattern struct instance to construct [`Box`] objects.
     ///
-    /// This method returns an instance of [`HyperTextViewBuilder`](crate::builders::HyperTextViewBuilder) which can be used to create [`HyperTextView`] objects.
-    pub fn builder() -> HyperTextViewBuilder {
-        HyperTextViewBuilder::new()
+    /// This method returns an instance of [`BoxBuilder`](crate::builders::BoxBuilder) which can be used to create [`Box`] objects.
+    pub fn builder() -> BoxBuilder {
+        BoxBuilder::new()
     }
 }
 
-impl Default for HyperTextView {
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+impl Default for Box {
     fn default() -> Self {
-        Self::new()
+        glib::object::Object::new::<Self>()
     }
 }
 
 // rustdoc-stripper-ignore-next
-/// A [builder-pattern] type to construct [`HyperTextView`] objects.
+/// A [builder-pattern] type to construct [`Box`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
-pub struct HyperTextViewBuilder {
-    builder: glib::object::ObjectBuilder<'static, HyperTextView>,
+pub struct BoxBuilder {
+    builder: glib::object::ObjectBuilder<'static, Box>,
 }
 
-impl HyperTextViewBuilder {
+impl BoxBuilder {
     fn new() -> Self {
         Self {
             builder: glib::object::Object::builder(),
         }
     }
 
-    pub fn accepts_tab(self, accepts_tab: bool) -> Self {
+    pub fn child_spacing(self, child_spacing: BoxSpacing) -> Self {
         Self {
-            builder: self.builder.property("accepts-tab", accepts_tab),
+            builder: self.builder.property("child-spacing", child_spacing),
         }
     }
 
-    pub fn bottom_margin(self, bottom_margin: i32) -> Self {
+    #[cfg(feature = "gtk_v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_12")))]
+    pub fn baseline_child(self, baseline_child: i32) -> Self {
         Self {
-            builder: self.builder.property("bottom-margin", bottom_margin),
+            builder: self.builder.property("baseline-child", baseline_child),
         }
     }
 
-    //pub fn buffer(self, buffer: &impl IsA</*Ignored*/gtk::TextBuffer>) -> Self {
-    //    Self { builder: self.builder.property("buffer", buffer.clone().upcast()), }
-    //}
-
-    pub fn cursor_visible(self, cursor_visible: bool) -> Self {
-        Self {
-            builder: self.builder.property("cursor-visible", cursor_visible),
-        }
-    }
-
-    pub fn editable(self, editable: bool) -> Self {
-        Self {
-            builder: self.builder.property("editable", editable),
-        }
-    }
-
-    //pub fn extra_menu(self, extra_menu: &impl IsA</*Ignored*/gio::MenuModel>) -> Self {
-    //    Self { builder: self.builder.property("extra-menu", extra_menu.clone().upcast()), }
-    //}
-
-    pub fn im_module(self, im_module: impl Into<glib::GString>) -> Self {
-        Self {
-            builder: self.builder.property("im-module", im_module.into()),
-        }
-    }
-
-    pub fn indent(self, indent: i32) -> Self {
-        Self {
-            builder: self.builder.property("indent", indent),
-        }
-    }
-
-    //pub fn input_hints(self, input_hints: /*Ignored*/gtk::InputHints) -> Self {
-    //    Self { builder: self.builder.property("input-hints", input_hints), }
-    //}
-
-    //pub fn input_purpose(self, input_purpose: /*Ignored*/gtk::InputPurpose) -> Self {
-    //    Self { builder: self.builder.property("input-purpose", input_purpose), }
-    //}
-
-    //pub fn justification(self, justification: /*Ignored*/gtk::Justification) -> Self {
-    //    Self { builder: self.builder.property("justification", justification), }
-    //}
-
-    pub fn left_margin(self, left_margin: i32) -> Self {
-        Self {
-            builder: self.builder.property("left-margin", left_margin),
-        }
-    }
-
-    pub fn monospace(self, monospace: bool) -> Self {
-        Self {
-            builder: self.builder.property("monospace", monospace),
-        }
-    }
-
-    pub fn overwrite(self, overwrite: bool) -> Self {
-        Self {
-            builder: self.builder.property("overwrite", overwrite),
-        }
-    }
-
-    pub fn pixels_above_lines(self, pixels_above_lines: i32) -> Self {
+    pub fn baseline_position(self, baseline_position: gtk::BaselinePosition) -> Self {
         Self {
             builder: self
                 .builder
-                .property("pixels-above-lines", pixels_above_lines),
+                .property("baseline-position", baseline_position),
         }
     }
 
-    pub fn pixels_below_lines(self, pixels_below_lines: i32) -> Self {
+    pub fn homogeneous(self, homogeneous: bool) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("pixels-below-lines", pixels_below_lines),
+            builder: self.builder.property("homogeneous", homogeneous),
         }
     }
 
-    pub fn pixels_inside_wrap(self, pixels_inside_wrap: i32) -> Self {
+    pub fn spacing(self, spacing: i32) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("pixels-inside-wrap", pixels_inside_wrap),
+            builder: self.builder.property("spacing", spacing),
         }
     }
-
-    pub fn right_margin(self, right_margin: i32) -> Self {
-        Self {
-            builder: self.builder.property("right-margin", right_margin),
-        }
-    }
-
-    //pub fn tabs(self, tabs: /*Ignored*/&pango::TabArray) -> Self {
-    //    Self { builder: self.builder.property("tabs", tabs), }
-    //}
-
-    pub fn top_margin(self, top_margin: i32) -> Self {
-        Self {
-            builder: self.builder.property("top-margin", top_margin),
-        }
-    }
-
-    //pub fn wrap_mode(self, wrap_mode: /*Ignored*/gtk::WrapMode) -> Self {
-    //    Self { builder: self.builder.property("wrap-mode", wrap_mode), }
-    //}
 
     pub fn can_focus(self, can_focus: bool) -> Self {
         Self {
@@ -377,27 +293,71 @@ impl HyperTextViewBuilder {
         }
     }
 
-    //pub fn hadjustment(self, hadjustment: &impl IsA</*Ignored*/gtk::Adjustment>) -> Self {
-    //    Self { builder: self.builder.property("hadjustment", hadjustment.clone().upcast()), }
-    //}
-
-    //pub fn hscroll_policy(self, hscroll_policy: /*Ignored*/gtk::ScrollablePolicy) -> Self {
-    //    Self { builder: self.builder.property("hscroll-policy", hscroll_policy), }
-    //}
-
-    //pub fn vadjustment(self, vadjustment: &impl IsA</*Ignored*/gtk::Adjustment>) -> Self {
-    //    Self { builder: self.builder.property("vadjustment", vadjustment.clone().upcast()), }
-    //}
-
-    //pub fn vscroll_policy(self, vscroll_policy: /*Ignored*/gtk::ScrollablePolicy) -> Self {
-    //    Self { builder: self.builder.property("vscroll-policy", vscroll_policy), }
-    //}
+    pub fn orientation(self, orientation: gtk::Orientation) -> Self {
+        Self {
+            builder: self.builder.property("orientation", orientation),
+        }
+    }
 
     // rustdoc-stripper-ignore-next
-    /// Build the [`HyperTextView`].
+    /// Build the [`Box`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
-    pub fn build(self) -> HyperTextView {
+    pub fn build(self) -> Box {
         assert_initialized_main_thread!();
         self.builder.build()
     }
 }
+
+pub trait BoxExt: IsA<Box> + 'static {
+    #[doc(alias = "granite_box_get_child_spacing")]
+    #[doc(alias = "get_child_spacing")]
+    fn child_spacing(&self) -> BoxSpacing {
+        unsafe {
+            from_glib(ffi::granite_box_get_child_spacing(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    #[doc(alias = "granite_box_set_child_spacing")]
+    fn set_child_spacing(&self, value: BoxSpacing) {
+        unsafe {
+            ffi::granite_box_set_child_spacing(self.as_ref().to_glib_none().0, value.into_glib());
+        }
+    }
+
+    #[doc(alias = "child-spacing")]
+    fn get_property_child_spacing(&self) -> BoxSpacing {
+        ObjectExt::property(self.as_ref(), "child-spacing")
+    }
+
+    #[doc(alias = "child-spacing")]
+    fn set_property_child_spacing(&self, child_spacing: BoxSpacing) {
+        ObjectExt::set_property(self.as_ref(), "child-spacing", child_spacing)
+    }
+
+    #[doc(alias = "child-spacing")]
+    fn connect_child_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_child_spacing_trampoline<P: IsA<Box>, F: Fn(&P) + 'static>(
+            this: *mut ffi::GraniteBox,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(Box::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::child-spacing".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_child_spacing_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+}
+
+impl<O: IsA<Box>> BoxExt for O {}

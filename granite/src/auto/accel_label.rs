@@ -102,9 +102,13 @@ impl AccelLabelBuilder {
         }
     }
 
-    //pub fn baseline_position(self, baseline_position: /*Ignored*/gtk::BaselinePosition) -> Self {
-    //    Self { builder: self.builder.property("baseline-position", baseline_position), }
-    //}
+    pub fn baseline_position(self, baseline_position: gtk::BaselinePosition) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("baseline-position", baseline_position),
+        }
+    }
 
     pub fn homogeneous(self, homogeneous: bool) -> Self {
         Self {
@@ -190,9 +194,13 @@ impl AccelLabelBuilder {
         }
     }
 
-    //pub fn layout_manager(self, layout_manager: &impl IsA</*Ignored*/gtk::LayoutManager>) -> Self {
-    //    Self { builder: self.builder.property("layout-manager", layout_manager.clone().upcast()), }
-    //}
+    pub fn layout_manager(self, layout_manager: &impl IsA<gtk::LayoutManager>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("layout-manager", layout_manager.clone().upcast()),
+        }
+    }
 
     #[cfg(feature = "gtk_v4_18")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_18")))]
@@ -300,13 +308,17 @@ impl AccelLabelBuilder {
         }
     }
 
-    //pub fn accessible_role(self, accessible_role: /*Ignored*/gtk::AccessibleRole) -> Self {
-    //    Self { builder: self.builder.property("accessible-role", accessible_role), }
-    //}
+    pub fn accessible_role(self, accessible_role: gtk::AccessibleRole) -> Self {
+        Self {
+            builder: self.builder.property("accessible-role", accessible_role),
+        }
+    }
 
-    //pub fn orientation(self, orientation: /*Ignored*/gtk::Orientation) -> Self {
-    //    Self { builder: self.builder.property("orientation", orientation), }
-    //}
+    pub fn orientation(self, orientation: gtk::Orientation) -> Self {
+        Self {
+            builder: self.builder.property("orientation", orientation),
+        }
+    }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`AccelLabel`].
