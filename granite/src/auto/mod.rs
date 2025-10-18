@@ -6,12 +6,26 @@
 mod accel_label;
 pub use self::accel_label::AccelLabel;
 
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+mod back_button;
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+pub use self::back_button::BackButton;
+
 #[cfg(feature = "v7_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_6")))]
 mod bin;
 #[cfg(feature = "v7_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_6")))]
 pub use self::bin::Bin;
+
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+mod box_;
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+pub use self::box_::Box;
 
 mod date_picker;
 pub use self::date_picker::DatePicker;
@@ -24,6 +38,13 @@ pub use self::header_label::HeaderLabel;
 
 mod hyper_text_view;
 pub use self::hyper_text_view::HyperTextView;
+
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+mod list_item;
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+pub use self::list_item::ListItem;
 
 mod message_dialog;
 pub use self::message_dialog::MessageDialog;
@@ -67,6 +88,13 @@ mod simple_settings_page;
 #[cfg_attr(feature = "v7_5", deprecated = "Since 7.5")]
 pub use self::simple_settings_page::SimpleSettingsPage;
 
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+mod style_manager;
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+pub use self::style_manager::StyleManager;
+
 mod switch_model_button;
 pub use self::switch_model_button::SwitchModelButton;
 
@@ -76,7 +104,20 @@ pub use self::time_picker::TimePicker;
 mod toast;
 pub use self::toast::Toast;
 
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+mod tool_box;
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+pub use self::tool_box::ToolBox;
+
 mod enums;
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+pub use self::enums::BoxSpacing;
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+pub use self::enums::HeaderLabelSize;
 pub use self::enums::ServicesContractorError;
 pub use self::enums::SettingsColorScheme;
 pub use self::enums::SettingsPageStatusType;
@@ -87,6 +128,45 @@ pub use self::enums::ToastDismissReason;
 pub(crate) mod functions;
 
 mod constants;
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+pub use self::constants::CssClassACCENT;
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+pub use self::constants::CssClassCARD;
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+pub use self::constants::CssClassCHECKERBOARD;
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+pub use self::constants::CssClassCIRCULAR;
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+pub use self::constants::CssClassDESTRUCTIVE;
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+pub use self::constants::CssClassDIM;
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+pub use self::constants::CssClassERROR;
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+pub use self::constants::CssClassMONOSPACE;
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+pub use self::constants::CssClassNUMERIC;
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+pub use self::constants::CssClassSMALL;
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+pub use self::constants::CssClassSUCCESS;
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+pub use self::constants::CssClassSUGGESTED;
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+pub use self::constants::CssClassWARNING;
 #[cfg(feature = "v7_3")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
 pub use self::constants::SettingsUriLOCATION;
@@ -108,65 +188,103 @@ pub use self::constants::SettingsUriSHORTCUTS;
 #[cfg(feature = "v7_3")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_3")))]
 pub use self::constants::SettingsUriSOUND_INPUT;
+#[allow(deprecated)]
 pub use self::constants::STYLE_CLASS_ACCENT;
 #[cfg(feature = "v7_1")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
 pub use self::constants::STYLE_CLASS_BACKGROUND;
+#[allow(deprecated)]
 pub use self::constants::STYLE_CLASS_BACK_BUTTON;
 pub use self::constants::STYLE_CLASS_BADGE;
+#[allow(deprecated)]
 pub use self::constants::STYLE_CLASS_CARD;
+#[allow(deprecated)]
 pub use self::constants::STYLE_CLASS_CHECKERBOARD;
+#[allow(deprecated)]
 pub use self::constants::STYLE_CLASS_CIRCULAR;
 pub use self::constants::STYLE_CLASS_COLOR_BUTTON;
 pub use self::constants::STYLE_CLASS_DEFAULT_DECORATION;
+#[allow(deprecated)]
 pub use self::constants::STYLE_CLASS_DESTRUCTIVE_ACTION;
+#[allow(deprecated)]
 pub use self::constants::STYLE_CLASS_DIALOG_CONTENT_AREA;
+#[allow(deprecated)]
 pub use self::constants::STYLE_CLASS_DIM_LABEL;
+#[allow(deprecated)]
 pub use self::constants::STYLE_CLASS_ERROR;
 pub use self::constants::STYLE_CLASS_FLAT;
 #[cfg(feature = "v7_1")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
+#[allow(deprecated)]
 pub use self::constants::STYLE_CLASS_FRAME;
+#[allow(deprecated)]
 pub use self::constants::STYLE_CLASS_H1_LABEL;
+#[allow(deprecated)]
 pub use self::constants::STYLE_CLASS_H2_LABEL;
+#[allow(deprecated)]
 pub use self::constants::STYLE_CLASS_H3_LABEL;
+#[allow(deprecated)]
 pub use self::constants::STYLE_CLASS_H4_LABEL;
+#[allow(deprecated)]
 pub use self::constants::STYLE_CLASS_KEYCAP;
 pub use self::constants::STYLE_CLASS_LARGE_ICONS;
+#[allow(deprecated)]
 pub use self::constants::STYLE_CLASS_LINKED;
+#[allow(deprecated)]
 pub use self::constants::STYLE_CLASS_MENU;
+#[allow(deprecated)]
 pub use self::constants::STYLE_CLASS_MENUITEM;
+#[allow(deprecated)]
 pub use self::constants::STYLE_CLASS_MESSAGE_DIALOG;
+#[allow(deprecated)]
 pub use self::constants::STYLE_CLASS_MODE_SWITCH;
 pub use self::constants::STYLE_CLASS_OSD;
 #[cfg(feature = "v7_1")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
+#[allow(deprecated)]
 pub use self::constants::STYLE_CLASS_RICH_LIST;
+#[allow(deprecated)]
 pub use self::constants::STYLE_CLASS_ROUNDED;
 #[cfg(feature = "v7_1")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
 pub use self::constants::STYLE_CLASS_SIDEBAR;
+#[allow(deprecated)]
 pub use self::constants::STYLE_CLASS_SMALL_LABEL;
 #[cfg(feature = "v7_5")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v7_5")))]
+#[allow(deprecated)]
 pub use self::constants::STYLE_CLASS_SUCCESS;
+#[allow(deprecated)]
 pub use self::constants::STYLE_CLASS_SUGGESTED_ACTION;
+#[allow(deprecated)]
 pub use self::constants::STYLE_CLASS_TEMPERATURE;
 pub use self::constants::STYLE_CLASS_TERMINAL;
+#[allow(deprecated)]
 pub use self::constants::STYLE_CLASS_TITLE_LABEL;
 pub use self::constants::STYLE_CLASS_VIEW;
+#[allow(deprecated)]
 pub use self::constants::STYLE_CLASS_WARMTH;
+#[allow(deprecated)]
 pub use self::constants::STYLE_CLASS_WARNING;
 pub use self::constants::TOOLTIP_SECONDARY_TEXT_MARKUP;
 
 pub(crate) mod traits {
     pub use super::accel_label::AccelLabelExt;
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub use super::back_button::BackButtonExt;
     #[cfg(feature = "v7_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v7_6")))]
     pub use super::bin::BinExt;
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub use super::box_::BoxExt;
     pub use super::date_picker::DatePickerExt;
     pub use super::dialog::DialogExt;
     pub use super::header_label::HeaderLabelExt;
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub use super::list_item::ListItemExt;
     pub use super::message_dialog::MessageDialogExt;
     pub use super::mode_switch::ModeSwitchExt;
     pub use super::overlay_bar::OverlayBarExt;
@@ -181,26 +299,47 @@ pub(crate) mod traits {
     pub use super::settings_sidebar::SettingsSidebarExt;
     #[cfg_attr(feature = "v7_5", deprecated = "Since 7.5")]
     pub use super::simple_settings_page::SimpleSettingsPageExt;
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub use super::style_manager::StyleManagerExt;
     pub use super::switch_model_button::SwitchModelButtonExt;
     pub use super::time_picker::TimePickerExt;
     pub use super::toast::ToastExt;
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub use super::tool_box::ToolBoxExt;
 }
 pub(crate) mod builders {
     pub use super::accel_label::AccelLabelBuilder;
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub use super::back_button::BackButtonBuilder;
     #[cfg(feature = "v7_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v7_6")))]
     pub use super::bin::BinBuilder;
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub use super::box_::BoxBuilder;
     pub use super::date_picker::DatePickerBuilder;
     pub use super::dialog::DialogBuilder;
     pub use super::header_label::HeaderLabelBuilder;
     pub use super::hyper_text_view::HyperTextViewBuilder;
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub use super::list_item::ListItemBuilder;
     pub use super::message_dialog::MessageDialogBuilder;
     pub use super::mode_switch::ModeSwitchBuilder;
     pub use super::overlay_bar::OverlayBarBuilder;
     pub use super::placeholder::PlaceholderBuilder;
     #[cfg_attr(feature = "v7_5", deprecated = "Since 7.5")]
     pub use super::settings_sidebar::SettingsSidebarBuilder;
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub use super::style_manager::StyleManagerBuilder;
     pub use super::switch_model_button::SwitchModelButtonBuilder;
     pub use super::time_picker::TimePickerBuilder;
     pub use super::toast::ToastBuilder;
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub use super::tool_box::ToolBoxBuilder;
 }

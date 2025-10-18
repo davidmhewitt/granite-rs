@@ -32,6 +32,19 @@ use std::ffi::{
 use glib::{gboolean, gconstpointer, gpointer, GType};
 
 // Enums
+pub type GraniteBoxSpacing = c_int;
+pub const GRANITE_BOX_SPACING_NONE: GraniteBoxSpacing = 0;
+pub const GRANITE_BOX_SPACING_HALF: GraniteBoxSpacing = 1;
+pub const GRANITE_BOX_SPACING_SINGLE: GraniteBoxSpacing = 2;
+pub const GRANITE_BOX_SPACING_DOUBLE: GraniteBoxSpacing = 3;
+pub const GRANITE_BOX_SPACING_LINKED: GraniteBoxSpacing = 4;
+
+pub type GraniteHeaderLabelSize = c_int;
+pub const GRANITE_HEADER_LABEL_SIZE_H1: GraniteHeaderLabelSize = 0;
+pub const GRANITE_HEADER_LABEL_SIZE_H2: GraniteHeaderLabelSize = 1;
+pub const GRANITE_HEADER_LABEL_SIZE_H3: GraniteHeaderLabelSize = 2;
+pub const GRANITE_HEADER_LABEL_SIZE_H4: GraniteHeaderLabelSize = 3;
+
 pub type GraniteServicesContractorError = c_int;
 pub const GRANITE_SERVICES_CONTRACTOR_ERROR_SERVICE_NOT_AVAILABLE: GraniteServicesContractorError =
     0;
@@ -54,6 +67,19 @@ pub const GRANITE_TOAST_DISMISS_REASON_CLOSED: GraniteToastDismissReason = 2;
 pub const GRANITE_TOAST_DISMISS_REASON_WITHDRAWN: GraniteToastDismissReason = 3;
 
 // Constants
+pub const GRANITE_CSS_CLASS_ACCENT: &[u8] = b"accent\0";
+pub const GRANITE_CSS_CLASS_CARD: &[u8] = b"card\0";
+pub const GRANITE_CSS_CLASS_CHECKERBOARD: &[u8] = b"checkerboard\0";
+pub const GRANITE_CSS_CLASS_CIRCULAR: &[u8] = b"circular\0";
+pub const GRANITE_CSS_CLASS_DESTRUCTIVE: &[u8] = b"destructive\0";
+pub const GRANITE_CSS_CLASS_DIM: &[u8] = b"dim-label\0";
+pub const GRANITE_CSS_CLASS_ERROR: &[u8] = b"error\0";
+pub const GRANITE_CSS_CLASS_NUMERIC: &[u8] = b"numeric\0";
+pub const GRANITE_CSS_CLASS_SMALL: &[u8] = b"small-label\0";
+pub const GRANITE_CSS_CLASS_SUGGESTED: &[u8] = b"suggested\0";
+pub const GRANITE_CSS_CLASS_SUCCESS: &[u8] = b"success\0";
+pub const GRANITE_CSS_CLASS_WARNING: &[u8] = b"warning\0";
+pub const GRANITE_CSS_CLASS_MONOSPACE: &[u8] = b"monospace\0";
 pub const GRANITE_SETTINGS_URI_LOCATION: &[u8] = b"settings://privacy/location\0";
 pub const GRANITE_SETTINGS_URI_ONLINE_ACCOUNTS: &[u8] = b"settings://accounts/online\0";
 pub const GRANITE_SETTINGS_URI_NETWORK: &[u8] = b"settings://network\0";
@@ -131,6 +157,28 @@ pub type GraniteAccelLabelPrivate = _GraniteAccelLabelPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
+pub struct GraniteBackButtonClass {
+    pub parent_class: gtk::GtkButtonClass,
+}
+
+impl ::std::fmt::Debug for GraniteBackButtonClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GraniteBackButtonClass @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[allow(dead_code)]
+pub struct _GraniteBackButtonPrivate {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GraniteBackButtonPrivate = _GraniteBackButtonPrivate;
+
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GraniteBinClass {
     pub parent_class: gtk::GtkWidgetClass,
 }
@@ -150,6 +198,28 @@ pub struct _GraniteBinPrivate {
 }
 
 pub type GraniteBinPrivate = _GraniteBinPrivate;
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct GraniteBoxClass {
+    pub parent_class: gtk::GtkBoxClass,
+}
+
+impl ::std::fmt::Debug for GraniteBoxClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GraniteBoxClass @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[allow(dead_code)]
+pub struct _GraniteBoxPrivate {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GraniteBoxPrivate = _GraniteBoxPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -238,6 +308,28 @@ pub struct _GraniteHyperTextViewPrivate {
 }
 
 pub type GraniteHyperTextViewPrivate = _GraniteHyperTextViewPrivate;
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct GraniteListItemClass {
+    pub parent_class: gtk::GtkWidgetClass,
+}
+
+impl ::std::fmt::Debug for GraniteListItemClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GraniteListItemClass @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[allow(dead_code)]
+pub struct _GraniteListItemPrivate {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GraniteListItemPrivate = _GraniteListItemPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -514,6 +606,28 @@ pub type GraniteSimpleSettingsPagePrivate = _GraniteSimpleSettingsPagePrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
+pub struct GraniteStyleManagerClass {
+    pub parent_class: gobject::GObjectClass,
+}
+
+impl ::std::fmt::Debug for GraniteStyleManagerClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GraniteStyleManagerClass @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[allow(dead_code)]
+pub struct _GraniteStyleManagerPrivate {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GraniteStyleManagerPrivate = _GraniteStyleManagerPrivate;
+
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GraniteSwitchModelButtonClass {
     pub parent_class: gtk::GtkToggleButtonClass,
 }
@@ -580,6 +694,28 @@ pub type GraniteToastPrivate = _GraniteToastPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
+pub struct GraniteToolBoxClass {
+    pub parent_class: gtk::GtkWidgetClass,
+}
+
+impl ::std::fmt::Debug for GraniteToolBoxClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GraniteToolBoxClass @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[allow(dead_code)]
+pub struct _GraniteToolBoxPrivate {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GraniteToolBoxPrivate = _GraniteToolBoxPrivate;
+
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GraniteValidatedEntryClass {
     pub parent_class: gtk::GtkEntryClass,
 }
@@ -617,6 +753,20 @@ impl ::std::fmt::Debug for GraniteAccelLabel {
 
 #[derive(Copy, Clone)]
 #[repr(C)]
+pub struct GraniteBackButton {
+    pub parent_instance: gtk::GtkButton,
+    pub priv_: *mut GraniteBackButtonPrivate,
+}
+
+impl ::std::fmt::Debug for GraniteBackButton {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GraniteBackButton @ {self:p}"))
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GraniteBin {
     pub parent_instance: gtk::GtkWidget,
     pub priv_: *mut GraniteBinPrivate,
@@ -625,6 +775,19 @@ pub struct GraniteBin {
 impl ::std::fmt::Debug for GraniteBin {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GraniteBin @ {self:p}")).finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct GraniteBox {
+    pub parent_instance: gtk::GtkBox,
+    pub priv_: *mut GraniteBoxPrivate,
+}
+
+impl ::std::fmt::Debug for GraniteBox {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GraniteBox @ {self:p}")).finish()
     }
 }
 
@@ -680,6 +843,20 @@ pub struct GraniteHyperTextView {
 impl ::std::fmt::Debug for GraniteHyperTextView {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GraniteHyperTextView @ {self:p}"))
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct GraniteListItem {
+    pub parent_instance: gtk::GtkWidget,
+    pub priv_: *mut GraniteListItemPrivate,
+}
+
+impl ::std::fmt::Debug for GraniteListItem {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GraniteListItem @ {self:p}"))
             .finish()
     }
 }
@@ -830,6 +1007,20 @@ impl ::std::fmt::Debug for GraniteSimpleSettingsPage {
 
 #[derive(Copy, Clone)]
 #[repr(C)]
+pub struct GraniteStyleManager {
+    pub parent_instance: gobject::GObject,
+    pub priv_: *mut GraniteStyleManagerPrivate,
+}
+
+impl ::std::fmt::Debug for GraniteStyleManager {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GraniteStyleManager @ {self:p}"))
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GraniteSwitchModelButton {
     pub parent_instance: gtk::GtkToggleButton,
     pub priv_: *mut GraniteSwitchModelButtonPrivate,
@@ -866,6 +1057,20 @@ pub struct GraniteToast {
 impl ::std::fmt::Debug for GraniteToast {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GraniteToast @ {self:p}")).finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct GraniteToolBox {
+    pub parent_instance: gtk::GtkWidget,
+    pub priv_: *mut GraniteToolBoxPrivate,
+}
+
+impl ::std::fmt::Debug for GraniteToolBox {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GraniteToolBox @ {self:p}"))
+            .finish()
     }
 }
 
@@ -913,6 +1118,20 @@ impl ::std::fmt::Debug for GraniteServicesSettingsSerializable {
 extern "C" {
 
     //=========================================================================
+    // GraniteBoxSpacing
+    //=========================================================================
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_box_spacing_get_type() -> GType;
+
+    //=========================================================================
+    // GraniteHeaderLabelSize
+    //=========================================================================
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_header_label_size_get_type() -> GType;
+
+    //=========================================================================
     // GraniteServicesContractorError
     //=========================================================================
     pub fn granite_services_contractor_error_get_type() -> GType;
@@ -957,6 +1176,22 @@ extern "C" {
     ) -> *mut GraniteAccelLabel;
 
     //=========================================================================
+    // GraniteBackButton
+    //=========================================================================
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_back_button_get_type() -> GType;
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_back_button_get_label(self_: *mut GraniteBackButton) -> *const c_char;
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_back_button_set_label(self_: *mut GraniteBackButton, value: *const c_char);
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_back_button_new(label: *const c_char) -> *mut GraniteBackButton;
+
+    //=========================================================================
     // GraniteBin
     //=========================================================================
     #[cfg(feature = "v7_6")]
@@ -971,6 +1206,25 @@ extern "C" {
     #[cfg(feature = "v7_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v7_6")))]
     pub fn granite_bin_new() -> *mut GraniteBin;
+
+    //=========================================================================
+    // GraniteBox
+    //=========================================================================
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_box_get_type() -> GType;
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_box_get_child_spacing(self_: *mut GraniteBox) -> GraniteBoxSpacing;
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_box_set_child_spacing(self_: *mut GraniteBox, value: GraniteBoxSpacing);
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_box_new(
+        orientation: gtk::GtkOrientation,
+        child_spacing: GraniteBoxSpacing,
+    ) -> *mut GraniteBox;
 
     //=========================================================================
     // GraniteDatePicker
@@ -1012,6 +1266,15 @@ extern "C" {
         self_: *mut GraniteHeaderLabel,
         value: *mut gtk::GtkWidget,
     );
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_header_label_get_size(self_: *mut GraniteHeaderLabel) -> GraniteHeaderLabelSize;
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_header_label_set_size(
+        self_: *mut GraniteHeaderLabel,
+        value: GraniteHeaderLabelSize,
+    );
     #[cfg(feature = "v7_1")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
     pub fn granite_header_label_get_secondary_text(self_: *mut GraniteHeaderLabel)
@@ -1029,6 +1292,34 @@ extern "C" {
     //=========================================================================
     pub fn granite_hyper_text_view_get_type() -> GType;
     pub fn granite_hyper_text_view_new() -> *mut GraniteHyperTextView;
+
+    //=========================================================================
+    // GraniteListItem
+    //=========================================================================
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_list_item_get_type() -> GType;
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_list_item_get_text(self_: *mut GraniteListItem) -> *const c_char;
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_list_item_set_text(self_: *mut GraniteListItem, value: *const c_char);
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_list_item_get_description(self_: *mut GraniteListItem) -> *const c_char;
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_list_item_set_description(self_: *mut GraniteListItem, value: *const c_char);
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_list_item_get_child(self_: *mut GraniteListItem) -> *mut gtk::GtkWidget;
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_list_item_set_child(self_: *mut GraniteListItem, value: *mut gtk::GtkWidget);
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_list_item_new() -> *mut GraniteListItem;
 
     //=========================================================================
     // GraniteMessageDialog
@@ -1196,6 +1487,10 @@ extern "C" {
     // GraniteSettings
     //=========================================================================
     pub fn granite_settings_get_type() -> GType;
+    pub fn granite_settings_get_accent_color(
+        self_: *mut GraniteSettings,
+        result: *mut gdk::GdkRGBA,
+    );
     pub fn granite_settings_get_prefers_color_scheme(
         self_: *mut GraniteSettings,
     ) -> GraniteSettingsColorScheme;
@@ -1272,6 +1567,37 @@ extern "C" {
     );
 
     //=========================================================================
+    // GraniteStyleManager
+    //=========================================================================
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_style_manager_get_type() -> GType;
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_style_manager_get_default() -> *mut GraniteStyleManager;
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_style_manager_get_for_display(
+        display: *mut gdk::GdkDisplay,
+    ) -> *mut GraniteStyleManager;
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_style_manager_get_color_scheme(
+        self_: *mut GraniteStyleManager,
+    ) -> GraniteSettingsColorScheme;
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_style_manager_set_color_scheme(
+        self_: *mut GraniteStyleManager,
+        value: GraniteSettingsColorScheme,
+    );
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_style_manager_get_display(
+        self_: *mut GraniteStyleManager,
+    ) -> *mut gdk::GdkDisplay;
+
+    //=========================================================================
     // GraniteSwitchModelButton
     //=========================================================================
     pub fn granite_switch_model_button_get_type() -> GType;
@@ -1317,6 +1643,31 @@ extern "C" {
     #[cfg(feature = "v7_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v7_4")))]
     pub fn granite_toast_withdraw(self_: *mut GraniteToast);
+
+    //=========================================================================
+    // GraniteToolBox
+    //=========================================================================
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_tool_box_get_type() -> GType;
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_tool_box_get_content(self_: *mut GraniteToolBox) -> *mut gtk::GtkWidget;
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_tool_box_set_content(self_: *mut GraniteToolBox, value: *mut gtk::GtkWidget);
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_tool_box_add_top_bar(self_: *mut GraniteToolBox, widget: *mut gtk::GtkWidget);
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_tool_box_add_bottom_bar(self_: *mut GraniteToolBox, widget: *mut gtk::GtkWidget);
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_tool_box_remove(self_: *mut GraniteToolBox, widget: *mut gtk::GtkWidget);
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_tool_box_new() -> *mut GraniteToolBox;
 
     //=========================================================================
     // GraniteValidatedEntry
@@ -1434,6 +1785,12 @@ extern "C" {
         color: *mut gdk::GdkRGBA,
         priority: c_int,
     ) -> *mut gtk::GtkCssProvider;
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_box_spacing_to_string(self_: GraniteBoxSpacing) -> *mut c_char;
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn granite_header_label_size_to_string(self_: GraniteHeaderLabelSize) -> *mut c_char;
     #[cfg(feature = "v7_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v7_2")))]
     pub fn granite_init();

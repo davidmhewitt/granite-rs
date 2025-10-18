@@ -217,6 +217,20 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GraniteBackButton",
+        Layout {
+            size: size_of::<GraniteBackButton>(),
+            alignment: align_of::<GraniteBackButton>(),
+        },
+    ),
+    (
+        "GraniteBackButtonClass",
+        Layout {
+            size: size_of::<GraniteBackButtonClass>(),
+            alignment: align_of::<GraniteBackButtonClass>(),
+        },
+    ),
+    (
         "GraniteBin",
         Layout {
             size: size_of::<GraniteBin>(),
@@ -228,6 +242,27 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GraniteBinClass>(),
             alignment: align_of::<GraniteBinClass>(),
+        },
+    ),
+    (
+        "GraniteBox",
+        Layout {
+            size: size_of::<GraniteBox>(),
+            alignment: align_of::<GraniteBox>(),
+        },
+    ),
+    (
+        "GraniteBoxClass",
+        Layout {
+            size: size_of::<GraniteBoxClass>(),
+            alignment: align_of::<GraniteBoxClass>(),
+        },
+    ),
+    (
+        "GraniteBoxSpacing",
+        Layout {
+            size: size_of::<GraniteBoxSpacing>(),
+            alignment: align_of::<GraniteBoxSpacing>(),
         },
     ),
     (
@@ -273,6 +308,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GraniteHeaderLabelSize",
+        Layout {
+            size: size_of::<GraniteHeaderLabelSize>(),
+            alignment: align_of::<GraniteHeaderLabelSize>(),
+        },
+    ),
+    (
         "GraniteHyperTextView",
         Layout {
             size: size_of::<GraniteHyperTextView>(),
@@ -284,6 +326,20 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GraniteHyperTextViewClass>(),
             alignment: align_of::<GraniteHyperTextViewClass>(),
+        },
+    ),
+    (
+        "GraniteListItem",
+        Layout {
+            size: size_of::<GraniteListItem>(),
+            alignment: align_of::<GraniteListItem>(),
+        },
+    ),
+    (
+        "GraniteListItemClass",
+        Layout {
+            size: size_of::<GraniteListItemClass>(),
+            alignment: align_of::<GraniteListItemClass>(),
         },
     ),
     (
@@ -462,6 +518,20 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GraniteStyleManager",
+        Layout {
+            size: size_of::<GraniteStyleManager>(),
+            alignment: align_of::<GraniteStyleManager>(),
+        },
+    ),
+    (
+        "GraniteStyleManagerClass",
+        Layout {
+            size: size_of::<GraniteStyleManagerClass>(),
+            alignment: align_of::<GraniteStyleManagerClass>(),
+        },
+    ),
+    (
         "GraniteSwitchModelButton",
         Layout {
             size: size_of::<GraniteSwitchModelButton>(),
@@ -511,6 +581,20 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GraniteToolBox",
+        Layout {
+            size: size_of::<GraniteToolBox>(),
+            alignment: align_of::<GraniteToolBox>(),
+        },
+    ),
+    (
+        "GraniteToolBoxClass",
+        Layout {
+            size: size_of::<GraniteToolBoxClass>(),
+            alignment: align_of::<GraniteToolBoxClass>(),
+        },
+    ),
+    (
         "GraniteValidatedEntry",
         Layout {
             size: size_of::<GraniteValidatedEntry>(),
@@ -527,6 +611,28 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
 ];
 
 const RUST_CONSTANTS: &[(&str, &str)] = &[
+    ("(gint) GRANITE_BOX_SPACING_DOUBLE", "3"),
+    ("(gint) GRANITE_BOX_SPACING_HALF", "1"),
+    ("(gint) GRANITE_BOX_SPACING_LINKED", "4"),
+    ("(gint) GRANITE_BOX_SPACING_NONE", "0"),
+    ("(gint) GRANITE_BOX_SPACING_SINGLE", "2"),
+    ("GRANITE_CSS_CLASS_ACCENT", "accent"),
+    ("GRANITE_CSS_CLASS_CARD", "card"),
+    ("GRANITE_CSS_CLASS_CHECKERBOARD", "checkerboard"),
+    ("GRANITE_CSS_CLASS_CIRCULAR", "circular"),
+    ("GRANITE_CSS_CLASS_DESTRUCTIVE", "destructive"),
+    ("GRANITE_CSS_CLASS_DIM", "dim-label"),
+    ("GRANITE_CSS_CLASS_ERROR", "error"),
+    ("GRANITE_CSS_CLASS_MONOSPACE", "monospace"),
+    ("GRANITE_CSS_CLASS_NUMERIC", "numeric"),
+    ("GRANITE_CSS_CLASS_SMALL", "small-label"),
+    ("GRANITE_CSS_CLASS_SUCCESS", "success"),
+    ("GRANITE_CSS_CLASS_SUGGESTED", "suggested"),
+    ("GRANITE_CSS_CLASS_WARNING", "warning"),
+    ("(gint) GRANITE_HEADER_LABEL_SIZE_H1", "0"),
+    ("(gint) GRANITE_HEADER_LABEL_SIZE_H2", "1"),
+    ("(gint) GRANITE_HEADER_LABEL_SIZE_H3", "2"),
+    ("(gint) GRANITE_HEADER_LABEL_SIZE_H4", "3"),
     (
         "(gint) GRANITE_SERVICES_CONTRACTOR_ERROR_SERVICE_NOT_AVAILABLE",
         "0",

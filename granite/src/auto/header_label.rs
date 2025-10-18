@@ -4,6 +4,9 @@
 // DO NOT EDIT
 
 use crate::ffi;
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+use crate::HeaderLabelSize;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -73,6 +76,14 @@ impl HeaderLabelBuilder {
             builder: self
                 .builder
                 .property("mnemonic-widget", mnemonic_widget.clone().upcast()),
+        }
+    }
+
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    pub fn size(self, size: HeaderLabelSize) -> Self {
+        Self {
+            builder: self.builder.property("size", size),
         }
     }
 
@@ -158,9 +169,13 @@ impl HeaderLabelBuilder {
         }
     }
 
-    //pub fn layout_manager(self, layout_manager: &impl IsA</*Ignored*/gtk::LayoutManager>) -> Self {
-    //    Self { builder: self.builder.property("layout-manager", layout_manager.clone().upcast()), }
-    //}
+    pub fn layout_manager(self, layout_manager: &impl IsA<gtk::LayoutManager>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("layout-manager", layout_manager.clone().upcast()),
+        }
+    }
 
     #[cfg(feature = "gtk_v4_18")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_18")))]
@@ -268,9 +283,11 @@ impl HeaderLabelBuilder {
         }
     }
 
-    //pub fn accessible_role(self, accessible_role: /*Ignored*/gtk::AccessibleRole) -> Self {
-    //    Self { builder: self.builder.property("accessible-role", accessible_role), }
-    //}
+    pub fn accessible_role(self, accessible_role: gtk::AccessibleRole) -> Self {
+        Self {
+            builder: self.builder.property("accessible-role", accessible_role),
+        }
+    }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`HeaderLabel`].
@@ -323,6 +340,27 @@ pub trait HeaderLabelExt: IsA<HeaderLabel> + 'static {
                 self.as_ref().to_glib_none().0,
                 value.map(|p| p.as_ref()).to_glib_none().0,
             );
+        }
+    }
+
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    #[doc(alias = "granite_header_label_get_size")]
+    #[doc(alias = "get_size")]
+    fn size(&self) -> HeaderLabelSize {
+        unsafe {
+            from_glib(ffi::granite_header_label_get_size(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    #[doc(alias = "granite_header_label_set_size")]
+    fn set_size(&self, value: HeaderLabelSize) {
+        unsafe {
+            ffi::granite_header_label_set_size(self.as_ref().to_glib_none().0, value.into_glib());
         }
     }
 
@@ -395,6 +433,31 @@ pub trait HeaderLabelExt: IsA<HeaderLabel> + 'static {
                 c"notify::mnemonic-widget".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_mnemonic_widget_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v7_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+    #[doc(alias = "size")]
+    fn connect_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_size_trampoline<P: IsA<HeaderLabel>, F: Fn(&P) + 'static>(
+            this: *mut ffi::GraniteHeaderLabel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(HeaderLabel::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::size".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_size_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

@@ -4,6 +4,9 @@
 // DO NOT EDIT
 
 use crate::ffi;
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+use crate::{BoxSpacing, HeaderLabelSize};
 use glib::{prelude::*, translate::*};
 
 #[doc(alias = "granite_date_time_get_default_time_format")]
@@ -80,6 +83,8 @@ pub fn date_time_seconds_to_time(seconds: i32) -> glib::GString {
 //    unsafe { TODO: call ffi:granite_services_application_set_progress_visible() }
 //}
 
+#[cfg_attr(feature = "v7_7", deprecated = "Since 7.7")]
+#[allow(deprecated)]
 #[doc(alias = "granite_widgets_utils_set_color_primary")]
 pub fn widgets_utils_set_color_primary(
     window: &impl IsA<gtk::Widget>,
@@ -94,6 +99,22 @@ pub fn widgets_utils_set_color_primary(
             priority,
         ))
     }
+}
+
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+#[doc(alias = "granite_box_spacing_to_string")]
+pub fn box_spacing_to_string(self_: BoxSpacing) -> glib::GString {
+    assert_initialized_main_thread!();
+    unsafe { from_glib_full(ffi::granite_box_spacing_to_string(self_.into_glib())) }
+}
+
+#[cfg(feature = "v7_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
+#[doc(alias = "granite_header_label_size_to_string")]
+pub fn header_label_size_to_string(self_: HeaderLabelSize) -> glib::GString {
+    assert_initialized_main_thread!();
+    unsafe { from_glib_full(ffi::granite_header_label_size_to_string(self_.into_glib())) }
 }
 
 #[cfg(feature = "v7_2")]
