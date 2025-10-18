@@ -2,9 +2,9 @@ name: Rust
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 env:
   CARGO_TERM_COLOR: always
@@ -21,6 +21,7 @@ jobs:
           - beta
           - "1.85.0"
         conf:
+          - { name: "granite", features: "v7_7", test_sys: true }
           - { name: "granite", features: "v7_6", test_sys: true }
           - { name: "granite", features: "v7_5", test_sys: true }
           - { name: "granite", features: "v7_4", test_sys: true }
@@ -30,16 +31,16 @@ jobs:
           - { name: "examples", features: "", test_sys: false }
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Install dependencies
-      run: apt-get update && apt-get install -y curl xvfb
-    - name: "Install ${{ matrix.rust }} rust"
-      uses: actions-rs/toolchain@v1
-      with:
-        toolchain: ${{ matrix.rust }}
-        profile: minimal
-    - name: "${{ matrix.conf.name }}: tests"
-      run: xvfb-run --auto-servernum cargo test --manifest-path ${{ matrix.conf.name }}/Cargo.toml --features "${{ matrix.conf.features }}"
-    - name: "${{ matrix.conf.name }}/sys: tests"
-      run: xvfb-run --auto-servernum cargo test --manifest-path ${{ matrix.conf.name }}/sys/Cargo.toml
-      if: matrix.conf.test_sys
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: apt-get update && apt-get install -y curl xvfb
+      - name: "Install ${{ matrix.rust }} rust"
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ matrix.rust }}
+          profile: minimal
+      - name: "${{ matrix.conf.name }}: tests"
+        run: xvfb-run --auto-servernum cargo test --manifest-path ${{ matrix.conf.name }}/Cargo.toml --features "${{ matrix.conf.features }}"
+      - name: "${{ matrix.conf.name }}/sys: tests"
+        run: xvfb-run --auto-servernum cargo test --manifest-path ${{ matrix.conf.name }}/sys/Cargo.toml
+        if: matrix.conf.test_sys
