@@ -200,9 +200,11 @@ impl MessageDialogBuilder {
         }
     }
 
-    //pub fn display(self, display: /*Ignored*/&gdk::Display) -> Self {
-    //    Self { builder: self.builder.property("display", display), }
-    //}
+    pub fn display(self, display: &gdk::Display) -> Self {
+        Self {
+            builder: self.builder.property("display", display.clone()),
+        }
+    }
 
     pub fn focus_visible(self, focus_visible: bool) -> Self {
         Self {
@@ -380,9 +382,13 @@ impl MessageDialogBuilder {
         }
     }
 
-    //pub fn layout_manager(self, layout_manager: &impl IsA</*Ignored*/gtk::LayoutManager>) -> Self {
-    //    Self { builder: self.builder.property("layout-manager", layout_manager.clone().upcast()), }
-    //}
+    pub fn layout_manager(self, layout_manager: &impl IsA<gtk::LayoutManager>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("layout-manager", layout_manager.clone().upcast()),
+        }
+    }
 
     #[cfg(feature = "gtk_v4_18")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_18")))]
@@ -490,9 +496,11 @@ impl MessageDialogBuilder {
         }
     }
 
-    //pub fn accessible_role(self, accessible_role: /*Ignored*/gtk::AccessibleRole) -> Self {
-    //    Self { builder: self.builder.property("accessible-role", accessible_role), }
-    //}
+    pub fn accessible_role(self, accessible_role: gtk::AccessibleRole) -> Self {
+        Self {
+            builder: self.builder.property("accessible-role", accessible_role),
+        }
+    }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`MessageDialog`].
