@@ -23,7 +23,8 @@ relm4 = ["dep:relm4"]
 gtk_v4_2 = ["gtk/v4_2"]
 gtk_v4_6 = ["gtk_v4_2", "gtk/v4_6"]
 gtk_v4_12 = ["gtk_v4_6", "gtk/v4_12"]
-gtk_v4_18 = ["gtk_v4_12", "gtk/v4_18"]
+gtk_v4_14 = ["gtk_v4_12", "gtk/v4_14"]
+gtk_v4_18 = ["gtk_v4_14", "gtk/v4_18"]
 gtk_v4_20 = ["gtk_v4_18", "gtk/v4_20"]
 
 
