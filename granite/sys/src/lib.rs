@@ -17,6 +17,7 @@ use gio_sys as gio;
 use glib_sys as glib;
 use gobject_sys as gobject;
 use gtk_sys as gtk;
+use pango_sys as pango;
 
 #[cfg(unix)]
 #[allow(unused_imports)]

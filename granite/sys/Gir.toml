@@ -13,6 +13,7 @@ external_libraries = [
     "GLib",
     "GObject",
     "Gtk",
+    "Pango",
 ]
 
 extra_versions = [
