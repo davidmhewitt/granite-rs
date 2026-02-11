@@ -155,14 +155,16 @@ pub trait SettingsPageExt: IsA<SettingsPage> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(SettingsPage::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(SettingsPage::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::status-type".as_ptr() as *const _,
+                c"notify::status-type".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_status_type_trampoline::<Self, F> as *const (),
                 )),
@@ -178,14 +180,16 @@ pub trait SettingsPageExt: IsA<SettingsPage> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(SettingsPage::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(SettingsPage::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::status".as_ptr() as *const _,
+                c"notify::status".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_status_trampoline::<Self, F> as *const (),
                 )),
@@ -204,14 +208,16 @@ pub trait SettingsPageExt: IsA<SettingsPage> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(SettingsPage::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(SettingsPage::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::icon-name".as_ptr() as *const _,
+                c"notify::icon-name".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_icon_name_trampoline::<Self, F> as *const (),
                 )),
@@ -227,14 +233,16 @@ pub trait SettingsPageExt: IsA<SettingsPage> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(SettingsPage::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(SettingsPage::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::title".as_ptr() as *const _,
+                c"notify::title".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_title_trampoline::<Self, F> as *const (),
                 )),
@@ -250,14 +258,16 @@ pub trait SettingsPageExt: IsA<SettingsPage> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(SettingsPage::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(SettingsPage::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::child".as_ptr() as *const _,
+                c"notify::child".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_child_trampoline::<Self, F> as *const (),
                 )),

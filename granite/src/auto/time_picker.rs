@@ -659,14 +659,16 @@ pub trait TimePickerExt: IsA<TimePicker> + 'static {
             this: *mut ffi::GraniteTimePicker,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TimePicker::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TimePicker::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"time-changed".as_ptr() as *const _,
+                c"time-changed".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     time_changed_trampoline::<Self, F> as *const (),
                 )),
@@ -682,14 +684,16 @@ pub trait TimePickerExt: IsA<TimePicker> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(TimePicker::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(TimePicker::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::time".as_ptr() as *const _,
+                c"notify::time".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_time_trampoline::<Self, F> as *const (),
                 )),

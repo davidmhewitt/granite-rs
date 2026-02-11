@@ -1116,7 +1116,7 @@ impl ::std::fmt::Debug for GraniteServicesSettingsSerializable {
     }
 }
 
-extern "C" {
+unsafe extern "C" {
 
     //=========================================================================
     // GraniteBoxSpacing

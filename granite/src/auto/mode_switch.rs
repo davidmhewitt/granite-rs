@@ -522,14 +522,16 @@ pub trait ModeSwitchExt: IsA<ModeSwitch> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(ModeSwitch::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(ModeSwitch::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::active".as_ptr() as *const _,
+                c"notify::active".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_active_trampoline::<Self, F> as *const (),
                 )),
@@ -548,14 +550,16 @@ pub trait ModeSwitchExt: IsA<ModeSwitch> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(ModeSwitch::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(ModeSwitch::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::primary-icon-gicon".as_ptr() as *const _,
+                c"notify::primary-icon-gicon".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_primary_icon_gicon_trampoline::<Self, F> as *const (),
                 )),
@@ -574,14 +578,16 @@ pub trait ModeSwitchExt: IsA<ModeSwitch> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(ModeSwitch::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(ModeSwitch::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::primary-icon-name".as_ptr() as *const _,
+                c"notify::primary-icon-name".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_primary_icon_name_trampoline::<Self, F> as *const (),
                 )),
@@ -603,14 +609,16 @@ pub trait ModeSwitchExt: IsA<ModeSwitch> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(ModeSwitch::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(ModeSwitch::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::primary-icon-tooltip-text".as_ptr() as *const _,
+                c"notify::primary-icon-tooltip-text".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_primary_icon_tooltip_text_trampoline::<Self, F> as *const (),
                 )),
@@ -629,14 +637,16 @@ pub trait ModeSwitchExt: IsA<ModeSwitch> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(ModeSwitch::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(ModeSwitch::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::secondary-icon-gicon".as_ptr() as *const _,
+                c"notify::secondary-icon-gicon".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_secondary_icon_gicon_trampoline::<Self, F> as *const (),
                 )),
@@ -655,14 +665,16 @@ pub trait ModeSwitchExt: IsA<ModeSwitch> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(ModeSwitch::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(ModeSwitch::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::secondary-icon-name".as_ptr() as *const _,
+                c"notify::secondary-icon-name".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_secondary_icon_name_trampoline::<Self, F> as *const (),
                 )),
@@ -684,14 +696,16 @@ pub trait ModeSwitchExt: IsA<ModeSwitch> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(ModeSwitch::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(ModeSwitch::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::secondary-icon-tooltip-text".as_ptr() as *const _,
+                c"notify::secondary-icon-tooltip-text".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_secondary_icon_tooltip_text_trampoline::<Self, F> as *const (),
                 )),

@@ -364,14 +364,16 @@ pub trait PlaceholderExt: IsA<Placeholder> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(Placeholder::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Placeholder::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::title".as_ptr() as *const _,
+                c"notify::title".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_title_trampoline::<Self, F> as *const (),
                 )),
@@ -390,14 +392,16 @@ pub trait PlaceholderExt: IsA<Placeholder> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(Placeholder::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Placeholder::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::description".as_ptr() as *const _,
+                c"notify::description".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_description_trampoline::<Self, F> as *const (),
                 )),
@@ -413,14 +417,16 @@ pub trait PlaceholderExt: IsA<Placeholder> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(Placeholder::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Placeholder::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::icon".as_ptr() as *const _,
+                c"notify::icon".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_icon_trampoline::<Self, F> as *const (),
                 )),

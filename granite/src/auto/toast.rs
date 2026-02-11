@@ -318,14 +318,16 @@ pub trait ToastExt: IsA<Toast> + 'static {
             this: *mut ffi::GraniteToast,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(Toast::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Toast::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"closed".as_ptr() as *const _,
+                c"closed".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     closed_trampoline::<Self, F> as *const (),
                 )),
@@ -349,17 +351,19 @@ pub trait ToastExt: IsA<Toast> + 'static {
             reason: ffi::GraniteToastDismissReason,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(
-                Toast::from_glib_borrow(this).unsafe_cast_ref(),
-                from_glib(reason),
-            )
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(
+                    Toast::from_glib_borrow(this).unsafe_cast_ref(),
+                    from_glib(reason),
+                )
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"dismissed".as_ptr() as *const _,
+                c"dismissed".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     dismissed_trampoline::<Self, F> as *const (),
                 )),
@@ -374,14 +378,16 @@ pub trait ToastExt: IsA<Toast> + 'static {
             this: *mut ffi::GraniteToast,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(Toast::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Toast::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"default-action".as_ptr() as *const _,
+                c"default-action".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     default_action_trampoline::<Self, F> as *const (),
                 )),
@@ -397,14 +403,16 @@ pub trait ToastExt: IsA<Toast> + 'static {
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
-            let f: &F = &*(f as *const F);
-            f(Toast::from_glib_borrow(this).unsafe_cast_ref())
+            unsafe {
+                let f: &F = &*(f as *const F);
+                f(Toast::from_glib_borrow(this).unsafe_cast_ref())
+            }
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                c"notify::title".as_ptr() as *const _,
+                c"notify::title".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_title_trampoline::<Self, F> as *const (),
                 )),
