@@ -1,6 +1,6 @@
 [package]
 name = "granite-rs-sys"
-version = "0.7.0"
+version = "0.8.0"
 edition = "2021"
 build = "build.rs"
 links = "libgranite-7"
@@ -38,6 +38,9 @@ version = "7.6"
 [package.metadata.system-deps.granite_7.v7_7]
 version = "7.7"
 
+[package.metadata.system-deps.granite_7.v7_8]
+version = "7.8"
+
 [package.metadata.docs.rs]
 rustc-args = ["--cfg", "docsrs"]
 rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
@@ -69,6 +72,10 @@ version = "0.21"
 package = "gtk4-sys"
 version = "0.10"
 
+[dependencies.pango-sys]
+package = "pango-sys"
+version = "0.21"
+
 [build-dependencies]
 system-deps = "7"
 
@@ -84,3 +91,4 @@ v7_4 = ["v7_3"]
 v7_5 = ["v7_4"]
 v7_6 = ["v7_5"]
 v7_7 = ["v7_6"]
+v7_8 = ["v7_7"]

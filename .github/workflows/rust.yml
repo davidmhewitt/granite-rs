@@ -21,6 +21,7 @@ jobs:
           - beta
           - "1.85.0"
         conf:
+          - { name: "granite", features: "v7_8", test_sys: true }
           - { name: "granite", features: "v7_7", test_sys: true }
           - { name: "granite", features: "v7_6", test_sys: true }
           - { name: "granite", features: "v7_5", test_sys: true }
@@ -42,5 +43,5 @@ jobs:
       - name: "${{ matrix.conf.name }}: tests"
         run: xvfb-run --auto-servernum cargo test --manifest-path ${{ matrix.conf.name }}/Cargo.toml --features "${{ matrix.conf.features }}"
       - name: "${{ matrix.conf.name }}/sys: tests"
-        run: xvfb-run --auto-servernum cargo test --manifest-path ${{ matrix.conf.name }}/sys/Cargo.toml
+        run: xvfb-run --auto-servernum cargo test --manifest-path ${{ matrix.conf.name }}/sys/Cargo.toml --features "${{ matrix.conf.features }}"
         if: matrix.conf.test_sys
