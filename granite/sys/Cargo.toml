@@ -72,6 +72,10 @@ version = "0.21"
 package = "gtk4-sys"
 version = "0.10"
 
+[dependencies.pango-sys]
+package = "pango-sys"
+version = "0.21"
+
 [build-dependencies]
 system-deps = "7"
 

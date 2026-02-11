@@ -54,3 +54,7 @@ version = "0.10"
 [dependencies.gtk]
 package = "gtk4"
 version = "0.10"
+
+[dependencies.pango]
+package = "pango"
+version = "0.21"
