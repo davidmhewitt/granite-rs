@@ -1275,6 +1275,17 @@ extern "C" {
         self_: *mut GraniteHeaderLabel,
         value: GraniteHeaderLabelSize,
     );
+    #[cfg(feature = "v7_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_8")))]
+    pub fn granite_header_label_get_ellipsize(
+        self_: *mut GraniteHeaderLabel,
+    ) -> pango::PangoEllipsizeMode;
+    #[cfg(feature = "v7_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_8")))]
+    pub fn granite_header_label_set_ellipsize(
+        self_: *mut GraniteHeaderLabel,
+        value: pango::PangoEllipsizeMode,
+    );
     #[cfg(feature = "v7_1")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
     pub fn granite_header_label_get_secondary_text(self_: *mut GraniteHeaderLabel)
@@ -1317,6 +1328,15 @@ extern "C" {
     #[cfg(feature = "v7_7")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
     pub fn granite_list_item_set_child(self_: *mut GraniteListItem, value: *mut gtk::GtkWidget);
+    #[cfg(feature = "v7_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_8")))]
+    pub fn granite_list_item_get_menu_model(self_: *mut GraniteListItem) -> *mut gio::GMenuModel;
+    #[cfg(feature = "v7_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_8")))]
+    pub fn granite_list_item_set_menu_model(
+        self_: *mut GraniteListItem,
+        value: *mut gio::GMenuModel,
+    );
     #[cfg(feature = "v7_7")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v7_7")))]
     pub fn granite_list_item_new() -> *mut GraniteListItem;

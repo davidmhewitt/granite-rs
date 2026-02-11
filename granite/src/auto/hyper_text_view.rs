@@ -95,9 +95,13 @@ impl HyperTextViewBuilder {
         }
     }
 
-    //pub fn extra_menu(self, extra_menu: &impl IsA</*Ignored*/gio::MenuModel>) -> Self {
-    //    Self { builder: self.builder.property("extra-menu", extra_menu.clone().upcast()), }
-    //}
+    pub fn extra_menu(self, extra_menu: &impl IsA<gio::MenuModel>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("extra-menu", extra_menu.clone().upcast()),
+        }
+    }
 
     pub fn im_module(self, im_module: impl Into<glib::GString>) -> Self {
         Self {
@@ -111,13 +115,17 @@ impl HyperTextViewBuilder {
         }
     }
 
-    //pub fn input_hints(self, input_hints: /*Ignored*/gtk::InputHints) -> Self {
-    //    Self { builder: self.builder.property("input-hints", input_hints), }
-    //}
+    pub fn input_hints(self, input_hints: gtk::InputHints) -> Self {
+        Self {
+            builder: self.builder.property("input-hints", input_hints),
+        }
+    }
 
-    //pub fn input_purpose(self, input_purpose: /*Ignored*/gtk::InputPurpose) -> Self {
-    //    Self { builder: self.builder.property("input-purpose", input_purpose), }
-    //}
+    pub fn input_purpose(self, input_purpose: gtk::InputPurpose) -> Self {
+        Self {
+            builder: self.builder.property("input-purpose", input_purpose),
+        }
+    }
 
     //pub fn justification(self, justification: /*Ignored*/gtk::Justification) -> Self {
     //    Self { builder: self.builder.property("justification", justification), }

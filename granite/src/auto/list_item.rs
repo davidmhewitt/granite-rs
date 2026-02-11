@@ -80,6 +80,16 @@ impl ListItemBuilder {
         }
     }
 
+    #[cfg(feature = "v7_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_8")))]
+    pub fn menu_model(self, menu_model: &impl IsA<gio::MenuModel>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("menu-model", menu_model.clone().upcast()),
+        }
+    }
+
     pub fn can_focus(self, can_focus: bool) -> Self {
         Self {
             builder: self.builder.property("can-focus", can_focus),
@@ -339,6 +349,30 @@ pub trait ListItemExt: IsA<ListItem> + 'static {
         }
     }
 
+    #[cfg(feature = "v7_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_8")))]
+    #[doc(alias = "granite_list_item_get_menu_model")]
+    #[doc(alias = "get_menu_model")]
+    fn menu_model(&self) -> Option<gio::MenuModel> {
+        unsafe {
+            from_glib_none(ffi::granite_list_item_get_menu_model(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    #[cfg(feature = "v7_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_8")))]
+    #[doc(alias = "granite_list_item_set_menu_model")]
+    fn set_menu_model(&self, value: Option<&impl IsA<gio::MenuModel>>) {
+        unsafe {
+            ffi::granite_list_item_set_menu_model(
+                self.as_ref().to_glib_none().0,
+                value.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
     fn get_property_text(&self) -> Option<glib::GString> {
         ObjectExt::property(self.as_ref(), "text")
     }
@@ -429,6 +463,31 @@ pub trait ListItemExt: IsA<ListItem> + 'static {
                 c"notify::child".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_child_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v7_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_8")))]
+    #[doc(alias = "menu-model")]
+    fn connect_menu_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_menu_model_trampoline<P: IsA<ListItem>, F: Fn(&P) + 'static>(
+            this: *mut ffi::GraniteListItem,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(ListItem::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::menu-model".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_menu_model_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

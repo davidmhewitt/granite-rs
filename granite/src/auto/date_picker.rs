@@ -106,9 +106,13 @@ impl DatePickerBuilder {
         }
     }
 
-    //pub fn extra_menu(self, extra_menu: &impl IsA</*Ignored*/gio::MenuModel>) -> Self {
-    //    Self { builder: self.builder.property("extra-menu", extra_menu.clone().upcast()), }
-    //}
+    pub fn extra_menu(self, extra_menu: &impl IsA<gio::MenuModel>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("extra-menu", extra_menu.clone().upcast()),
+        }
+    }
 
     pub fn has_frame(self, has_frame: bool) -> Self {
         Self {
@@ -122,13 +126,17 @@ impl DatePickerBuilder {
         }
     }
 
-    //pub fn input_hints(self, input_hints: /*Ignored*/gtk::InputHints) -> Self {
-    //    Self { builder: self.builder.property("input-hints", input_hints), }
-    //}
+    pub fn input_hints(self, input_hints: gtk::InputHints) -> Self {
+        Self {
+            builder: self.builder.property("input-hints", input_hints),
+        }
+    }
 
-    //pub fn input_purpose(self, input_purpose: /*Ignored*/gtk::InputPurpose) -> Self {
-    //    Self { builder: self.builder.property("input-purpose", input_purpose), }
-    //}
+    pub fn input_purpose(self, input_purpose: gtk::InputPurpose) -> Self {
+        Self {
+            builder: self.builder.property("input-purpose", input_purpose),
+        }
+    }
 
     pub fn invisible_char(self, invisible_char: u32) -> Self {
         Self {

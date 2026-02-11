@@ -87,6 +87,14 @@ impl HeaderLabelBuilder {
         }
     }
 
+    #[cfg(feature = "v7_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_8")))]
+    pub fn ellipsize(self, ellipsize: pango::EllipsizeMode) -> Self {
+        Self {
+            builder: self.builder.property("ellipsize", ellipsize),
+        }
+    }
+
     #[cfg(feature = "v7_1")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
     pub fn secondary_text(self, secondary_text: impl Into<glib::GString>) -> Self {
@@ -364,6 +372,30 @@ pub trait HeaderLabelExt: IsA<HeaderLabel> + 'static {
         }
     }
 
+    #[cfg(feature = "v7_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_8")))]
+    #[doc(alias = "granite_header_label_get_ellipsize")]
+    #[doc(alias = "get_ellipsize")]
+    fn ellipsize(&self) -> pango::EllipsizeMode {
+        unsafe {
+            from_glib(ffi::granite_header_label_get_ellipsize(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    #[cfg(feature = "v7_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_8")))]
+    #[doc(alias = "granite_header_label_set_ellipsize")]
+    fn set_ellipsize(&self, value: pango::EllipsizeMode) {
+        unsafe {
+            ffi::granite_header_label_set_ellipsize(
+                self.as_ref().to_glib_none().0,
+                value.into_glib(),
+            );
+        }
+    }
+
     #[cfg(feature = "v7_1")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v7_1")))]
     #[doc(alias = "granite_header_label_get_secondary_text")]
@@ -458,6 +490,34 @@ pub trait HeaderLabelExt: IsA<HeaderLabel> + 'static {
                 c"notify::size".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_size_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v7_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v7_8")))]
+    #[doc(alias = "ellipsize")]
+    fn connect_ellipsize_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_ellipsize_trampoline<
+            P: IsA<HeaderLabel>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::GraniteHeaderLabel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(HeaderLabel::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::ellipsize".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_ellipsize_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

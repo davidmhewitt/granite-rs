@@ -55,6 +55,7 @@ manual = [
     "Gio.AsyncResult",
     "Gio.File",
     "Gio.Icon",
+    "Gio.MenuModel",
     "GLib.DateTime",
     "GLib.Error",
     "GLib.Variant",
@@ -75,6 +76,8 @@ manual = [
     "Gtk.Editable",
     "Gtk.Entry",
     "Gtk.Grid",
+    "Gtk.InputHints",
+    "Gtk.InputPurpose",
     "Gtk.Label",
     "Gtk.LayoutManager",
     "Gtk.Native",
@@ -92,6 +95,7 @@ manual = [
     "Gtk.Widget",
     "Gtk.Window",
     "Gtk.WindowGravity",
+    "Pango.EllipsizeMode",
 ]
 
 [[object]]
