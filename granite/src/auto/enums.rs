@@ -100,7 +100,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for BoxSpacing {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        unsafe { from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0)) }
     }
 }
 
@@ -222,7 +222,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for HeaderLabelSize {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        unsafe { from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0)) }
     }
 }
 
@@ -302,7 +302,7 @@ impl glib::error::ErrorDomain for ServicesContractorError {
         static QUARK: ::std::sync::OnceLock<glib::ffi::GQuark> = ::std::sync::OnceLock::new();
         let quark = *QUARK.get_or_init(|| unsafe {
             glib::ffi::g_quark_from_static_string(
-                b"granite-services-contractor-error-quark\0".as_ptr() as *const _,
+                c"granite-services-contractor-error-quark".as_ptr(),
             )
         });
         unsafe { from_glib(quark) }
@@ -351,7 +351,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for ServicesContractorError {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        unsafe { from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0)) }
     }
 }
 
@@ -451,7 +451,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for SettingsColorScheme {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        unsafe { from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0)) }
     }
 }
 
@@ -559,7 +559,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for SettingsPageStatusType {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        unsafe { from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0)) }
     }
 }
 
@@ -673,7 +673,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for ToastDismissReason {
     #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
-        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        unsafe { from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0)) }
     }
 }
 
