@@ -1,6 +1,6 @@
 [package]
 name = "granite-rs"
-version = "3.2.0"
+version = "3.3.0"
 edition = "2021"
 authors = ["David Hewitt <davidmhewitt@gmail.com>"]
 readme = "../README.md"
@@ -38,23 +38,23 @@ rustdoc-args = ["--cfg", "docsrs"]
 libc = "0.2"
 bitflags = "2.2"
 once_cell = "1.17"
-relm4 = { version = "0.10", optional = true }
-granite-rs-sys = { path = "./sys", version = "0.8.0" }
+relm4 = { version = "0.11", optional = true }
+granite-rs-sys = { path = "./sys", version = "0.9.0" }
 
 [dependencies.glib]
-version = "0.21"
+version = "0.22"
 
 [dependencies.gio]
-version = "0.21"
+version = "0.22"
 
 [dependencies.gdk]
 package = "gdk4"
-version = "0.10"
+version = "0.11"
 
 [dependencies.gtk]
 package = "gtk4"
-version = "0.10"
+version = "0.11"
 
 [dependencies.pango]
 package = "pango"
-version = "0.21"
+version = "0.22"

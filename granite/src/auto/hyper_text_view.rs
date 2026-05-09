@@ -17,7 +17,7 @@ glib::wrapper! {
     }
 }
 
-#[cfg(not(any(feature = "gtk_v4_14")))]
+#[cfg(not(feature = "gtk_v4_14"))]
 glib::wrapper! {
     #[doc(alias = "GraniteHyperTextView")]
     pub struct HyperTextView(Object<ffi::GraniteHyperTextView, ffi::GraniteHyperTextViewClass>) @extends gtk::TextView, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Scrollable;
